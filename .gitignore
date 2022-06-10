@@ -11,6 +11,10 @@
 # production
 /build
 
+# Optional npm cache directory
+.npm
+.npmrc
+
 # misc
 .DS_Store
 .env.local
@@ -18,6 +22,11 @@
 .env.test.local
 .env.production.local
 
+# log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# vscode
+.vscode/*
+!.vscode/launch.json
