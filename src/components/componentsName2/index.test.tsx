@@ -1,8 +1,8 @@
-// TODO: add test
-import {} from '.';
+// // TODO: add test
+// import {} from '.';
 
-describe('component/componentsName2', () => {
-  it('', () => {
-    //
-  });
-});
+// describe('component/componentsName2', () => {
+//   it('', () => {
+//     //
+//   });
+// });

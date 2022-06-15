@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from 'pages/login';
 import Register from 'pages/register';
+import PageNotFound from 'pages/page404';
 
 const Routers = () => {
   return (
@@ -9,10 +10,8 @@ const Routers = () => {
         {/* Root path should be <Login /> or <Register />. Below is just for example */}
         <Route path='/' element={<Login />} />
         <Route path='/daftar' element={<Register />} />				
-
-
         {/* Catch all */}
-        <Route path='*' element={<h1>Not found</h1>} />
+        <Route path='*' element={<PageNotFound />} />	
       </Routes>
     </Router>
   );
