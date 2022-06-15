@@ -12,13 +12,6 @@
 		"moduleResolution": "node",
 		"noEmit": true,
 		"noFallthroughCasesInSwitch": true,
-		"paths": {
-      "@/atoms/*": ["components/atoms/*"],
-      "@/molecules/*": ["components/molecules/*"],
-      "@/organisms/*": ["components/organisms/*"],
-      "@/pages/*": ["pages/*"],
-      "@/store/*": ["store/*"],
-    },
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"strict": true,

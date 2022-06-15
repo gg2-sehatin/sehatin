@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import AdminPage from '@/pages/AdminPage';
-import ComponentDemoPage from '@/pages/ComponentDemoPage';
-import PatientPage from '@/pages/PatientPage';
+import AdminPage from 'pages/AdminPage';
+import ComponentDemoPage from 'pages/ComponentDemoPage';
+import PatientPage from 'pages/PatientPage';
 
 const Routers = () => {
   return (
