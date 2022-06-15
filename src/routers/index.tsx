@@ -11,7 +11,7 @@ const Routers = () => {
         {/* Root path should be <Login /> or <Register />. Below is just for example */}
         <Route path='/' element={<AdminPage />} />
         <Route path='/patient' element={<PatientPage />} />
-        <Route path='' element={<ComponentDemoPage />} />
+        <Route path='/component' element={<ComponentDemoPage />} />
 
         {/* Catch all */}
         <Route path='*' element={<h1>Not found</h1>} />

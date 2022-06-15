@@ -1,11 +1,14 @@
+import { Heading, Stack } from "@chakra-ui/react";
+import ButtonDemo from "components/atoms/Button/Button.demo";
+
 const ComponentDemoPage = () => {
   return (
     <>
-      <header className='h-screen flex flex-col gap-4 items-center justify-center bg-white'>
-        <p className='text-3xl font-semibold'>Component Demo</p>
-        <div className='flex gap-5'>
-        </div>
-      </header>
+      <Heading>Component Demo</Heading>
+      <Stack spacing={8} direction='row'>
+        Button Demo
+        <ButtonDemo />
+      </Stack>
     </>
   );
 };

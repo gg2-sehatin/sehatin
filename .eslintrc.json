@@ -38,6 +38,7 @@
       "maximum": 2,
       "when": "multiline"
     }],
+		"react/prop-types": "off",
 		"react/react-in-jsx-scope": "off"
 	},
 	"settings": {
