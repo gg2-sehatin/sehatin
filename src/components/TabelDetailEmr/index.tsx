@@ -7,17 +7,17 @@ type TabelDetailEmrProps = {
 };
 
 const TabelDetailEmr = ({ data }: TabelDetailEmrProps) => {
-	return (
-		<>
-			{Object.keys(data).map((key, index) => (
-				<Tr key={index}>
-					<Td>{index + 1}</Td>
-					<Td>{key}</Td>
-					<Td>{data[key]}</Td>
-				</Tr>
-			))}
-		</>
-	);
+  return (
+    <>
+      {Object.keys(data).map((key, index) => (
+        <Tr key={index}>
+          <Td>{index + 1}</Td>
+          <Td>{key}</Td>
+          <Td>{data[key]}</Td>
+        </Tr>
+      ))}
+    </>
+  );
 };
 
 export default TabelDetailEmr;
