@@ -1,7 +1,7 @@
 import SignInForm from "components/Signin";
 
 function Login(){
-    return <SignInForm />
+  return <SignInForm />
 }
 
 export default Login;
