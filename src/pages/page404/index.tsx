@@ -1,29 +1,28 @@
-import "./index.css";
-// import { Link as RouteLink } from "react-router-dom";
+import { Flex, Heading, Text, Button } from "@chakra-ui/react";
 
-function PageNotFound() {
-  return (
-    <>
-      <div className="container404">
-        <div id="clouds">
-          <div className="cloud x1"></div>
-          <div className="cloud x1_5"></div>
-          <div className="cloud x2"></div>
-          <div className="cloud x3"></div>
-          <div className="cloud x4"></div>
-          <div className="cloud x5"></div>
-        </div>
-        <div className="c">
-          <div className="_404">404</div>
-          <div className="_1">THE PAGE</div>
-          <div className="_2">WAS NOT FOUND</div>
-          <a className="btn" href="/">
-            BACK TO HOME
-          </a>
-        </div>
-      </div>
-    </>
-  );
-}
+import React from "react";
+
+const PageNotFound = () => (
+  <>
+    <Flex
+      h="100vh"
+      w="100vw"
+      bg="blue.300"
+      px="32px"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Flex direction="column" textAlign="center" color="white" h="25%">
+        <Heading>404: Not Found</Heading>
+        <Text fontSize="xl" my="5">
+          Halaman tidak ditemukan
+        </Text>
+        <a href="/">
+          <Button color="blue.300">Kembali</Button>
+        </a>
+      </Flex>
+    </Flex>
+  </>
+);
 
 export default PageNotFound;

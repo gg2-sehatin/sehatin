@@ -20,7 +20,6 @@ function Register() {
   const textColor = useColorModeValue("gray.700", "white");
   const bgForm = useColorModeValue("white", "navy.800");
   const titleColor = useColorModeValue("gray.700", "blue.500");
-
   return (
     <Flex position="relative" bg="gray.100">
       <Flex
@@ -57,14 +56,6 @@ function Register() {
               Daftar
             </Text>
 
-            {/* <Text
-							fontSize='lg'
-							color='gray.400'
-							fontWeight='bold'
-							textAlign='center'
-							mb='22px'>
-							or
-						</Text> */}
             <FormControl>
               <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
                 Nama
