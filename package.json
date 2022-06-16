@@ -16,6 +16,8 @@
 		"@types/react-dom": "^18.0.5",
 		"@types/react-router-dom": "^5.3.3",
 		"framer-motion": "^6",
+    "json-server": "^0.17.0",
+    "json-server-auth": "^2.1.0",
 		"react": "^18.1.0",
 		"react-dom": "^18.1.0",
 		"react-redux": "^8.0.2",
@@ -25,11 +27,14 @@
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"lint": "eslint src --ext .ts,.tsx,.js,.jsx --fix"
+    "build": "react-scripts build",
+    "build-storybook": "build-storybook -s public",
+    "db": "json-server --watch mock/db.json --port 3001 -m ./node_modules/json-server-auth",
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx . --color --fix",
+    "start": "react-scripts start",
+    "storybook": "start-storybook -p 6006 -s public",
+    "test": "react-scripts test"
 	},
 	"eslintConfig": {
 		"extends": [
