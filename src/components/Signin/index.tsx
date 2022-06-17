@@ -12,9 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { Link as RouteLink } from "react-router-dom";
 
-// const textColor = useColorModeValue("gray.700", "white");
-// const bgForm = useColorModeValue("white", "navy.800");
-// const titleColor = useColorModeValue("gray.700", "blue.500");
 function SignIn() {
   // Chakra color mode
   const textColor = useColorModeValue("gray.700", "white");
