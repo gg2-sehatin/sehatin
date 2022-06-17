@@ -1,20 +1,11 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 // import chakra
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Text,
-  TableCaption,
-  TableContainer,
-  Container,
-} from '@chakra-ui/react';
+import { Thead, TableContainer, Table, Text, Tbody } from '@chakra-ui/react';
 
 // Component
-import DataRiwayatEmr from 'components/DataRiwayatEmr';
 import SidebarWithHeader from 'components/Sidebar';
+import Headers from 'components/TableData/headers';
+import Rows from 'components/TableData/rows';
 
 // Fake data
 import emrHistoryData from 'utils/constants/emrHistoryData';
@@ -22,27 +13,21 @@ const EmrHistory = () => {
   return (
     <>
       <SidebarWithHeader>
-        <Container maxW='90vw'>
-          <Text fontSize='xl' fontWeight='bold' mb='8px'>
-            Daftar Riwayat EMR Pasien
-          </Text>
-          <TableContainer overflowX='auto'>
-            <Table variant='simple'>
-              <TableCaption>Riwayat EMR Pasien</TableCaption>
-              <Thead>
-                <Tr>
-                  <Th>No</Th>
-                  <Th>Nama</Th>
-                  <Th>Tanggal Pemeriksaan</Th>
-                  <Th>Aksi</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                <DataRiwayatEmr data={emrHistoryData} />
-              </Tbody>
-            </Table>
-          </TableContainer>
-        </Container>
+        <Text fontSize='xl' fontWeight='bold' mb='8px'>
+          Daftar Riwayat EMR Pasien
+        </Text>
+        <TableContainer overflowX='auto'>
+          <Table variant='simple'>
+            <Thead>
+              <Headers
+                headers={['No', 'Nama', 'Tanggal Pemeriksaan', 'Aksi']}
+              />
+            </Thead>
+            <Tbody>
+              <Rows data={emrHistoryData} type='emr' />
+            </Tbody>
+          </Table>
+        </TableContainer>
       </SidebarWithHeader>
     </>
   );

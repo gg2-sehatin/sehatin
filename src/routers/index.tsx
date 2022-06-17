@@ -6,6 +6,10 @@ import PatientPage from 'pages/PatientPage';
 // Doctor
 import EmrHistory from 'pages/doctor/emrHistory';
 import EmrDetail from 'pages/doctor/emrDetail';
+
+// Receptionist
+import QueueMedicine from 'pages/receptionist/queuemedicine';
+
 const Routers = () => {
   return (
     <Router>
@@ -18,6 +22,10 @@ const Routers = () => {
         <Route path='/emr-history' element={<EmrHistory />} />
         <Route path='/emr-history/:id' element={<EmrDetail />} />
         {/* End Doctor Routes */}
+
+        {/* Recepcionist Routes */}
+        <Route path='/queue-medicine' element={<QueueMedicine />} />
+        {/* End Recepcionist Routes */}
 
         {/* Catch all */}
         <Route path='*' element={<h1>Not found</h1>} />

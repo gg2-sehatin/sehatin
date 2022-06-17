@@ -38,6 +38,7 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Settings', icon: FiSettings },
 ];
 
+
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   return (
     <Box
