@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import AdminPage from 'pages/AdminPage';
-import PatientPage from 'pages/PatientPage';
+import Login from 'pages/login';
+import Register from 'pages/register';
+import PageNotFound from 'pages/page404';
 
 // Doctor
 import EmrHistory from 'pages/doctor/emrHistory';
@@ -15,8 +15,8 @@ const Routers = () => {
     <Router>
       <Routes>
         {/* Root path should be <Login /> or <Register />. Below is just for example */}
-        <Route path='/' element={<AdminPage />} />
-        <Route path='/patient' element={<PatientPage />} />
+        <Route path='/' element={<Login />} />
+        <Route path='/daftar' element={<Register />} />	
 
         {/* Doctor Routes */}
         <Route path='/emr-history' element={<EmrHistory />} />
@@ -28,7 +28,7 @@ const Routers = () => {
         {/* End Recepcionist Routes */}
 
         {/* Catch all */}
-        <Route path='*' element={<h1>Not found</h1>} />
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </Router>
   );
