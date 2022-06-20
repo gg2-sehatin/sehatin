@@ -4,6 +4,10 @@ import Register from "pages/register";
 import PageNotFound from "pages/page404";
 import StatusReservationNotRegister from "pages/PatientPage/StatusReservationNotRegister";
 import StatusReservationFormRegister from "pages/PatientPage/StatusReservationFormRegister";
+import StatusReservationOnWaiting from "pages/PatientPage/StatusReservationOnWaiting";
+import StatusReservationNotOpen from "pages/PatientPage/StatusReservationNotOpenYet";
+import StatusReservationFullQueue from "pages/PatientPage/StatusReservationFullQueue";
+import StatusReservationSuccessRegister from "pages/PatientPage/StatusReservationSuccessRegister";
 
 const Routers = () => {
   return (
@@ -16,6 +20,19 @@ const Routers = () => {
         <Route path="*" element={<PageNotFound />} />
         <Route path="/patient" element={<StatusReservationNotRegister />} />
         <Route path="/form" element={<StatusReservationFormRegister />} />
+        <Route
+          path="/statusonwaiting"
+          element={<StatusReservationOnWaiting />}
+        />
+        <Route path="/statusnotopen" element={<StatusReservationNotOpen />} />
+        <Route
+          path="/statusfullqueue"
+          element={<StatusReservationFullQueue />}
+        />
+        <Route
+          path="/statussuccess"
+          element={<StatusReservationSuccessRegister />}
+        />
       </Routes>
     </Router>
   );

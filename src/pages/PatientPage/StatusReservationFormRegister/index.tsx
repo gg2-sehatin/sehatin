@@ -10,11 +10,21 @@ import {
   RadioGroup,
   Stack,
   Radio,
+  Select,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
 } from "@chakra-ui/react";
 
 function StatusReservationFormRegister() {
   const textColor = useColorModeValue("gray.700", "white");
   const bgForm = useColorModeValue("white", "navy.800");
+  const format = (value: string) => value + ` Tahun`;
+  const parse = (value: string) => value.replace(/^\$/, "");
+
+  const [value, setValue] = React.useState("0");
   return (
     <Flex position="relative" bg="gray.100">
       <Flex
@@ -106,15 +116,23 @@ function StatusReservationFormRegister() {
             <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
               Usia
             </FormLabel>
-            <Input
-              variant="outline"
-              fontSize="sm"
+            <NumberInput
               ms="4px"
-              type="number"
-              placeholder="Masukkan usia dalam angka"
               mb="24px"
               size="lg"
-            />
+              allowMouseWheel
+              onChange={(valueString) => setValue(parse(valueString))}
+              value={format(value)}
+              defaultValue={1}
+              min={1}
+              max={200}
+            >
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
 
             <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
               Jenis Kelamin
@@ -126,8 +144,17 @@ function StatusReservationFormRegister() {
               </Stack>
             </RadioGroup>
 
+            <FormLabel ms="4px" fontSize="sm" mt="24px" fontWeight="normal">
+              Dokter Pilihan
+            </FormLabel>
+            <Select placeholder="Pilih dokter" ms="4px" mb="24px" size="lg">
+              <option value="option1">Dr. A</option>
+              <option value="option2">Dr. B</option>
+              <option value="option3">Dr. C</option>
+            </Select>
+
             <FormControl>
-              <a href="/statusreservationonwaiting">
+              <a href="/statusonwaiting">
                 <Button
                   mt="24px"
                   fontSize="10px"
