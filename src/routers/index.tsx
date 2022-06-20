@@ -3,6 +3,7 @@ import Login from "pages/login";
 import Register from "pages/register";
 import PageNotFound from "pages/page404";
 import StatusReservationNotRegister from "pages/PatientPage/StatusReservationNotRegister";
+import StatusReservationFormRegister from "pages/PatientPage/StatusReservationFormRegister";
 
 const Routers = () => {
   return (
@@ -14,6 +15,7 @@ const Routers = () => {
         {/* Catch all */}
         <Route path="*" element={<PageNotFound />} />
         <Route path="/patient" element={<StatusReservationNotRegister />} />
+        <Route path="/form" element={<StatusReservationFormRegister />} />
       </Routes>
     </Router>
   );
