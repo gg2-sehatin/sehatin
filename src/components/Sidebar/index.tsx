@@ -1,22 +1,10 @@
-import { ReactNode } from 'react';
+import { Box, Drawer, DrawerContent, useDisclosure } from '@chakra-ui/react';
 
-// Chakra
-import {
-  Box,
-  Drawer,
-  DrawerContent,
-  useDisclosure,
-} from '@chakra-ui/react';
-
-// Components
 import SidebarContent from 'components/SidebarContent';
 import MobileNav from 'components/MobileNav';
+import SidebarProps from './types';
 
-export default function SidebarWithHeader({
-  children,
-}: {
-	children: ReactNode;
-}) {
+export default function SidebarWithHeader({ children }: SidebarProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box minH='100vh'>

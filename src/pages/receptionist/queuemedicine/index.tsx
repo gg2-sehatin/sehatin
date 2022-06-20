@@ -1,23 +1,21 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-// import chakra
 import { Table, TableContainer, Tbody, Text, Thead } from '@chakra-ui/react';
 
-// Component
 import SidebarWithHeader from 'components/Sidebar';
-import Headers from 'components/TableData/headers';
-import Rows from 'components/TableData/rows';
+import Headers from 'components/TableData/Headers';
+import Rows from 'components/TableData/Rows';
 
-// Fake data
 import queueMedicineData from 'utils/constants/queueMedicineData';
+import { QUEUE_TYPE_MEDICINE } from './types/queue';
+import QueueMedicineData from 'types/QueueMedicineData';
 
 const QueueMedicine = () => {
-  const queueDone = queueMedicineData.filter(
-    (item) => (item.status).toLowerCase() === 'selesai'
-  ) as React.ReactNode;
+  const queueDone: Array<QueueMedicineData> = queueMedicineData.filter(
+    (item) => item.status.toLowerCase() === 'selesai'
+  );
 
-  const queueWaiting = queueMedicineData.filter(
-    (item) => (item.status).toLowerCase() === 'dalam antrian'
-  ) as React.ReactNode;
+  const queueWaiting: Array<QueueMedicineData> = queueMedicineData.filter(
+    (item) => item.status.toLowerCase() === 'dalam antrian'
+  );
 
   return (
     <>
@@ -31,7 +29,7 @@ const QueueMedicine = () => {
               <Headers headers={['No', 'Nama', 'Obat', 'Status', 'Aksi']} />
             </Thead>
             <Tbody>
-              <Rows data={queueWaiting} type='medicine' />
+              <Rows data={queueWaiting} type={QUEUE_TYPE_MEDICINE} />
             </Tbody>
           </Table>
         </TableContainer>
@@ -44,7 +42,7 @@ const QueueMedicine = () => {
               <Headers headers={['No', 'Nama', 'Obat', 'Status', 'Aksi']} />
             </Thead>
             <Tbody>
-              <Rows data={queueDone} type='medicine' />
+              <Rows data={queueDone} type={QUEUE_TYPE_MEDICINE} />
             </Tbody>
           </Table>
         </TableContainer>

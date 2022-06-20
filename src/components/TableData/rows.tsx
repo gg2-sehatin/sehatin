@@ -1,14 +1,20 @@
 import { Tr, Td, Text, Button, Select } from '@chakra-ui/react';
 
-const Rows = ({
-  data,
-  type,
-}: {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	data: any;
-	type: string;
-}) => {
-  let viewData;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Rows = ({ data, type }: { data: any; type: 'emr' | 'medicine' }) => {
+  let viewData = <></>;
+
+  if (!data || data?.length === 0) {
+    return (
+      <Tr>
+        <Td colSpan={4} textAlign='center' h='2rem'>
+          <Text fontSize='xl' fontWeight='bold'>
+            Data belum tersedia
+          </Text>
+        </Td>
+      </Tr>
+    );
+  }
 
   if (typeof data === 'object') {
     viewData = (
@@ -39,7 +45,7 @@ const Rows = ({
               ))}
               <Td>
                 <a href={`/emr-history/${item.id}`}>
-                  <Button variant='dark' color='white' bg='blue.200'>
+                  <Button variant='dark' color='white' bg='blue.400'>
                     Detail
                   </Button>
                 </a>
@@ -51,34 +57,42 @@ const Rows = ({
     }
 
     if (type === 'medicine') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const getMedicineData = (key: string, item: any) => {
+        if(key==='status'){
+          const statusBg = item.status.toLowerCase() === 'dalam antrian' ? '#F94C66' : '#53BF9D';
+
+          return (
+            <Text
+              bg={statusBg}
+              w='fit-content'
+              p='4px 8px'
+              color='white'
+              borderRadius='8px'
+            >
+              {item[key]}
+            </Text>
+          )
+        }
+
+        return (
+          <Text>
+            {item[key]}
+          </Text>
+        );
+      }
+
       viewData = (
         <>
           {data.map((item, index) => (
             <Tr key={index}>
               {Object.keys(item).map((key, index) => (
-                <>
-                  <Td key={index}>
-                    {key === 'status' ? (
-                      <Text
-                        bg={
-                          item.status.toLowerCase() === 'dalam antrian'
-                            ? 'red'
-                            : 'green'
-                        }
-                        w='fit-content'
-                        p='4px 8px'
-                        color='white'
-                        borderRadius='8px'>
-                        {item[key]}
-                      </Text>
-                    ) : (
-                      <Text>{item[key]}</Text>
-                    )}
-                  </Td>
-                </>
+                <Td key={index}>
+                  {getMedicineData(key, item)}
+                </Td>
               ))}
               <Td>
-                <Select placeholder='Status' w='75%'>
+                <Select placeholder='Status' w='80%'>
                   <option
                     value='antri'
                     selected={item.status.toLowerCase() == 'dalam antrian'}>
@@ -98,21 +112,7 @@ const Rows = ({
     }
   }
 
-  return (
-    <>
-      {data.length > 0 || Object.keys(data).length > 0 ? (
-        viewData
-      ) : (
-        <Tr>
-          <Td colSpan={4} textAlign='center' h='2rem'>
-            <Text fontSize='xl' fontWeight='bold'>
-              Data belum tersedia
-            </Text>
-          </Td>
-        </Tr>
-      )}
-    </>
-  );
+  return viewData;
 };
 
 export default Rows;

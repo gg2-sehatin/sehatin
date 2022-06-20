@@ -1,5 +1,3 @@
-import React from "react";
-// Chakra imports
 import {
   Flex,
   Button,
@@ -13,7 +11,6 @@ import {
 import { Link as RouteLink } from "react-router-dom";
 
 function SignIn() {
-  // Chakra color mode
   const textColor = useColorModeValue("gray.700", "white");
   const bgForm = useColorModeValue("white", "navy.800");
   const titleColor = useColorModeValue("gray.700", "blue.500");

@@ -1,13 +1,9 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-// import chakra
 import { Thead, TableContainer, Table, Text, Tbody } from '@chakra-ui/react';
 
-// Component
 import SidebarWithHeader from 'components/Sidebar';
-import Headers from 'components/TableData/headers';
-import Rows from 'components/TableData/rows';
+import Headers from 'components/TableData/Headers';
+import Rows from 'components/TableData/Rows';
 
-// Fake data
 import emrHistoryData from 'utils/constants/emrHistoryData';
 const EmrHistory = () => {
   return (

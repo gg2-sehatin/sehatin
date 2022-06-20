@@ -7,7 +7,6 @@ import {
   VStack,
   useColorModeValue,
   Text,
-  FlexProps,
   Menu,
   MenuButton,
   MenuDivider,
@@ -16,10 +15,8 @@ import {
 } from '@chakra-ui/react';
 
 import { FiMenu, FiChevronDown } from 'react-icons/fi';
+import MobileProps from './types';
 
-interface MobileProps extends FlexProps {
-	onOpen: () => void;
-}
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   return (
     <Flex
