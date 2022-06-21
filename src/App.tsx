@@ -1,14 +1,14 @@
-import React from 'react';
-// import './App.css';
+// import React from 'react';
 import Routers from 'routers';
 import { ChakraProvider } from '@chakra-ui/react';
 
+
 function App() {
-	return (
-		<ChakraProvider>
-			<Routers />
-		</ChakraProvider>
-	);
+  return (
+    <ChakraProvider>
+      <Routers />
+    </ChakraProvider>
+  );
 }
 
 export default App;
