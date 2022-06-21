@@ -1,6 +1,31 @@
 import { Tr, Td, Text, Button, Select } from '@chakra-ui/react';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getMedicineData = (key: string, item: any) => {
+  if (key==='status'){
+    const statusBg = item.status.toLowerCase() === 'dalam antrian' ? '#F94C66' : '#53BF9D';
+
+    return (
+      <Text
+        bg={statusBg}
+        w='fit-content'
+        p='4px 8px'
+        color='white'
+        borderRadius='8px'
+      >
+        {item[key]}
+      </Text>
+    )
+  }
+
+  return (
+    <Text>
+      {item[key]}
+    </Text>
+  );
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Rows = ({ data, type }: { data: any; type: 'emr' | 'medicine' }) => {
   let viewData = <></>;
 
@@ -57,30 +82,6 @@ const Rows = ({ data, type }: { data: any; type: 'emr' | 'medicine' }) => {
     }
 
     if (type === 'medicine') {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const getMedicineData = (key: string, item: any) => {
-        if(key==='status'){
-          const statusBg = item.status.toLowerCase() === 'dalam antrian' ? '#F94C66' : '#53BF9D';
-
-          return (
-            <Text
-              bg={statusBg}
-              w='fit-content'
-              p='4px 8px'
-              color='white'
-              borderRadius='8px'
-            >
-              {item[key]}
-            </Text>
-          )
-        }
-
-        return (
-          <Text>
-            {item[key]}
-          </Text>
-        );
-      }
 
       viewData = (
         <>
