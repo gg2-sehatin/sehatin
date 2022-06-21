@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "pages/login";
 import Register from "pages/register";
 import PageNotFound from "pages/page404";
+
+//PatientStatusReservation
 import StatusReservationNotRegister from "pages/PatientPage/StatusReservationNotRegister";
 import StatusReservationFormRegister from "pages/PatientPage/StatusReservationFormRegister";
 import StatusReservationOnWaiting from "pages/PatientPage/StatusReservationOnWaiting";
@@ -16,6 +18,7 @@ const Routers = () => {
         {/* Root path should be <Login /> or <Register />. Below is just for example */}
         <Route path="/" element={<Login />} />
         <Route path="/daftar" element={<Register />} />
+
         {/* Catch all */}
         <Route path="*" element={<PageNotFound />} />
         <Route path="/patient" element={<StatusReservationNotRegister />} />
