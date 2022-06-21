@@ -5,7 +5,7 @@ import Headers from 'components/TableData/Headers';
 import Rows from 'components/TableData/Rows';
 
 import queueMedicineData from 'utils/constants/queueMedicineData';
-import { QUEUE_TYPE_MEDICINE } from './types/queue';
+import { QUEUE_TYPE_MEDICINE } from 'pages/receptionist/queueMedicine/types/queue';
 import QueueMedicineData from 'types/QueueMedicineData';
 
 const QueueMedicine = () => {
