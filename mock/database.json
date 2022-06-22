@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "id" : 1,
+      "name" : "Dr. Budi",
+      "email" : "budi.dokter@email.com",
+      "password": "rahasia",
+      "role": "dokter"
+    },
+    {
+      "id" : 2,
+      "name" : "Resepsionis",
+      "email" : "resepsionis@email.com",
+      "password": "rahasia",
+      "role": "resepsionis"
+    },
+    {
+      "id" : 1,
+      "name" : "Administrator",
+      "email" : "admin@email.com",
+      "password": "rahasia",
+      "role": "admin"
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "nama": "Media",
+      "jk" : 2,
+      "tempat_lahir": "Bogor",
+      "tanggal_lahir": "14/01/1999",
+      "no_telp": "082283000129",
+      "email": "medialisar99@gmail.com",
+      "password": "rahasia"
+    }
+  ]
+}
