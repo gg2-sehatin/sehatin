@@ -186,6 +186,6 @@ const Register = () => {
       </Flex>
     </Flex>
   );
-};
+}
 
 export default Register;
