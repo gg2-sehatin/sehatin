@@ -1,42 +1,37 @@
 {
   "users": [
     {
-      "email": "some@email.com",
-      "password": "$2a$10$Wb7MwD/IWsgx9pb6ZzlN1.ptcp1yeKUEChWYoi8nr.wlipZ3TVsT.",
-      "name": "Baru",
-      "id": 1
-    }
-  ],
-  "patients": [
-    {
+      "email": "janedoe@gmail.com",
       "id": 1,
-      "userID": 1,
-      "name": "Media"
+      "name": "Jane Doe",
+      "password": "$2a$10$xU0On7AVJBL6ENMRZbsI4erf2RhG8gDOsY9bwMkBiAaehgYjivFq.",
+      "role": "doctor"
     },
     {
-      "id": 2,
-      "userID": 2,
-      "name": "Ari"
-    },
-    {
+      "email": "kamalakhan@gmail.com",
       "id": 3,
-      "userID": 3,
-      "name": "Arin"
+      "name": "Kamala Khan",
+      "password": "$2a$10$ZYoNP/fgPNIT1Fb6ynecvObPGVXl5WXyUuLVs34h4rp9bCXxDqRgS",
+      "role": "admin"
     },
     {
+      "birthday": "2001-08-10",
+      "birthplace": "Jakarta",
+      "email": "renaldkarel@gmail.com",
+      "gender": "Laki-laki",
       "id": 4,
-      "userID": 4,
-      "name": "Karrel"
+      "name": "Rhenald Karrel",
+      "password": "$2a$10$qRpG9mXl9l0bDxdxpzajkONuNPdUn7mBSZrqeSNqL1qEiBOYG7S1K",
+      "password2": "12345678",
+      "phone": 8123456789,
+      "role": "patient"
     },
     {
+      "email": "johndoe@gmail.com",
       "id": 5,
-      "userID": 5,
-      "name": "Rafly"
-    },
-    {
-      "name": "Baru",
-      "userID": 6,
-      "id": 6
+      "name": "John Doe",
+      "password": "$2a$10$RtE8biT7HQgtO07kDyhloOgGCyLOBaoRp99R/ucydmOKO/udLBHp.",
+      "role": "receptionist"
     }
   ]
 }

@@ -95,12 +95,12 @@ const Rows = ({ data, type }: { data: any; type: 'emr' | 'medicine' }) => {
               <Td>
                 <Select placeholder='Status' w='80%'>
                   <option
-                    value='antri'
+                    value='Dalam Antrian'
                     selected={item.status.toLowerCase() == 'dalam antrian'}>
                     Dalam Antrian
                   </option>
                   <option
-                    value='selesai'
+                    value='Selesai'
                     selected={item.status.toLowerCase() == 'selesai'}>
                     Selesai
                   </option>

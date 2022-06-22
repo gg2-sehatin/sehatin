@@ -1,7 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import RequireAuth from 'components/RequireAuth';
+
+// Public
 import Login from 'pages/login';
 import Register from 'pages/register';
 import PageNotFound from 'pages/page404';
+import Unauthorized from 'pages/unauthorized';
 
 // Doctor
 import EmrHistory from 'pages/doctor/emrHistory';
@@ -10,27 +14,50 @@ import EmrDetail from 'pages/doctor/emrDetail';
 // Receptionist
 import QueueMedicine from 'pages/receptionist/queueMedicine';
 
+// Admin
+import AdminPage from 'pages/AdminPage';
+
+// Patient
+import PatientPage from 'pages/PatientPage';
+
 const Routers = () => {
+
   return (
-    <Router>
-      <Routes>
-        {/* Root path should be <Login /> or <Register />. Below is just for example */}
-        <Route path='/' element={<Login />} />
-        <Route path='/daftar' element={<Register />} />
+    <Routes>
+      <Route path='/' element={<Outlet />}>
+        <Route path='login' element={<Login />} />
+        <Route path='daftar' element={<Register />} />
+        <Route path='unauthorized' element={<Unauthorized />} />
 
         {/* Doctor Routes */}
-        <Route path='/emr-history' element={<EmrHistory />} />
-        <Route path='/emr-history/:id' element={<EmrDetail />} />
+        <Route element={<RequireAuth allowedRoles='doctor' />}>
+          <Route path='/' element={<EmrHistory />} />
+          <Route path='doctor/emr-history/:id' element={<EmrDetail />} />
+        </Route>
         {/* End Doctor Routes */}
 
-        {/* Recepcionist Routes */}
-        <Route path='/queue-medicine' element={<QueueMedicine />} />
-        {/* End Recepcionist Routes */}
+        {/* Receptionist Routes */}
+        <Route element={<RequireAuth allowedRoles='receptionist' />}>
+          <Route path='receptionist' element={<QueueMedicine />} />
+        </Route>
+        {/* End Receptionist Routes */}
+
+        {/* Patient Routes */}
+        <Route element={<RequireAuth allowedRoles='patient' />}>
+          <Route path='patient' element={<PatientPage />} />
+        </Route>
+        {/* End Patient Routes */}
+
+        {/* Admin Routes */}
+        <Route element={<RequireAuth allowedRoles='admin' />}>
+          <Route path='admin' element={<AdminPage />} />
+        </Route>
+        {/* End Admin Routes */}
 
         {/* Catch all */}
         <Route path='*' element={<PageNotFound />} />
-      </Routes>
-    </Router>
+      </Route>
+    </Routes>
   );
 };
 
