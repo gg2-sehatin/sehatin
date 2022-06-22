@@ -1,37 +1,78 @@
 {
-  "users": [
+  "users" : [
+
+  ],
+  "jadwal" : [
     {
       "id" : 1,
-      "name" : "Dr. Budi",
-      "email" : "budi.dokter@email.com",
-      "password": "rahasia",
-      "role": "dokter"
+      "id_dokter" : 1,
+      "hari" : "Senin",
+      "jam_praktik" : "08:00 - 10:00",
+      "harga" : "80000"
     },
     {
       "id" : 2,
-      "name" : "Resepsionis",
-      "email" : "resepsionis@email.com",
-      "password": "rahasia",
-      "role": "resepsionis"
-    },
-    {
-      "id" : 1,
-      "name" : "Administrator",
-      "email" : "admin@email.com",
-      "password": "rahasia",
-      "role": "admin"
+      "id_dokter" : 1,
+      "hari" : "Kamis",
+      "jam_praktik" : "08:00 - 10:00",
+      "harga" : "80000"
     }
   ],
-  "patients": [
+  "reservations" : [
     {
-      "id": 1,
-      "nama": "Media",
-      "jk" : 2,
-      "tempat_lahir": "Bogor",
-      "tanggal_lahir": "14/01/1999",
-      "no_telp": "082283000129",
-      "email": "medialisar99@gmail.com",
-      "password": "rahasia"
+      "id" : 1,
+      "id_pasien" : 1,
+      "nomor" : 1,
+      "tanggal" : "02/08/2022",
+      "id_jadwal" : 1
+    }
+  ],
+  "queue_dokter" : [
+    {
+      "id" : 1,
+      "id_pasien" : 1
+    }
+  ],
+  "queue_billing" : [
+    {
+      "id" : 1,
+      "id_pasien" : 1
+    }
+  ],
+  "queue_farmasi" : [
+    {
+      "id" : 1,
+      "id_pasien" : 1
+    }
+  ],
+  "emr" : [
+    {
+      "id" : 1,
+      "id_pasien" : 1,
+      "id_dokter" : 1,
+      "diagnosa" : "sakit pilek ya dek"
+    }
+  ],
+  "obat" : [
+    {
+      "id" : 1,
+      "name" : "paracetamol",
+      "price" : 3000
+    }
+  ],
+  "resep_obat" : [
+    {
+      "id" : 1,
+      "id_emr" : 1,
+      "id_obat" : 1,
+      "qty" : 3
+    }
+  ],
+  "billing" : [
+    {
+      "id" : 1,
+      "id_emr" : 1,
+      "total" : 100000
     }
   ]
 }

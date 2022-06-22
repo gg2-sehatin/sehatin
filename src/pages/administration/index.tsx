@@ -10,8 +10,6 @@ import {
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { BsPerson } from 'react-icons/bs';
-import { FiServer } from 'react-icons/fi';
-import { GoLocation } from 'react-icons/go';
 
 interface StatsCardProps {
   title: string;
@@ -62,23 +60,23 @@ export default function Admin() {
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 5, lg: 8 }}>
         <StatsCard
           title={'Dokter'}
-          stat={'5,000'}
+          stat={'5.000'}
           icon={<BsPerson size={'3em'} />}
         />
         <StatsCard
-          title={'Servers'}
-          stat={'1,000'}
-          icon={<FiServer size={'3em'} />}
+          title={'Pasien'}
+          stat={'1.000'}
+          icon={<BsPerson size={'3em'} />}
         />
         <StatsCard
-          title={'Datacenters'}
-          stat={'7'}
-          icon={<GoLocation size={'3em'} />}
+          title={'Obat'}
+          stat={'20'}
+          icon={<BsPerson size={'3em'} />}
         />
         <StatsCard
-          title={'Datacenters'}
-          stat={'7'}
-          icon={<GoLocation size={'3em'} />}
+          title={'Bill'}
+          stat={'Rp. 1.200.000'}
+          icon={<BsPerson size={'3em'} />}
         />
       </SimpleGrid>
     </Box>

@@ -5,10 +5,12 @@ import PageNotFound from 'pages/page404';
 
 // Administrator
 import AdminHome from 'pages/administration';
-import Medicines from 'pages/administration/medicines';
-import MedicinesCreate from 'pages/administration/medicines/medicines_crud';
-import Services from 'pages/administration/services';
-import Users from 'pages/administration/users';
+import Medicine from 'pages/administration/medicine';
+import MedicineForm from 'pages/administration/medicine/medicine_form';
+import Schedule from 'pages/administration/schedule';
+import ScheduleForm from 'pages/administration/schedule/schedule_form';
+import User from 'pages/administration/user';
+import UserForm from 'pages/administration/user/user_form';
 
 // Doctor
 import EmrHistory from 'pages/doctor/emrHistory';
@@ -27,10 +29,12 @@ const Routers = () => {
 
         {/* Admin Routes */}
         <Route path='/admin' element={<AdminHome />} />
-        <Route path='/medicines' element={<Medicines />} />
-        <Route path='/createmedicines' element={<MedicinesCreate />} />
-        <Route path='/services' element={<Services />} />
-        <Route path='/users' element={<Users />} />
+        <Route path='/medicine' element={<Medicine />} />
+        <Route path='/medicineform' element={<MedicineForm />} />
+        <Route path='/schedule' element={<Schedule />} />
+        <Route path='/scheduleform' element={<ScheduleForm />} />
+        <Route path='/user' element={<User />} />
+        <Route path='/userform' element={<UserForm />} />
 
         {/* Patients Routes */}
         <Route path='/daftar' element={<Register />} />
