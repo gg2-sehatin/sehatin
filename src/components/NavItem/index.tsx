@@ -1,12 +1,6 @@
-// Chakra
-import { Flex, Icon, Link, FlexProps } from "@chakra-ui/react";
-import { IconType } from "react-icons";
-import { ReactText } from "react";
+import { Flex, Icon, Link } from "@chakra-ui/react";
+import NavItemProps from "./types";
 
-interface NavItemProps extends FlexProps {
-  icon: IconType;
-  children: ReactText;
-}
 const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
   return (
     <Link
@@ -22,7 +16,7 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
         role="group"
         cursor="pointer"
         _hover={{
-          bg: "cyan.400",
+          bg: "blue.300",
           color: "white",
         }}
         {...rest}

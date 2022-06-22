@@ -1,37 +1,16 @@
-// Chakra
 import {
   Box,
   Flex,
   useColorModeValue,
   Text,
-  BoxProps,
   CloseButton,
 } from "@chakra-ui/react";
-import { IconType } from "react-icons";
-
-// Icons
-import { FiHome, FiTrendingUp, FiCompass, FiStar } from "react-icons/fi";
-
-// Components
+import LinkItems from "./config";
 import NavItem from "components/NavItem";
 
-interface SidebarProps extends BoxProps {
-  onClose: () => void;
-}
+import { SidebarContentProps } from "./types";
 
-interface LinkItemProps {
-  name: string;
-  icon: IconType;
-}
-
-const LinkItems: Array<LinkItemProps> = [
-  { name: "Home", icon: FiHome },
-  { name: "Antrian", icon: FiTrendingUp },
-  { name: "Medicine", icon: FiCompass },
-  { name: "Billing", icon: FiStar },
-];
-
-const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
   return (
     <Box
       transition="3s ease"
