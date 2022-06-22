@@ -20,9 +20,9 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-const Template: Story<ButtonProps> = (
-  args: JSX.IntrinsicAttributes & ButtonProps
-) => <Button onClick={action("button-click")} {...args} />;
+const Template: Story<ButtonProps> = (args) => (
+  <Button onClick={action("button-click")} {...args} />
+);
 
 export const Base = Template.bind({});
 Base.args = {

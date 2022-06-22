@@ -17,6 +17,7 @@ const Routers = () => {
   return (
     <Router>
       <Routes>
+
         <Route path="/incoming-reservation" element={<Incoming />} />
         <Route path="/antrian-pasien" element={<Antrian />} />
 
@@ -39,6 +40,7 @@ const Routers = () => {
 
         {/* Catch all */}
         <Route path="*" element={<PageNotFound />} />
+
       </Routes>
     </Router>
   );
