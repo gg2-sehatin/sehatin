@@ -4,10 +4,11 @@ import Register from 'pages/register';
 import PageNotFound from 'pages/page404';
 
 // Administrator
-import AdminHome from 'pages/administration/home';
+import AdminHome from 'pages/administration';
 import Medicines from 'pages/administration/medicines';
-// import MedicinesCreate from 'pages/administration/medicines/medicines_create';
+import MedicinesCreate from 'pages/administration/medicines/medicines_crud';
 import Services from 'pages/administration/services';
+import Users from 'pages/administration/users';
 
 // Doctor
 import EmrHistory from 'pages/doctor/emrHistory';
@@ -27,8 +28,9 @@ const Routers = () => {
         {/* Admin Routes */}
         <Route path='/admin' element={<AdminHome />} />
         <Route path='/medicines' element={<Medicines />} />
-        {/* <Route path='/createmedicines' element={<MedicinesCreate />} /> */}
+        <Route path='/createmedicines' element={<MedicinesCreate />} />
         <Route path='/services' element={<Services />} />
+        <Route path='/users' element={<Users />} />
 
         {/* Patients Routes */}
         <Route path='/daftar' element={<Register />} />

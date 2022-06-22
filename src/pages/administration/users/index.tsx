@@ -2,9 +2,9 @@ import React from 'react'
 import SidebarWithHeader from 'components/Sidebar';
 import {
   Box,
-  // Stack,
-  // Container,
-  // Flex,
+  Stack,
+  Container,
+  Flex,
   Heading,
   Table,
   Thead,
@@ -18,44 +18,36 @@ import {
   ButtonGroup,
   Tooltip,
   Icon,
-  // FormControl,
-  // FormLabel,
+  FormControl,
+  FormLabel,
   // FormErrorMessage,
-  // FormHelperText,
-  // Input,
-  // Alert,
-  // AlertIcon,
+  FormHelperText,
+  Input,
+  Alert,
+  AlertIcon,
   // AlertTitle,
   // AlertDescription,
-  Link
 } from '@chakra-ui/react'
 import {
-  AddIcon,
+  // AddIcon,
   DeleteIcon,
   EditIcon
 } from "@chakra-ui/icons"
-import { Link as RouteLink } from 'react-router-dom';
 
 export default function index() {
   return (
     <>
       <SidebarWithHeader>
-        {/* <Container
+        <Container
           maxW='container.xl'
           py={4}
           bg='blue.100'
-        > */}
+        >
           <Heading size='lg' mb='3'>
-            Medicines
+            Users
           </Heading>
-          <Link
-          as={RouteLink}
-          to="/createmedicines"
-          >
-            <Button leftIcon={<AddIcon/>}></Button>
-          </Link>
-          {/* <Flex gap={4}> */}
-            {/* <Box
+          <Flex gap={4}>
+            <Box
               w='50%'
               p={5}
               bg="white"
@@ -72,6 +64,7 @@ export default function index() {
                 <FormControl>
                   <FormLabel htmlFor='email' fontSize={14}>Nama Obat</FormLabel>
                   <Input id='namaobat' type='text' size='sm' />
+                  {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
                 </FormControl>
                 <FormControl>
                   <FormLabel htmlFor='email' fontSize={14}>Quantity</FormLabel>
@@ -85,15 +78,15 @@ export default function index() {
                 </FormControl>
                 <Button size='sm'>Save</Button>
               </Stack>
-            </Box> */}
+            </Box>
             <Box
               bg='white'
-              // w='50%'
+              w='50%'
               p={5}
               rounded="md"
             >
               <Heading size='md' mb={3}>
-                Medicines Data
+                Users Data
               </Heading>
               <TableContainer>
                 <Table size='sm'>
@@ -143,8 +136,8 @@ export default function index() {
                 </Table>
               </TableContainer>
             </Box>
-          {/* </Flex> */}
-        {/* </Container> */}
+          </Flex>
+        </Container>
       </SidebarWithHeader>
     </>
   )
