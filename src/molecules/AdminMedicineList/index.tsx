@@ -24,17 +24,17 @@ import {
 } from "@chakra-ui/icons"
 import { Link as RouteLink } from 'react-router-dom';
 
-export default function index() {
+export default function AdminMedicineLIst() {
   return (
     <>
       <SidebarWithHeader>
         <Heading size='lg' mb='3'>
-          Schedule
+          Medicines
         </Heading>
         <Flex justifyContent='right'>
           <Link
             as={RouteLink}
-            to="/scheduleform"
+            to="/medicine-form"
           >
             <Button
               leftIcon={<AddIcon/>}
@@ -45,7 +45,6 @@ export default function index() {
         </Flex>
         <Box
           bg='gray.100'
-          // w='50%'
           p={5}
           rounded="md"
         >
@@ -53,19 +52,17 @@ export default function index() {
             <Table size='sm'>
               <Thead>
                 <Tr>
-                  <Th>Nama Dokter</Th>
-                  <Th>Hari</Th>
-                  <Th>Jam</Th>
+                  <Th>Nama</Th>
                   <Th>Harga</Th>
+                  <Th>QTY</Th>
                   <Th>Actions</Th>
                 </Tr>
               </Thead>
               <Tbody>
                 <Tr>
-                  <Td>Dr. Budiman</Td>
-                  <Td>Selasa</Td>
-                  <Td>08:00 - 10:00</Td>
-                  <Td>Rp. 80.000</Td>
+                  <Td>Paracetamol</Td>
+                  <Td>3000</Td>
+                  <Td>10</Td>
                   <Td>
                     <ButtonGroup spacing={2}>
                       <Tooltip label='Delete Data'>
@@ -90,10 +87,9 @@ export default function index() {
               </Tbody>
               <Tfoot>
                 <Tr>
-                  <Th>Nama Dokter</Th>
-                  <Th>Hari</Th>
-                  <Th>Jam</Th>
+                  <Th>Nama</Th>
                   <Th>Harga</Th>
+                  <Th>QTY</Th>
                   <Th>Actions</Th>
                 </Tr>
               </Tfoot>

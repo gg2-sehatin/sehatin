@@ -14,7 +14,7 @@ import {
   Select,
 } from '@chakra-ui/react'
 
-export default function schedule_form() {
+export default function AdminUserForm() {
   return (
     <>
       <SidebarWithHeader>
@@ -24,7 +24,7 @@ export default function schedule_form() {
           bg='blue.100'
         >
           <Heading size='lg' mb='3'>
-            Schedule
+            User
           </Heading>
           <Box
             p={5}

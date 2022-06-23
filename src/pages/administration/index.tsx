@@ -47,7 +47,7 @@ function StatsCard(props: StatsCardProps) {
   );
 }
 
-export default function Admin() {
+export default function Administration() {
   return (
     <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
       <chakra.h1

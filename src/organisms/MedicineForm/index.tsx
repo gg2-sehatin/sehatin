@@ -13,7 +13,7 @@ import {
   AlertIcon,
 } from '@chakra-ui/react'
 
-export default function medicine_form() {
+export default function MedicineForm() {
   return (
     <>
       <SidebarWithHeader>

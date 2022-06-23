@@ -25,7 +25,7 @@ import {
 } from "@chakra-ui/icons"
 import { Link as RouteLink } from 'react-router-dom';
 
-export default function index() {
+export default function AdminUser() {
   return (
     <>
       <SidebarWithHeader>
@@ -35,7 +35,7 @@ export default function index() {
         <Flex justifyContent='right'>
           <Link
             as={RouteLink}
-            to="/userform"
+            to="/user-form"
           >
             <Button
               leftIcon={<AddIcon/>}

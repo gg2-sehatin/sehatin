@@ -15,7 +15,7 @@ import {
   HStack
 } from '@chakra-ui/react'
 
-export default function schedule_form() {
+export default function ScheduleForm() {
   return (
     <>
       <SidebarWithHeader>
