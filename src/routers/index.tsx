@@ -3,12 +3,21 @@ import Login from 'pages/login';
 import Register from 'pages/register';
 import PageNotFound from 'pages/page404';
 
+// Administrator
+import AdminHome from 'pages/Administration';
+import Medicine from 'molecules/AdminMedicineList';
+import MedicineForm from 'organisms/MedicineForm';
+import Schedule from 'molecules/ScheduleList';
+import ScheduleForm from 'organisms/ScheduleForm';
+import User from 'molecules/AdminUser';
+import UserForm from 'organisms/AdminUserForm';
+
 // Doctor
 import EmrHistory from 'pages/doctor/emrHistory';
 import EmrDetail from 'pages/doctor/emrDetail';
 
 // Receptionist
-import QueueMedicine from 'pages/receptionist/queueMedicine';
+import QueueMedicine from 'pages/receptionist/queuemedicine';
 
 const Routers = () => {
   return (
@@ -16,6 +25,18 @@ const Routers = () => {
       <Routes>
         {/* Root path should be <Login /> or <Register />. Below is just for example */}
         <Route path='/' element={<Login />} />
+        <Route path='/daftar' element={<Register />} />
+
+        {/* Admin Routes */}
+        <Route path='/admin' element={<AdminHome />} />
+        <Route path='/medicine' element={<Medicine />} />
+        <Route path='/medicine-form' element={<MedicineForm />} />
+        <Route path='/schedule' element={<Schedule />} />
+        <Route path='/schedule-form' element={<ScheduleForm />} />
+        <Route path='/user' element={<User />} />
+        <Route path='/user-form' element={<UserForm />} />
+
+        {/* Patients Routes */}
         <Route path='/daftar' element={<Register />} />
 
         {/* Doctor Routes */}
@@ -32,6 +53,6 @@ const Routers = () => {
       </Routes>
     </Router>
   );
-};
+}
 
 export default Routers;
