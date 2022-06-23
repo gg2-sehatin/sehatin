@@ -8,14 +8,8 @@ import {
   StatNumber,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { ReactNode } from 'react';
 import { BsPerson } from 'react-icons/bs';
-
-interface StatsCardProps {
-  title: string;
-  stat: string;
-  icon: ReactNode;
-}
+import { StatsCardProps } from './types';
 
 function StatsCard(props: StatsCardProps) {
   const { title, stat, icon } = props;
