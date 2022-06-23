@@ -3,13 +3,13 @@ import Login from "pages/login";
 import Register from "pages/register";
 import PageNotFound from "pages/page404";
 
-//PatientStatusReservation
-import StatusReservationNotRegister from "pages/PatientPage/StatusReservationNotRegister";
-import StatusReservationFormRegister from "pages/PatientPage/StatusReservationFormRegister";
-import StatusReservationOnWaiting from "pages/PatientPage/StatusReservationOnWaiting";
-import StatusReservationNotOpen from "pages/PatientPage/StatusReservationNotOpenYet";
-import StatusReservationFullQueue from "pages/PatientPage/StatusReservationFullQueue";
-import StatusReservationSuccessRegister from "pages/PatientPage/StatusReservationSuccessRegister";
+//PatientReservationStatus
+import NotRegistered from "pages/PatientPage/ReservationStatusNotRegister";
+import FormRegister from "pages/PatientPage/ReservationStatusFormRegister";
+import Waiting from "pages/PatientPage/ReservationStatusOnWaiting";
+import NotOpenYet from "pages/PatientPage/ReservationStatusNotOpenYet";
+import QueueFull from "pages/PatientPage/ReservationStatusFullQueue";
+import RegistrationSuccess from "pages/PatientPage/ReservationStatusSuccessRegister";
 
 // Doctor
 import EmrHistory from "pages/doctor/emrHistory";
@@ -30,21 +30,12 @@ const Routers = () => {
         <Route path="*" element={<PageNotFound />} />
 
         {/* PatientStatusReservation Routes */}
-        <Route path="/patient" element={<StatusReservationNotRegister />} />
-        <Route path="/form" element={<StatusReservationFormRegister />} />
-        <Route
-          path="/statusonwaiting"
-          element={<StatusReservationOnWaiting />}
-        />
-        <Route path="/statusnotopen" element={<StatusReservationNotOpen />} />
-        <Route
-          path="/statusfullqueue"
-          element={<StatusReservationFullQueue />}
-        />
-        <Route
-          path="/statussuccess"
-          element={<StatusReservationSuccessRegister />}
-        />
+        <Route path="/patient" element={<NotRegistered />} />
+        <Route path="/form" element={<FormRegister />} />
+        <Route path="/statusonwaiting" element={<Waiting />} />
+        <Route path="/statussuccess" element={<RegistrationSuccess />} />
+        <Route path="/statusnotopen" element={<NotOpenYet />} />
+        <Route path="/statusfullqueue" element={<QueueFull />} />
         {/* End PatientStatusReservation Routes */}
 
         <Route path="/" element={<Login />} />
