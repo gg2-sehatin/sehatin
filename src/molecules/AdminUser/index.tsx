@@ -46,7 +46,6 @@ export default function AdminUser() {
         </Flex>
         <Box
           bg='gray.100'
-          // w='50%'
           p={5}
           rounded="md"
         >
