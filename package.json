@@ -9,7 +9,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx . --color --fix",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "db": "json-server --watch mock/db.json --port 3001 -m ./node_modules/json-server-auth"
   },
   "eslintConfig": {
     "extends": [
