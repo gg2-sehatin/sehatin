@@ -1,63 +1,89 @@
-import { Routes, Route, Outlet } from 'react-router-dom';
-import RequireAuth from 'components/RequireAuth';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { AdminRoutes, DoctorRoutes, PatientRoutes, ReceptionistRoutes } from './root.routers';
+import useAuth from 'hooks/useAuth';
 
-// Public
 import Login from 'pages/login';
 import Register from 'pages/register';
 import PageNotFound from 'pages/page404';
-import Unauthorized from 'pages/unauthorized';
-
-// Doctor
-import EmrHistory from 'pages/doctor/emrHistory';
-import EmrDetail from 'pages/doctor/emrDetail';
-
-// Receptionist
-import QueueMedicine from 'pages/receptionist/queueMedicine';
-
-// Admin
-import AdminPage from 'pages/AdminPage';
-
-// Patient
-import PatientPage from 'pages/PatientPage';
+import { useEffect } from 'react';
 
 const Routers = () => {
+  const { auth, setAuth } = useAuth();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    if (Object.keys(user).length !== 0) {
+      setAuth?.(user);
+    }
+  }, [])
+
+  function renderRoutes(){
+    if (auth.role === "doctor" && auth.accessToken !== "") {
+      return (
+        (
+          <>
+            {DoctorRoutes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
+            ))}
+          </>
+        )
+      )
+    }
+
+    if (auth.role === "receptionist" && auth.accessToken !== "") {
+      return (
+        (
+          <>
+            {ReceptionistRoutes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
+            ))}
+          </>
+        )
+      )
+    }
+
+    if (auth.role === "admin" && auth.accessToken !== "") {
+      return (
+        (
+          <>
+            {AdminRoutes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
+            ))}
+          </>
+        )
+      )
+    }
+
+    if (auth.role === "patient" && auth.accessToken !== "") {
+      return (
+        (
+          <>
+            {PatientRoutes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
+            ))}
+          </>
+        )
+      )
+    }
+  }
 
   return (
-    <Routes>
-      <Route path='/' element={<Outlet />}>
-        <Route path='login' element={<Login />} />
-        <Route path='daftar' element={<Register />} />
-        <Route path='unauthorized' element={<Unauthorized />} />
-
-        {/* Doctor Routes */}
-        <Route element={<RequireAuth allowedRoles='doctor' />}>
-          <Route path='/' element={<EmrHistory />} />
-          <Route path='doctor/emr-history/:id' element={<EmrDetail />} />
-        </Route>
-        {/* End Doctor Routes */}
-
-        {/* Receptionist Routes */}
-        <Route element={<RequireAuth allowedRoles='receptionist' />}>
-          <Route path='receptionist' element={<QueueMedicine />} />
-        </Route>
-        {/* End Receptionist Routes */}
-
-        {/* Patient Routes */}
-        <Route element={<RequireAuth allowedRoles='patient' />}>
-          <Route path='patient' element={<PatientPage />} />
-        </Route>
-        {/* End Patient Routes */}
-
-        {/* Admin Routes */}
-        <Route element={<RequireAuth allowedRoles='admin' />}>
-          <Route path='admin' element={<AdminPage />} />
-        </Route>
-        {/* End Admin Routes */}
-
+    <BrowserRouter>
+      <Routes>
+        {
+          auth.role !== "" && auth.accessToken !== ""
+            ? renderRoutes()
+            : (
+              <>
+                <Route path='/' element={<Login />} />
+                <Route path='/daftar' element={<Register />} />
+              </>
+            )
+        }
         {/* Catch all */}
         <Route path='*' element={<PageNotFound />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </BrowserRouter>
   );
 };
 

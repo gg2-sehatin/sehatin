@@ -1,21 +1,13 @@
 import { useFormik } from 'formik';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import SignInForm from 'components/Signin';
 import useAuth from "hooks/useAuth";
-
-type LocationProps = {
-  state: {
-    from: Location;
-  };
-};
 
 function Login() {
   const { setAuth } =  useAuth();
 
   const navigate = useNavigate();
-  const location = useLocation() as unknown as LocationProps;
-  const from = location.state?.from?.pathname || '/';
 
   const formik = useFormik({
     initialValues: {
@@ -30,11 +22,11 @@ function Login() {
       })
         .then(res => res.json())
         .then(data => {
-          // eslint-disable-next-line no-console
-          console.log(data.user);
+          const { accessToken } = data;
           const { name, email, role } = data.user;
-          setAuth?.({ name, email, role });
-          navigate(from, { replace: true });
+          setAuth?.({ accessToken, name, email, role });
+          localStorage.setItem('user', JSON.stringify({ accessToken, name, email, role }))
+          navigate('/', { replace: true });
         })
     }
   });

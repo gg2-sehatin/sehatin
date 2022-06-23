@@ -3,9 +3,20 @@ import { Thead, TableContainer, Table, Text, Tbody } from '@chakra-ui/react';
 import SidebarWithHeader from 'components/Sidebar';
 import Headers from 'components/TableData/Headers';
 import Rows from 'components/TableData/Rows';
+// import { useEffect, useState } from 'react';
 
 import emrHistoryData from 'utils/constants/emrHistoryData';
 const EmrHistory = () => {
+  // const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   fetch('http://localhost:3001/emr', {
+  //     method: 'GET'
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => setData(data))
+  // }, [])
+
   return (
     <>
       <SidebarWithHeader>

@@ -1,4 +1,5 @@
 import { Tr, Td, Text, Button, Select } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getMedicineData = (key: string, item: any) => {
@@ -69,11 +70,11 @@ const Rows = ({ data, type }: { data: any; type: 'emr' | 'medicine' }) => {
                 </>
               ))}
               <Td>
-                <a href={`/emr-history/${item.id}`}>
+                <Link to={`/emr-history/${item.id}`}>
                   <Button variant='dark' color='white' bg='blue.400'>
                     Detail
                   </Button>
-                </a>
+                </Link>
               </Td>
             </Tr>
           ))}

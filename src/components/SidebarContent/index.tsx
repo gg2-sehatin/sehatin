@@ -5,12 +5,32 @@ import {
   Text,
   CloseButton,
 } from '@chakra-ui/react';
-import LinkItems from './config';
 import NavItem from 'components/NavItem';
+import {
+  FiHome,
+  // FiTrendingUp,
+  // FiCompass,
+  // FiStar,
+  // FiSettings,
+} from 'react-icons/fi';
+import useAuth from 'hooks/useAuth';
 
 import { SidebarContentProps } from './types';
+import { LinkItemProps } from './types';
 
 const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
+  let Links: Array<LinkItemProps> = [];
+  const { auth } = useAuth();
+
+  if(auth?.role === "doctor"){
+    Links = [
+      { name: 'Beranda', icon: FiHome, link: '/' },
+      { name: 'Daftar EMR', icon: FiHome, link: '/' },
+      { name: 'Tambah EMR', icon: FiHome, link: '/add-emr' },
+    ]
+  }
+
+
   return (
     <Box
       transition='3s ease'
@@ -28,8 +48,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+      {Links.map((link) => (
+        <NavItem key={link.name} icon={link.icon} link={link.link}>
           {link.name}
         </NavItem>
       ))}

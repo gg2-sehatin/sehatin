@@ -1,4 +1,42 @@
 {
+  "emr": [
+    {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
+      "id": 1,
+      "obat": "Paracetamol",
+      "pasien": "Rhenald Karrel"
+    },
+    {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
+      "id": 2,
+      "obat": "Paracetamol",
+      "pasien": "Farhat Abbas"
+    },
+    {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
+      "id": 3,
+      "obat": "Paracetamol",
+      "pasien": "Na Hee-Do"
+    },
+    {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
+      "id": 4,
+      "obat": "Paracetamol",
+      "pasien": "Ko Yu-Rim"
+    },
+    {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
+      "id": 5,
+      "obat": "Paracetamol",
+      "pasien": "Seneca"
+    }
+  ],
+  "patient": [],
   "users": [
     {
       "email": "janedoe@gmail.com",
@@ -9,26 +47,14 @@
     },
     {
       "email": "kamalakhan@gmail.com",
-      "id": 3,
+      "id": 2,
       "name": "Kamala Khan",
       "password": "$2a$10$ZYoNP/fgPNIT1Fb6ynecvObPGVXl5WXyUuLVs34h4rp9bCXxDqRgS",
       "role": "admin"
     },
     {
-      "birthday": "2001-08-10",
-      "birthplace": "Jakarta",
-      "email": "renaldkarel@gmail.com",
-      "gender": "Laki-laki",
-      "id": 4,
-      "name": "Rhenald Karrel",
-      "password": "$2a$10$qRpG9mXl9l0bDxdxpzajkONuNPdUn7mBSZrqeSNqL1qEiBOYG7S1K",
-      "password2": "12345678",
-      "phone": 8123456789,
-      "role": "patient"
-    },
-    {
       "email": "johndoe@gmail.com",
-      "id": 5,
+      "id": 3,
       "name": "John Doe",
       "password": "$2a$10$RtE8biT7HQgtO07kDyhloOgGCyLOBaoRp99R/ucydmOKO/udLBHp.",
       "role": "receptionist"
