@@ -39,7 +39,11 @@
       "id": 6
     }
   ],
-  "medicine" : [
-
+  "medicine": [
+    {
+      "medicine_name": "Paracetamol",
+      "medicine_price": 3000,
+      "id": 1
+    }
   ]
 }
