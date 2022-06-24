@@ -7,6 +7,8 @@ import Rows from "components/TableData/rows";
 import queueMedicineData from "utils/constants/queueMedicineData";
 import { QUEUE_TYPE_MEDICINE } from "pages/Receptionist/queuemedicine/types/queue";
 import QueueMedicineData from "types/QueueMedicineData";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { isImportTypeNode } from "typescript";
 
 const QueueMedicine = () => {
   const queueDone: Array<QueueMedicineData> = queueMedicineData.filter(

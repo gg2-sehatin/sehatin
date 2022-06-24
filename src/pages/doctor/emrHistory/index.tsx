@@ -1,8 +1,8 @@
 import { Thead, TableContainer, Table, Text, Tbody } from "@chakra-ui/react";
 
 import SidebarWithHeader from "components/Sidebar";
-import Headers from "components/TableData/Headers";
 import Rows from "components/TableData/rows";
+import Headers from "components/TableData/headers";
 
 import emrHistoryData from "utils/constants/emrHistoryData";
 const EmrHistory = () => {

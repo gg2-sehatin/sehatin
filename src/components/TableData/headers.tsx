@@ -1,4 +1,4 @@
-import { Tr, Th } from '@chakra-ui/react';
+import { Tr, Th } from "@chakra-ui/react";
 
 const Headers = ({ headers }: { headers: string[] }) => {
   return (
