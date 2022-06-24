@@ -10,7 +10,7 @@ import {
 
 import SidebarWithHeader from "components/Sidebar";
 
-export default function Pricing() {
+export default function IncomingReservation() {
   return (
     <SidebarWithHeader>
       <Box

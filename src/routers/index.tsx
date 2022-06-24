@@ -8,16 +8,15 @@ import EmrHistory from "pages/doctor/emrHistory";
 import EmrDetail from "pages/doctor/emrDetail";
 
 // Receptionist
-import QueueMedicine from "pages/receptionist/queuemedicine";
-import Incoming from "pages/resepsionis/incoming";
-import Antrian from "pages/resepsionis/antrian";
-import BillingPayment from "pages/receptionist/billingpayment";
+import QueueMedicine from "pages/Receptionist/queuemedicine";
+import Incoming from "pages/Receptionist/IncomingReservation";
+import Antrian from "pages/Receptionist/QueuePatient";
+import BillingPayment from "pages/Receptionist/Billingpayment";
 
 const Routers = () => {
   return (
     <Router>
       <Routes>
-
         <Route path="/incoming-reservation" element={<Incoming />} />
         <Route path="/antrian-pasien" element={<Antrian />} />
 
@@ -40,7 +39,6 @@ const Routers = () => {
 
         {/* Catch all */}
         <Route path="*" element={<PageNotFound />} />
-
       </Routes>
     </Router>
   );

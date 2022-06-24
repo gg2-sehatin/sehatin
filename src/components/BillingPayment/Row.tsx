@@ -1,31 +1,33 @@
 import { Tr, Td, Text, Button, Select } from "@chakra-ui/react";
 
+import { BillingStatusType } from "./types";
+import BillingPaymentData from "types/BillingPaymentData";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getBillingPayment = (key: string, item: any) => {
-  if (key === "status") {
-    const statusBg =
-      item.status.toLowerCase() === "menunggu pembayaran"
-        ? "#F94C66"
-        : "#53BF9D";
+const renderBillingStatus = (status: BillingStatusType) => {
+  const statusBg =
+    status.toLowerCase() === "menunggu pembayaran" ? "#F94C66" : "#53BF9D";
 
-    return (
-      <Text
-        bg={statusBg}
-        w="fit-content"
-        p="4px 8px"
-        color="white"
-        borderRadius="8px"
-      >
-        {item[key]}
-      </Text>
-    );
-  }
-
-  return <Text>{item[key]}</Text>;
+  return (
+    <Text
+      bg={statusBg}
+      w="fit-content"
+      p="4px 8px"
+      color="white"
+      borderRadius="8px"
+    >
+      {status}
+    </Text>
+  );
 };
 
-//eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Rows = ({ data, type }: { data: any; type: "emr" | "billing" }) => {
+const Row = ({
+  data,
+  type,
+}: {
+  data: Array<BillingPaymentData>;
+  type: "emr" | "billing";
+}) => {
   let viewData = <></>;
 
   if (!data || data?.length === 0) {
@@ -40,33 +42,21 @@ const Rows = ({ data, type }: { data: any; type: "emr" | "billing" }) => {
     );
   }
 
-  if (typeof data === "object") {
-    viewData = (
-      <>
-        {Object.keys(data).map((key, index) => (
-          <Tr key={index}>
-            <Td>{index + 1}</Td>
-            <Td>{key}</Td>
-            <Td>{data[key]}</Td>
-          </Tr>
-        ))}
-      </>
-    );
-  }
-
   if (Array.isArray(data)) {
     if (type === "emr") {
       viewData = (
         <>
           {data.map((item, index) => (
             <Tr key={index}>
-              {Object.keys(item).map((key, index) => (
-                <>
-                  <Td key={index}>
-                    <Text>{item[key]}</Text>
-                  </Td>
-                </>
-              ))}
+              <Td key={index}>
+                <Text>{item.id}</Text>
+              </Td>
+              <Td key={index}>
+                <Text>{item.name}</Text>
+              </Td>
+              <Td key={index}>
+                <Text>{renderBillingStatus(item.status)}</Text>
+              </Td>
               <Td>
                 <a href={`/emr-history/${item.id}`}>
                   <Button variant="dark" color="white" bg="blue.400">
@@ -85,9 +75,15 @@ const Rows = ({ data, type }: { data: any; type: "emr" | "billing" }) => {
         <>
           {data.map((item, index) => (
             <Tr key={index}>
-              {Object.keys(item).map((key, index) => (
-                <Td key={index}>{getBillingPayment(key, item)}</Td>
-              ))}
+              <Td key={index}>
+                <Text>{item.id}</Text>
+              </Td>
+              <Td key={index}>
+                <Text>{item.name}</Text>
+              </Td>
+              <Td key={index}>
+                <Text>{renderBillingStatus(item.status)}</Text>
+              </Td>
               <Td>
                 <Select placeholder="Status" w="80%">
                   <option
@@ -116,4 +112,4 @@ const Rows = ({ data, type }: { data: any; type: "emr" | "billing" }) => {
   return viewData;
 };
 
-export default Rows;
+export default Row;

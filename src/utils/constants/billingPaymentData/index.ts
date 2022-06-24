@@ -4,22 +4,22 @@ const billingPaymentData: Array<BillingPaymentData> = [
   {
     id: 1,
     name: "Farhat Abbas",
-    status: "Menunggu Pembayaran",
+    status: "menunggu pembayaran",
   },
   {
     id: 2,
     name: "Superman",
-    status: "Selesai",
+    status: "selesai",
   },
   {
     id: 3,
     name: "Suratap",
-    status: "Selesai",
+    status: "selesai",
   },
   {
     id: 4,
     name: "Sumanto",
-    status: "Selesai",
+    status: "selesai",
   },
 ];
 

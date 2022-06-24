@@ -3,6 +3,7 @@ import { Tr, Td, Text, Button, Select } from "@chakra-ui/react";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getMedicineData = (key: string, item: any) => {
   if (key === "status") {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const statusBg =
       item.status.toLowerCase() === "dalam antrian" ? "#F94C66" : "#53BF9D";
 

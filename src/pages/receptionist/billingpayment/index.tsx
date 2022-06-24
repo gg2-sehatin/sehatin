@@ -1,7 +1,7 @@
 import { Table, TableContainer, Tbody, Text, Thead } from "@chakra-ui/react";
 
 import SidebarWithHeader from "components/Sidebar";
-import Baris from "components/BillingPayment/Baris";
+import Row from "components/BillingPayment/Row";
 import Headers from "components/BillingPayment/Headers";
 
 import { BILLING_TYPE_PAYMENT } from "./types/billing";
@@ -29,7 +29,7 @@ const BillingPayment = () => {
               <Headers headers={["No", "Nama", "Status", "Aksi"]} />
             </Thead>
             <Tbody>
-              <Baris data={queueWaiting} type={BILLING_TYPE_PAYMENT} />
+              <Row data={queueWaiting} type={BILLING_TYPE_PAYMENT} />
             </Tbody>
           </Table>
         </TableContainer>
@@ -42,7 +42,7 @@ const BillingPayment = () => {
               <Headers headers={["No", "Nama", "Status", "Aksi"]} />
             </Thead>
             <Tbody>
-              <Baris data={queueDone} type={BILLING_TYPE_PAYMENT} />
+              <Row data={queueDone} type={BILLING_TYPE_PAYMENT} />
             </Tbody>
           </Table>
         </TableContainer>
