@@ -44,11 +44,6 @@
       "medicine_name": "Paracetamol",
       "medicine_price": 3000,
       "id": 1
-    },
-    {
-      "medicine_name": "Vitamin C",
-      "medicine_price": 1000,
-      "id": 2
     }
   ]
 }
