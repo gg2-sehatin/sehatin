@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { DoctorRoutes, PatientRoutes, ReceptionistRoutes } from './root.routers';
+import { DoctorRoutes, ReceptionistRoutes } from './root.routers';
 import useAuth from 'hooks/useAuth';
 import { IAuthContext } from 'context/AuthProvider';
 
@@ -45,17 +45,17 @@ const renderRoutes = (auth: IAuthContext) => {
   //   )
   // }
 
-  if (auth.role === "patient" && auth.accessToken !== "") {
-    return (
-      (
-        <>
-          {PatientRoutes.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
-          ))}
-        </>
-      )
-    )
-  }
+  // if (auth.role === "patient" && auth.accessToken !== "") {
+  //   return (
+  //     (
+  //       <>
+  //         {PatientRoutes.map((route, index) => (
+  //           <Route key={index} path={route.path} element={route.element} />
+  //         ))}
+  //       </>
+  //     )
+  //   )
+  // }
 }
 
 const Routers = () => {
@@ -82,10 +82,10 @@ const Routers = () => {
             )
         }
         {/* Catch all */}
-        <Route path='*' element={<PageNotFound />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default Routers;

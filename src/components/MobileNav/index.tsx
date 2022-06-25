@@ -33,36 +33,37 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
     <Flex
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 4 }}
-      height='20'
-      alignItems='center'
-      bg={useColorModeValue('white', 'gray.900')}
-      borderBottomWidth='1px'
-      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-      justifyContent={{ base: 'space-between', md: 'flex-end' }}
-      {...rest}>
+      height="20"
+      alignItems="center"
+      bg={useColorModeValue("white", "gray.900")}
+      borderBottomWidth="1px"
+      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+      justifyContent={{ base: "space-between", md: "flex-end" }}
+      {...rest}
+    >
       <IconButton
-        display={{ base: 'flex', md: 'none' }}
+        display={{ base: "flex", md: "none" }}
         onClick={onOpen}
-        variant='outline'
-        aria-label='open menu'
+        variant="outline"
+        aria-label="open menu"
         icon={<FiMenu />}
       />
-
       <Text
-        display={{ base: 'flex', md: 'none' }}
-        fontSize='2xl'
-        fontFamily='monospace'
-        fontWeight='bold'>
+        display={{ base: "flex", md: "none" }}
+        fontSize="2xl"
+        fontFamily="monospace"
+        fontWeight="bold"
+      >
         Sehatin
       </Text>
-
-      <HStack spacing={{ base: '0', md: '6' }}>
-        <Flex alignItems={'center'}>
+      <HStack spacing={{ base: "0", md: "6" }}>
+        <Flex alignItems={"center"}>
           <Menu>
             <MenuButton
               py={2}
-              transition='all 0.3s'
-              _focus={{ boxShadow: 'none' }}>
+              transition="all 0.3s"
+              _focus={{ boxShadow: "none" }}
+            >
               <HStack>
                 <Avatar
                   size={'sm'}
@@ -77,14 +78,15 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                     {auth.role}
                   </Text>
                 </VStack>
-                <Box display={{ base: 'none', md: 'flex' }}>
+                <Box display={{ base: "none", md: "flex" }}>
                   <FiChevronDown />
                 </Box>
               </HStack>
             </MenuButton>
             <MenuList
-              bg={useColorModeValue('white', 'gray.900')}
-              borderColor={useColorModeValue('gray.200', 'gray.700')}>
+              bg={useColorModeValue("white", "gray.900")}
+              borderColor={useColorModeValue("gray.200", "gray.700")}
+            >
               <MenuItem>Profile</MenuItem>
               <MenuDivider />
               <MenuItem onClick={handleSignOut}>Sign out</MenuItem>

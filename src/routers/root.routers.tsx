@@ -9,7 +9,7 @@ import QueueMedicine from 'pages/receptionist/queueMedicine';
 // Admin
 
 // Patient
-import PatientPage from 'pages/PatientPage';
+
 
 export type RouterState = {
   path: string;
@@ -35,12 +35,5 @@ export const ReceptionistRoutes: RouterState[] = [
   {
     path: "/",
     element: <QueueMedicine />
-  }
-]
-
-export const PatientRoutes: RouterState[] = [
-  {
-    path: "/",
-    element: <PatientPage />
   }
 ]
