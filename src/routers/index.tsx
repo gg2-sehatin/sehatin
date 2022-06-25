@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { AdminRoutes, DoctorRoutes, PatientRoutes, ReceptionistRoutes } from './root.routers';
+import { DoctorRoutes, PatientRoutes, ReceptionistRoutes } from './root.routers';
 import useAuth from 'hooks/useAuth';
 import { IAuthContext } from 'context/AuthProvider';
 
@@ -33,17 +33,17 @@ const renderRoutes = (auth: IAuthContext) => {
     )
   }
 
-  if (auth.role === "admin" && auth.accessToken !== "") {
-    return (
-      (
-        <>
-          {AdminRoutes.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
-          ))}
-        </>
-      )
-    )
-  }
+  // if (auth.role === "admin" && auth.accessToken !== "") {
+  //   return (
+  //     (
+  //       <>
+  //         {AdminRoutes.map((route, index) => (
+  //           <Route key={index} path={route.path} element={route.element} />
+  //         ))}
+  //       </>
+  //     )
+  //   )
+  // }
 
   if (auth.role === "patient" && auth.accessToken !== "") {
     return (
