@@ -28,10 +28,10 @@ import EmrHistory from "pages/doctor/emrHistory";
 import EmrDetail from "pages/doctor/emrDetail";
 
 // Receptionist
-import QueueMedicine from "pages/Receptionist/queuemedicine";
-import Incoming from "pages/Receptionist/IncomingReservation";
-import Antrian from "pages/Receptionist/QueuePatient";
-import BillingPayment from "pages/Receptionist/Billingpayment";
+import QueueMedicine from "pages/receptionist/queuemedicine";
+import Incoming from "pages/receptionist/IncomingReservation";
+import Antrian from "pages/receptionist/QueuePatient";
+import BillingPayment from "pages/receptionist/billingpayment";
 
 const Routers = () => {
   return (
