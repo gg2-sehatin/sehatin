@@ -14,6 +14,10 @@ import RegistrationSuccess from "pages/PatientPage/ReservationStatusSuccessRegis
 //PatientQueueStatus
 import QueueStatus from "pages/PatientPage/queueStatus";
 
+//PatientPersonalMedicalRecords
+import EmrPatient from "pages/PatientPage/emrPatient";
+import BillPayment from "pages/PatientPage/billPayment";
+
 // Administrator
 import AdminHome from "pages/administration";
 import Medicine from "components/molecules/AdminMedicineList";
@@ -55,6 +59,10 @@ const Routers = () => {
 
         {/* PatientQueueStatus Routes */}
         <Route path="/queue" element={<QueueStatus />} />
+
+        {/* PatientPersonalMedicalRecord Routes */}
+        <Route path="/emr-pasien" element={<EmrPatient />} />
+        <Route path="/payment-history" element={<BillPayment />} />
 
         <Route path="/" element={<Login />} />
         <Route path="/daftar" element={<Register />} />
