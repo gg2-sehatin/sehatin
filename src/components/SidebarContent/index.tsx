@@ -7,11 +7,7 @@ import {
 } from '@chakra-ui/react';
 import NavItem from 'components/NavItem';
 import {
-  FiHome,
-  // FiTrendingUp,
-  // FiCompass,
-  // FiStar,
-  // FiSettings,
+  FiHome
 } from 'react-icons/fi';
 import useAuth from 'hooks/useAuth';
 
@@ -25,8 +21,34 @@ const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
   if(auth?.role === "doctor"){
     Links = [
       { name: 'Beranda', icon: FiHome, link: '/' },
-      { name: 'Daftar EMR', icon: FiHome, link: '/' },
+      { name: 'Daftar EMR', icon: FiHome, link: '/emr-history' },
       { name: 'Tambah EMR', icon: FiHome, link: '/add-emr' },
+    ]
+  }
+
+  if(auth?.role === "patient") {
+    Links = [
+      { name: 'Beranda', icon: FiHome, link: '/' },
+      { name: 'Form Reservasi', icon: FiHome, link: '/form-reservasi' },
+      { name: 'Riwayat EMR', icon: FiHome, link: '/my-emr' },
+    ]
+  }
+
+  if(auth?.role === "admin") {
+    Links = [
+      { name: 'Beranda', icon: FiHome, link: '/' },
+      { name: 'Obat', icon: FiHome, link: '/medicine' },
+      { name: 'Jadwal', icon: FiHome, link: '/schedule' },
+      { name: 'Pengguna Aplikasi', icon: FiHome, link: '/user' }
+    ]
+  }
+
+  if(auth?.role === "receptionist") {
+    Links = [
+      { name: 'Beranda', icon: FiHome, link: '/' },
+      { name: 'Antrian Pasien', icon: FiHome, link: '/queue-patient' },
+      { name: 'Antrian Obat', icon: FiHome, link: '/queue-medicine' },
+      { name: 'Pembayaran', icon: FiHome, link: '/billing-payment' }
     ]
   }
 

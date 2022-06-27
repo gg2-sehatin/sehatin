@@ -36,13 +36,20 @@
       "pasien": "Seneca"
     }
   ],
+  "medicine": [
+    {
+      "id": 1,
+      "medicine_name": "Paracetamol",
+      "medicine_price": 3000
+    }
+  ],
   "patient": [],
   "users": [
     {
       "email": "janedoe@gmail.com",
       "id": 1,
       "name": "Jane Doe",
-      "password": "$2a$10$xU0On7AVJBL6ENMRZbsI4erf2RhG8gDOsY9bwMkBiAaehgYjivFq.",
+      "password": "$2a$10$gnvw8HwXmRpdrZ9bkQklkeTjkP7.CPjw9J4THI2h85tKYfZ2wMcfG",
       "role": "doctor"
     },
     {
@@ -58,13 +65,18 @@
       "name": "John Doe",
       "password": "$2a$10$RtE8biT7HQgtO07kDyhloOgGCyLOBaoRp99R/ucydmOKO/udLBHp.",
       "role": "receptionist"
-    }
-  ],
-  "medicine": [
+    },
     {
-      "medicine_name": "Paracetamol",
-      "medicine_price": 3000,
-      "id": 1
+      "birthday": "1997-06-18",
+      "birthplace": "Jakarta",
+      "email": "renaldkarel@gmail.com",
+      "gender": "Laki-laki",
+      "id": 4,
+      "name": "Rhenald Karrel",
+      "password": "$2a$10$Q9EeZVCDVbSqWmZGc972aOtLW9oKf5NInMpq/xphoVI253QkgD34O",
+      "password2": "12345678",
+      "phone": 8123456789,
+      "role": "patient"
     }
   ]
 }

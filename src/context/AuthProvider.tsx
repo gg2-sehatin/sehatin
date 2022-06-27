@@ -3,12 +3,14 @@ import React, { createContext, useState } from 'react';
 export interface IAuthContext {
   accessToken: string;
   name: string;
+  id: number;
   email: string;
   role: string;
 }
 
 const authContextDefault: IAuthContext = {
   accessToken: '',
+  id: 0,
   name: '',
   email: '',
   role: '',

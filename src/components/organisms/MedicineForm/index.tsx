@@ -35,18 +35,13 @@ export default function MedicineForm() {
         <Container
           maxW='container.xl'
           py={4}
-          bg='blue.100'
         >
-          <Heading size='lg' mb='3'>
-            Medicines
-          </Heading>
           <Box
-            p={5}
             bg="white"
             rounded="md"
           >
             <Heading size='md' mb={3}>
-              Create New Data
+              Tambah Obat Baru
             </Heading>
             <Alert status='success' mb={3}>
               <AlertIcon />
@@ -75,8 +70,14 @@ export default function MedicineForm() {
                     size='sm' />
                   <FormHelperText fontSize={10}>Pastikan harga sudah benar.</FormHelperText>
                 </FormControl>
-                <Button size='sm'
-                  type="submit">Save</Button>
+                <Button
+                  w="fit-content"
+                  bg='blue.300'
+                  color='white'
+                  type="submit"
+                >
+                  Save
+                </Button>
               </form>
             </Stack>
           </Box>

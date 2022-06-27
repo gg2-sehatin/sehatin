@@ -14,6 +14,7 @@ import {
   Avatar
 } from '@chakra-ui/react';
 import useAuth from 'hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 import { FiMenu, FiChevronDown } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
@@ -22,9 +23,10 @@ import MobileProps from './types';
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
+  const role = auth.role.charAt(0).toUpperCase() + auth.role.slice(1);
 
   const handleSignOut = () => {
-    setAuth?.({accessToken: "", name: "", role: "", email: ""});
+    setAuth?.({accessToken: "", name: "", role: "", email: "", id: 0});
     localStorage.removeItem('user');
     navigate('/');
   }
@@ -75,7 +77,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   ml='2'>
                   <Text fontSize='sm'>{auth.name}</Text>
                   <Text fontSize='xs' color='gray.600'>
-                    {auth.role}
+                    {role}
                   </Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
@@ -87,9 +89,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem>Profile</MenuItem>
+              <MenuItem as={Link} to='/edit-profile'>Ubah Profile</MenuItem>
               <MenuDivider />
-              <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
+              <MenuItem onClick={handleSignOut} color='red'>Keluar</MenuItem>
             </MenuList>
           </Menu>
         </Flex>

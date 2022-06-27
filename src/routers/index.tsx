@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { DoctorRoutes, ReceptionistRoutes } from './root.routers';
+import { DoctorRoutes, ReceptionistRoutes, AdminRoutes, PatientRoutes } from './root.routers';
 import useAuth from 'hooks/useAuth';
 import { IAuthContext } from 'context/AuthProvider';
 
 import Login from 'pages/login';
 import Register from 'pages/register';
 import PageNotFound from 'pages/page404';
+import EditProfile from 'pages/profile';
 
 const renderRoutes = (auth: IAuthContext) => {
   if (auth.role === "doctor" && auth.accessToken !== "") {
@@ -33,29 +34,29 @@ const renderRoutes = (auth: IAuthContext) => {
     )
   }
 
-  // if (auth.role === "admin" && auth.accessToken !== "") {
-  //   return (
-  //     (
-  //       <>
-  //         {AdminRoutes.map((route, index) => (
-  //           <Route key={index} path={route.path} element={route.element} />
-  //         ))}
-  //       </>
-  //     )
-  //   )
-  // }
+  if (auth.role === "admin" && auth.accessToken !== "") {
+    return (
+      (
+        <>
+          {AdminRoutes.map((route, index) => (
+            <Route key={index} path={route.path} element={route.element} />
+          ))}
+        </>
+      )
+    )
+  }
 
-  // if (auth.role === "patient" && auth.accessToken !== "") {
-  //   return (
-  //     (
-  //       <>
-  //         {PatientRoutes.map((route, index) => (
-  //           <Route key={index} path={route.path} element={route.element} />
-  //         ))}
-  //       </>
-  //     )
-  //   )
-  // }
+  if (auth.role === "patient" && auth.accessToken !== "") {
+    return (
+      (
+        <>
+          {PatientRoutes.map((route, index) => (
+            <Route key={index} path={route.path} element={route.element} />
+          ))}
+        </>
+      )
+    )
+  }
 }
 
 const Routers = () => {
@@ -73,8 +74,12 @@ const Routers = () => {
       <Routes>
         {
           auth.role !== "" && auth.accessToken !== ""
-            ? renderRoutes(auth)
-            : (
+            ? (
+              <>
+                {renderRoutes(auth)}
+                <Route path='/edit-profile' element={<EditProfile />} />
+              </>
+            ) : (
               <>
                 <Route path='/' element={<Login />} />
                 <Route path='/daftar' element={<Register />} />

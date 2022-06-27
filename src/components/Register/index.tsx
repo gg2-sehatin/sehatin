@@ -223,18 +223,16 @@ const Register = ({
               </FormControl>
 
               <Button
-                mt="24px"
-                fontSize="10px"
                 variant="dark"
                 fontWeight="bold"
                 w="100%"
                 h="45"
                 mb="24px"
                 color="white"
-                bg="blue.200"
+                bg="blue.300"
                 type="submit"
               >
-                DAFTAR
+                Daftar
               </Button>
             </form>
             <Flex

@@ -3,8 +3,7 @@ import {
   Flex,
   Stat,
   StatLabel,
-  StatNumber,
-  useColorModeValue,
+  StatNumber
 } from '@chakra-ui/react';
 import { StatsCardProps } from './types';
 
@@ -14,23 +13,19 @@ export default function StatsCard(props: StatsCardProps) {
     <Stat
       px={{ base: 2, md: 4 }}
       py={'5'}
-      shadow={'xl'}
-      border={'1px solid'}
-      borderColor={useColorModeValue('gray.800', 'gray.500')}
+      bgGradient='linear(to-r, blue.400, blue.200)'
+      color='white'
       rounded={'lg'}>
       <Flex justifyContent={'space-between'}>
         <Box pl={{ base: 2, md: 4 }}>
-          <StatLabel fontWeight={'medium'}>
+          <StatLabel>
             {title}
           </StatLabel>
           <StatNumber fontSize={'2xl'} fontWeight={'medium'}>
             {stat}
           </StatNumber>
         </Box>
-        <Box
-          my={'auto'}
-          color={useColorModeValue('gray.800', 'gray.200')}
-          alignContent={'center'}>
+        <Box my={'auto'} >
           {icon}
         </Box>
       </Flex>

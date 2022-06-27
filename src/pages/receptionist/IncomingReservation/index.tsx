@@ -16,29 +16,28 @@ export default function IncomingReservation() {
       <Box
         w={"full"}
         bg={useColorModeValue("white", "gray.800")}
-        boxShadow={"2xl"}
         rounded={"md"}
         overflow={"hidden"}
       >
         <Stack
           textAlign={"center"}
-          p={6}
+          p={2}
           color={useColorModeValue("gray.800", "white")}
           align={"center"}
         >
           <Text
-            fontSize={"sm"}
+            fontSize='2xl'
             fontWeight={500}
             bg={useColorModeValue("blue.50", "blue.900")}
             p={2}
-            px={3}
+            px={8}
             color={"blue.500"}
             rounded={"full"}
           >
             Incoming Reservation
           </Text>
         </Stack>
-        <Box bg={useColorModeValue("gray.50", "gray.900")} px={15} py={10}>
+        <Box px={15}>
           <List spacing={3}>
             <ListItem>1. Nama Pasien</ListItem>
             <Button

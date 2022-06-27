@@ -55,7 +55,7 @@ function SignIn({ onChange, emailValue, passwordValue, onSubmit }: SignInProps) 
               textAlign="center"
               mb="22px"
             >
-              MASUK
+              Masuk
             </Text>
 
             <form onSubmit={onSubmit}>
@@ -75,6 +75,7 @@ function SignIn({ onChange, emailValue, passwordValue, onSubmit }: SignInProps) 
                   size="lg"
                   value={emailValue}
                   onChange={onChange}
+                  isRequired
                 />
               </FormControl>
               <FormControl>
@@ -93,20 +94,20 @@ function SignIn({ onChange, emailValue, passwordValue, onSubmit }: SignInProps) 
                   size="lg"
                   value={passwordValue}
                   onChange={onChange}
+                  isRequired
                 />
               </FormControl>
               <Button
-                fontSize="10px"
                 variant="dark"
                 fontWeight="bold"
                 w="100%"
                 h="45"
                 mb="24px"
                 color="white"
-                bg="blue.200"
+                bg="blue.300"
                 type="submit"
               >
-                MASUK
+                Masuk
               </Button>
             </form>
             <Flex
