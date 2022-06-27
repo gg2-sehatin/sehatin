@@ -11,14 +11,17 @@ import NotOpenYet from "pages/PatientPage/ReservationStatusNotOpenYet";
 import QueueFull from "pages/PatientPage/ReservationStatusFullQueue";
 import RegistrationSuccess from "pages/PatientPage/ReservationStatusSuccessRegister";
 
+//PatientQueueStatus
+import QueueStatus from "pages/PatientPage/queueStatus";
+
 // Administrator
 import AdminHome from "pages/administration";
-import Medicine from "molecules/AdminMedicineList";
-import MedicineForm from "organisms/MedicineForm";
-import Schedule from "molecules/ScheduleList";
-import ScheduleForm from "organisms/ScheduleForm";
-import User from "molecules/AdminUser";
-import UserForm from "organisms/AdminUserForm";
+import Medicine from "components/molecules/AdminMedicineList";
+import MedicineForm from "components/organisms/MedicineForm";
+import Schedule from "components/molecules/ScheduleList";
+import ScheduleForm from "components/organisms/ScheduleForm";
+import User from "components/molecules/AdminUser";
+import UserForm from "components/organisms/AdminUserForm";
 
 // Doctor
 import EmrHistory from "pages/doctor/emrHistory";
@@ -46,6 +49,9 @@ const Routers = () => {
         <Route path="/statusnotopen" element={<NotOpenYet />} />
         <Route path="/statusfullqueue" element={<QueueFull />} />
         {/* End PatientStatusReservation Routes */}
+
+        {/* PatientQueueStatus Routes */}
+        <Route path="/queue" element={<QueueStatus />} />
 
         <Route path="/" element={<Login />} />
         <Route path="/daftar" element={<Register />} />
