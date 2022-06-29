@@ -1,49 +1,87 @@
 {
-  "users": [
+  "emr": [
     {
-      "email": "some@email.com",
-      "password": "$2a$10$Wb7MwD/IWsgx9pb6ZzlN1.ptcp1yeKUEChWYoi8nr.wlipZ3TVsT.",
-      "name": "Baru",
-      "id": 1
-    }
-  ],
-  "patients": [
-    {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
       "id": 1,
-      "userID": 1,
-      "name": "Media"
+      "obat": "Paracetamol",
+      "pasien": "Rhenald Karrel"
     },
     {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
       "id": 2,
-      "userID": 2,
-      "name": "Ari"
+      "obat": "Paracetamol",
+      "pasien": "Farhat Abbas"
     },
     {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
       "id": 3,
-      "userID": 3,
-      "name": "Arin"
+      "obat": "Paracetamol",
+      "pasien": "Na Hee-Do"
     },
     {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
       "id": 4,
-      "userID": 4,
-      "name": "Karrel"
+      "obat": "Paracetamol",
+      "pasien": "Ko Yu-Rim"
     },
     {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
       "id": 5,
-      "userID": 5,
-      "name": "Rafly"
-    },
-    {
-      "name": "Baru",
-      "userID": 6,
-      "id": 6
+      "obat": "Paracetamol",
+      "pasien": "Seneca"
     }
   ],
   "medicine": [
     {
+      "id": 1,
       "medicine_name": "Paracetamol",
-      "medicine_price": 3000,
-      "id": 1
+      "medicine_price": 3000
+    },
+    {
+      "medicine_name": "",
+      "medicine_price": "",
+      "id": 2
+    }
+  ],
+  "patient": [],
+  "users": [
+    {
+      "email": "janedoe@gmail.com",
+      "id": 1,
+      "name": "Jane Doe",
+      "password": "$2a$10$gnvw8HwXmRpdrZ9bkQklkeTjkP7.CPjw9J4THI2h85tKYfZ2wMcfG",
+      "role": "doctor"
+    },
+    {
+      "email": "kamalakhan@gmail.com",
+      "id": 2,
+      "name": "Kamala Khan",
+      "password": "$2a$10$ZYoNP/fgPNIT1Fb6ynecvObPGVXl5WXyUuLVs34h4rp9bCXxDqRgS",
+      "role": "admin"
+    },
+    {
+      "email": "johndoe@gmail.com",
+      "id": 3,
+      "name": "John Doe",
+      "password": "$2a$10$RtE8biT7HQgtO07kDyhloOgGCyLOBaoRp99R/ucydmOKO/udLBHp.",
+      "role": "receptionist"
+    },
+    {
+      "birthday": "1997-06-18",
+      "birthplace": "Jakarta",
+      "email": "renaldkarel@gmail.com",
+      "gender": "Laki-laki",
+      "id": 4,
+      "name": "Rhenald Karrel",
+      "password": "$2a$10$Q9EeZVCDVbSqWmZGc972aOtLW9oKf5NInMpq/xphoVI253QkgD34O",
+      "password2": "12345678",
+      "phone": 8123456789,
+      "role": "patient"
     }
   ]
 }

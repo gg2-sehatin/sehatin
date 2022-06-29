@@ -1,6 +1,5 @@
 import {
   IconButton,
-  Avatar,
   Box,
   Flex,
   HStack,
@@ -12,12 +11,26 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
-} from "@chakra-ui/react";
+  Avatar
+} from '@chakra-ui/react';
+import useAuth from 'hooks/useAuth';
+import { Link } from 'react-router-dom';
 
-import { FiMenu, FiChevronDown } from "react-icons/fi";
-import MobileProps from "./types";
+import { FiMenu, FiChevronDown } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+import MobileProps from './types';
 
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
+  const role = auth.role.charAt(0).toUpperCase() + auth.role.slice(1);
+
+  const handleSignOut = () => {
+    setAuth({accessToken: "", name: "", role: "", email: "", id: 0});
+    localStorage.removeItem('user');
+    navigate('/');
+  }
+
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -55,21 +68,16 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             >
               <HStack>
                 <Avatar
-                  size={"sm"}
-                  src={
-                    // eslint-disable-next-line max-len
-                    "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                  }
+                  size={'sm'}
                 />
                 <VStack
-                  display={{ base: "none", md: "flex" }}
-                  alignItems="flex-start"
-                  spacing="1px"
-                  ml="2"
-                >
-                  <Text fontSize="sm">Justina Clark</Text>
-                  <Text fontSize="xs" color="gray.600">
-                    Doctor
+                  display={{ base: 'none', md: 'flex' }}
+                  alignItems='flex-start'
+                  spacing='1px'
+                  ml='2'>
+                  <Text fontSize='sm'>{auth.name}</Text>
+                  <Text fontSize='xs' color='gray.600'>
+                    {role}
                   </Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
@@ -81,9 +89,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem>Profile</MenuItem>
+              <MenuItem as={Link} to='/edit-profile'>Ubah Profile</MenuItem>
               <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem onClick={handleSignOut} color='red'>Keluar</MenuItem>
             </MenuList>
           </Menu>
         </Flex>

@@ -4,13 +4,31 @@ import {
   useColorModeValue,
   Text,
   CloseButton,
-} from "@chakra-ui/react";
-import LinkItems from "./config";
-import NavItem from "components/NavItem";
-
-import { SidebarContentProps } from "./types";
+} from '@chakra-ui/react';
+import NavItem from 'components/NavItem';
+import useAuth from 'hooks/useAuth';
+import { SidebarContentProps, LinkItemProps } from './types';
+import { DoctorLinks, PatientLinks, AdminLinks, ReceptionistLinks } from './config';
+import { useMemo } from 'react';
 
 const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
+  const { auth } = useAuth();
+
+  const Links: Array<LinkItemProps> = useMemo(() => {
+    if (!auth) return [];
+    const { role } = auth;
+
+    if (role === "doctor") return DoctorLinks;
+
+    if (role === "patient") return PatientLinks;
+
+    if (role === "admin") return AdminLinks
+
+    if (role === "receptionist") return ReceptionistLinks
+
+    return [];
+  }, [auth]);
+
   return (
     <Box
       transition="3s ease"
@@ -28,8 +46,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+      {Links.map((link) => (
+        <NavItem key={link.name} icon={link.icon} link={link.href}>
           {link.name}
         </NavItem>
       ))}

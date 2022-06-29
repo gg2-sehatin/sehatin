@@ -31,16 +31,19 @@ export default function Schedule() {
         <Heading size='lg' mb='3'>
           Schedule
         </Heading>
-        <Flex justifyContent='right'>
+        <Flex justifyContent='left'>
           <Link
             as={RouteLink}
-            to="/schedule-form"
+            to="/schedule/create"
           >
             <Button
               leftIcon={<AddIcon/>}
-              colorScheme="twitter"
+              bg='blue.300'
+              color='white'
               mb={4}
-            >Add New Data</Button>
+            >
+              Tambah Data Baru
+            </Button>
           </Link>
         </Flex>
         <Box

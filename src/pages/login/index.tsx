@@ -1,7 +1,44 @@
-import SignIn from "components/Signin";
+import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+
+import SignInForm from 'components/Signin';
+import useAuth from "hooks/useAuth";
 
 function Login() {
-  return <SignIn />;
+  const { setAuth } =  useAuth();
+
+  const navigate = useNavigate();
+
+  const formik = useFormik({
+    initialValues: {
+      email:"",
+      password: "",
+    },
+    onSubmit: (values) => {
+      fetch('http://localhost:3001/login', {
+        method: 'POST',
+        headers: {'Content-Type' : 'application/json'},
+        body: JSON.stringify((values))
+      })
+        .then(res => res.json())
+        .then(data => {
+          const { accessToken } = data;
+          const { id, name, email, role } = data.user;
+          setAuth({accessToken, id, name, email, role});
+          localStorage.setItem('user', JSON.stringify({accessToken, id, name, email, role}));
+          navigate('/', { replace: true });
+        })
+    }
+  });
+
+  return (
+    <SignInForm
+      onChange={formik.handleChange}
+      emailValue={formik.values.email}
+      passwordValue={formik.values.password}
+      onSubmit={formik.handleSubmit}
+    />
+  )
 }
 
 export default Login;

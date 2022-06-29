@@ -32,16 +32,19 @@ export default function AdminUser() {
         <Heading size='lg' mb='3'>
           User
         </Heading>
-        <Flex justifyContent='right'>
+        <Flex justifyContent='left'>
           <Link
             as={RouteLink}
-            to="/user-form"
+            to="/user/create"
           >
             <Button
               leftIcon={<AddIcon/>}
-              colorScheme="twitter"
+              bg='blue.400'
+              color='white'
               mb={4}
-            >Add New Data</Button>
+            >
+              Tambah Data Baru
+            </Button>
           </Link>
         </Flex>
         <Box

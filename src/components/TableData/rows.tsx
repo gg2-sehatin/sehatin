@@ -1,30 +1,33 @@
-import { Tr, Td, Text, Button, Select } from "@chakra-ui/react";
+import { Tr, Td, Text, Select, Button } from "@chakra-ui/react";
+import { Link } from 'react-router-dom';
+import { MedicineStatus } from "./types";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getMedicineData = (key: string, item: any) => {
-  if (key === "status") {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const statusBg =
-      item.status.toLowerCase() === "dalam antrian" ? "#F94C66" : "#53BF9D";
+const renderMedicineStatus = (status: MedicineStatus) => {
+  const statusBg =
+    status.toLowerCase() === "dalam antrian" ? "#F94C66" : "#53BF9D";
 
-    return (
-      <Text
-        bg={statusBg}
-        w="fit-content"
-        p="4px 8px"
-        color="white"
-        borderRadius="8px"
-      >
-        {item[key]}
-      </Text>
-    );
-  }
-
-  return <Text>{item[key]}</Text>;
+  return (
+    <Text
+      bg={statusBg}
+      w="fit-content"
+      p="4px 8px"
+      color="white"
+      borderRadius="8px"
+    >
+      {status}
+    </Text>
+  );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Rows = ({ data, type }: { data: any; type: "emr" | "medicine" }) => {
+
+const Rows = ({
+  data,
+  type
+}: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: any;
+    type: "emr" | "medicine"
+  }) => {
   let viewData = <></>;
 
   if (!data || data?.length === 0) {
@@ -39,39 +42,27 @@ const Rows = ({ data, type }: { data: any; type: "emr" | "medicine" }) => {
     );
   }
 
-  if (typeof data === "object") {
-    viewData = (
-      <>
-        {Object.keys(data).map((key, index) => (
-          <Tr key={index}>
-            <Td>{index + 1}</Td>
-            <Td>{key}</Td>
-            <Td>{data[key]}</Td>
-          </Tr>
-        ))}
-      </>
-    );
-  }
-
   if (Array.isArray(data)) {
-    if (type === "emr") {
+    if (type === 'emr') {
       viewData = (
         <>
           {data.map((item, index) => (
             <Tr key={index}>
-              {Object.keys(item).map((key, index) => (
-                <>
-                  <Td key={index}>
-                    <Text>{item[key]}</Text>
-                  </Td>
-                </>
-              ))}
+              <Td key={index}>
+                <Text>{index+1}</Text>
+              </Td>
+              <Td key={index}>
+                <Text>{item.name}</Text>
+              </Td>
+              <Td key={index}>
+                <Text>{item.examinationDate}</Text>
+              </Td>
               <Td>
-                <a href={`/emr-history/${item.id}`}>
-                  <Button variant="dark" color="white" bg="blue.400">
+                <Link to={`/emr-history/${item.id}`}>
+                  <Button variant='dark' color='white' bg='blue.400'>
                     Detail
                   </Button>
-                </a>
+                </Link>
               </Td>
             </Tr>
           ))}
@@ -84,21 +75,25 @@ const Rows = ({ data, type }: { data: any; type: "emr" | "medicine" }) => {
         <>
           {data.map((item, index) => (
             <Tr key={index}>
-              {Object.keys(item).map((key, index) => (
-                <Td key={index}>{getMedicineData(key, item)}</Td>
-              ))}
+              <Td key={index}>
+                <Text>{item.id}</Text>
+              </Td>
+              <Td key={index}>
+                <Text>{item.name}</Text>
+              </Td>
+              <Td key={index}>
+                <Text>{renderMedicineStatus(item.status)}</Text>
+              </Td>
               <Td>
-                <Select placeholder="Status" w="80%">
+                <Select placeholder='Status' w='80%'>
                   <option
-                    value="antri"
-                    selected={item.status.toLowerCase() == "dalam antrian"}
-                  >
+                    value='Dalam Antrian'
+                    selected={item.status.toLowerCase() == 'dalam antrian'}>
                     Dalam Antrian
                   </option>
                   <option
-                    value="selesai"
-                    selected={item.status.toLowerCase() == "selesai"}
-                  >
+                    value='Selesai'
+                    selected={item.status.toLowerCase() == 'selesai'}>
                     Selesai
                   </option>
                 </Select>

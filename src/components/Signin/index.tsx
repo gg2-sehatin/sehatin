@@ -9,8 +9,9 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Link as RouteLink } from "react-router-dom";
+import { SignInProps } from "./types";
 
-function SignIn() {
+function SignIn({ onChange, emailValue, passwordValue, onSubmit }: SignInProps) {
   const textColor = useColorModeValue("gray.700", "white");
   const bgForm = useColorModeValue("white", "navy.800");
   const titleColor = useColorModeValue("gray.700", "blue.500");
@@ -47,47 +48,61 @@ function SignIn() {
               textAlign="center"
               mb="22px"
             >
-              MASUK
+              Masuk
             </Text>
 
-            <FormControl>
-              <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-                Email
-              </FormLabel>
-              <Input
-                variant="outline"
-                fontSize="sm"
-                ms="4px"
-                type="email"
-                placeholder="Email"
-                mb="24px"
-                size="lg"
-              />
-              <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-                Password
-              </FormLabel>
-              <Input
-                variant="outline"
-                fontSize="sm"
-                ms="4px"
-                type="password"
-                placeholder="Password"
-                mb="24px"
-                size="lg"
-              />
+            <form onSubmit={onSubmit}>
+              <FormControl>
+                <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
+                  Email
+                </FormLabel>
+                <Input
+                  id="email"
+                  name="email"
+                  variant="outline"
+                  fontSize="sm"
+                  ms="4px"
+                  type="email"
+                  placeholder="Email"
+                  mb="24px"
+                  size="lg"
+                  value={emailValue}
+                  onChange={onChange}
+                  isRequired
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
+                  Password
+                </FormLabel>
+                <Input
+                  id="password"
+                  name="password"
+                  variant="outline"
+                  fontSize="sm"
+                  ms="4px"
+                  type="password"
+                  placeholder="Password"
+                  mb="24px"
+                  size="lg"
+                  value={passwordValue}
+                  onChange={onChange}
+                  isRequired
+                />
+              </FormControl>
               <Button
-                fontSize="10px"
                 variant="dark"
                 fontWeight="bold"
                 w="100%"
                 h="45"
                 mb="24px"
                 color="white"
-                bg="blue.200"
+                bg="blue.300"
+                type="submit"
               >
-                MASUK
+                Masuk
               </Button>
-            </FormControl>
+            </form>
             <Flex
               flexDirection="column"
               justifyContent="center"

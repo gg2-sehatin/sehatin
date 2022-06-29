@@ -14,8 +14,12 @@ import {
   AlertIcon,
 } from '@chakra-ui/react'
 import { useFormik } from 'formik';
+import { useNavigate } from "react-router-dom";
 
 export default function MedicineForm() {
+  const navigate = useNavigate()
+  const handleGoBack = () => navigate(-1);
+
   const formik = useFormik({
     initialValues: {
       medicine_name:"",
@@ -29,24 +33,23 @@ export default function MedicineForm() {
       })
     }
   });
+
   return (
     <>
       <SidebarWithHeader>
         <Container
           maxW='container.xl'
           py={4}
-          bg='blue.100'
         >
-          <Heading size='lg' mb='3'>
-            Medicines
-          </Heading>
           <Box
-            p={5}
             bg="white"
             rounded="md"
           >
+            <Button onClick={handleGoBack} mb='4'>
+              Kembali
+            </Button>
             <Heading size='md' mb={3}>
-              Create New Data
+              Tambah Obat Baru
             </Heading>
             <Alert status='success' mb={3}>
               <AlertIcon />
@@ -75,8 +78,14 @@ export default function MedicineForm() {
                     size='sm' />
                   <FormHelperText fontSize={10}>Pastikan harga sudah benar.</FormHelperText>
                 </FormControl>
-                <Button size='sm'
-                  type="submit">Save</Button>
+                <Button
+                  w="fit-content"
+                  bg='blue.300'
+                  color='white'
+                  type="submit"
+                >
+                  Save
+                </Button>
               </form>
             </Stack>
           </Box>

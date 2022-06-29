@@ -13,26 +13,29 @@ import {
   AlertIcon,
   Select,
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminUserForm() {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => navigate(-1);
+
   return (
     <>
       <SidebarWithHeader>
         <Container
           maxW='container.xl'
           py={4}
-          bg='blue.100'
         >
-          <Heading size='lg' mb='3'>
-            User
-          </Heading>
           <Box
-            p={5}
             bg="white"
             rounded="md"
           >
+            <Button onClick={handleGoBack} mb='4'>
+              Kembali
+            </Button>
             <Heading size='md' mb={3}>
-              Create New Data
+              Tambah Pengguna Baru
             </Heading>
             <Alert status='success' mb={3}>
               <AlertIcon />
@@ -64,7 +67,7 @@ export default function AdminUserForm() {
                 <Input id='hargaobat' type='password' size='sm' placeholder='Konfirmasi Password'/>
                 <FormHelperText fontSize={10}>Konfirmasi kembali password.</FormHelperText>
               </FormControl>
-              <Button size='sm'>Save</Button>
+              <Button w="fit-content" bg='blue.300' color='white'>Save</Button>
             </Stack>
           </Box>
         </Container>

@@ -12,28 +12,30 @@ import {
   Alert,
   AlertIcon,
   Select,
-  HStack
+  HStack,
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
 
 export default function ScheduleForm() {
+  const navigate = useNavigate();
+  const handleGoBack = () => navigate(-1);
+
   return (
     <>
       <SidebarWithHeader>
         <Container
           maxW='container.xl'
           py={4}
-          bg='blue.100'
         >
-          <Heading size='lg' mb='3'>
-            Schedule
-          </Heading>
+          <Button onClick={handleGoBack} mb='4'>
+            Kembali
+          </Button>
           <Box
-            p={5}
             bg="white"
             rounded="md"
           >
             <Heading size='md' mb={3}>
-              Create New Data
+              Tambah Jadwal
             </Heading>
             <Alert status='success' mb={3}>
               <AlertIcon />
@@ -73,7 +75,7 @@ export default function ScheduleForm() {
                 <Input id='hargaobat' type='number' size='sm' />
                 <FormHelperText fontSize={10}>Pastikan harga sudah benar.</FormHelperText>
               </FormControl>
-              <Button size='sm'>Save</Button>
+              <Button  w="fit-content" bg='blue.300' color='white'>Save</Button>
             </Stack>
           </Box>
         </Container>
