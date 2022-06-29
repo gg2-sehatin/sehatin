@@ -13,37 +13,81 @@ import {
   Alert,
   AlertIcon,
   CloseButton,
-  useDisclosure,
   AlertTitle,
   AlertDescription
 } from '@chakra-ui/react'
 import { useFormik } from 'formik';
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function MedicineForm() {
+  // State
   const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
 
-  const { onClose } = useDisclosure()
+  // Navigate
+  const navigate = useNavigate();
 
+  // Params
+  const {state}: any = useLocation();
+
+  // Formik
   const formik = useFormik({
     initialValues: {
-      medicine_name:"",
-      medicine_price: "",
+      id: state?.id || '',
+      medicine_name: state?.medicine_name || "",
+      medicine_price: state?.medicine_price || "",
     },
-    onSubmit: (values) => {
+    onSubmit: (values, actions) => {
+      if (state?.isEdit) {
+        fetch(`http://localhost:3001/medicine/${state?.id}`, {
+          method: 'PATCH',
+          headers: {'Content-Type' : 'application/json'},
+          body: JSON.stringify((values))
+        }).then(()=> {
+          actions.resetForm({
+            values: {
+              id: '',
+              medicine_name: '',
+              medicine_price: '',
+            },
+          // you can also set the other form states here
+          });
+          setShow(true);
+          setTimeout(() => {
+            navigate('/medicine');
+          }, 2000)
+        });
+        return;
+      }
+
       fetch('http://localhost:3001/medicine', {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify((values))
-      }).then(()=> setShow(true))
+      }).then(()=> {
+        actions.resetForm({
+          values: {
+            id: '',
+            // the type of `values` inferred to be Blog
+            medicine_name: '',
+            medicine_price: '',
+          },
+          // you can also set the other form states here
+        });
+        setShow(true);
+        setTimeout(() => {
+          navigate('/medicine');
+        }, 2000)
+      });
     }
   });
+
   return (
     <>
       <SidebarWithHeader>
         <Container
           maxW='container.xl'
           py={4}
-          bg='blue.100'
         >
           <Heading size='lg' mb='3'>
             Medicines
@@ -70,7 +114,7 @@ export default function MedicineForm() {
                   position='relative'
                   right={-1}
                   top={-1}
-                  onClick={onClose}
+                  onClick={handleClose}
                 />
               </Alert>
             ) : null}
