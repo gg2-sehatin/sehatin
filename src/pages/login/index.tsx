@@ -22,13 +22,11 @@ function Login() {
       })
         .then(res => res.json())
         .then(data => {
-          if(data !== {}){
-            const { accessToken } = data;
-            const { id, name, email, role } = data.user;
-            setAuth?.({accessToken, id, name, email, role});
-            localStorage.setItem('user', JSON.stringify({accessToken, id, name, email, role}));
-            navigate('/', { replace: true });
-          }
+          const { accessToken } = data;
+          const { id, name, email, role } = data.user;
+          setAuth({accessToken, id, name, email, role});
+          localStorage.setItem('user', JSON.stringify({accessToken, id, name, email, role}));
+          navigate('/', { replace: true });
         })
     }
   });

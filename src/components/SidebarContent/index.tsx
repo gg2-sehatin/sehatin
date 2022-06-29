@@ -6,52 +6,28 @@ import {
   CloseButton,
 } from '@chakra-ui/react';
 import NavItem from 'components/NavItem';
-import {
-  FiHome
-} from 'react-icons/fi';
 import useAuth from 'hooks/useAuth';
-
-import { SidebarContentProps } from './types';
-import { LinkItemProps } from './types';
+import { SidebarContentProps, LinkItemProps } from './types';
+import { DoctorLinks, PatientLinks, AdminLinks, ReceptionistLinks } from './config';
+import { useMemo } from 'react';
 
 const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
-  let Links: Array<LinkItemProps> = [];
   const { auth } = useAuth();
 
-  if(auth?.role === "doctor"){
-    Links = [
-      { name: 'Beranda', icon: FiHome, link: '/' },
-      { name: 'Daftar EMR', icon: FiHome, link: '/emr-history' },
-      { name: 'Tambah EMR', icon: FiHome, link: '/add-emr' },
-    ]
-  }
+  const Links: Array<LinkItemProps> = useMemo(() => {
+    if (!auth) return [];
+    const { role } = auth;
 
-  if(auth?.role === "patient") {
-    Links = [
-      { name: 'Beranda', icon: FiHome, link: '/' },
-      { name: 'Form Reservasi', icon: FiHome, link: '/form-reservasi' },
-      { name: 'Riwayat EMR', icon: FiHome, link: '/my-emr' },
-    ]
-  }
+    if (role === "doctor") return DoctorLinks;
 
-  if(auth?.role === "admin") {
-    Links = [
-      { name: 'Beranda', icon: FiHome, link: '/' },
-      { name: 'Obat', icon: FiHome, link: '/medicine' },
-      { name: 'Jadwal', icon: FiHome, link: '/schedule' },
-      { name: 'Pengguna Aplikasi', icon: FiHome, link: '/user' }
-    ]
-  }
+    if (role === "patient") return PatientLinks;
 
-  if(auth?.role === "receptionist") {
-    Links = [
-      { name: 'Beranda', icon: FiHome, link: '/' },
-      { name: 'Antrian Pasien', icon: FiHome, link: '/queue-patient' },
-      { name: 'Antrian Obat', icon: FiHome, link: '/queue-medicine' },
-      { name: 'Pembayaran', icon: FiHome, link: '/billing-payment' }
-    ]
-  }
+    if (role === "admin") return AdminLinks
 
+    if (role === "receptionist") return ReceptionistLinks
+
+    return [];
+  }, [auth]);
 
   return (
     <Box
@@ -71,7 +47,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {Links.map((link) => (
-        <NavItem key={link.name} icon={link.icon} link={link.link}>
+        <NavItem key={link.name} icon={link.icon} link={link.href}>
           {link.name}
         </NavItem>
       ))}

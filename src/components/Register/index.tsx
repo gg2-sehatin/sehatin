@@ -12,19 +12,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { Link as RouteLink } from "react-router-dom";
-
-type RegisterProps = {
-  nameValue: string;
-  genderValue: string;
-  birthplaceValue: string;
-  birthdayValue: string;
-  phoneValue: number;
-  emailValue: string;
-  passValue: string;
-  secondPassValue: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  onSubmit: (e?: React.FormEvent<HTMLFormElement>) => void;
-}
+import { RegisterProps } from "./types";
 
 const Register = ({
   nameValue,
@@ -41,6 +29,7 @@ const Register = ({
   const textColor = useColorModeValue("gray.700", "white");
   const bgForm = useColorModeValue("white", "navy.800");
   const titleColor = useColorModeValue("gray.700", "blue.500");
+
   return (
     <Flex position="relative" bg="gray.100">
       <Flex

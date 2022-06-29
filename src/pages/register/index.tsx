@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 
 import RegisterForm from "components/Register";
-import ModalDialogue from "components/ModalDialouge";
+import ModalDialogue from "components/ModalDialogue";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,11 +31,9 @@ function Register(){
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify((values))
       })
-        .then(res => res.json())
-        .then(data => {
-          // eslint-disable-next-line no-console
-          console.log(data)
-          setShow(true)
+        .then(res => {
+          res.json()
+          setShow(true);
         })
     }
   });

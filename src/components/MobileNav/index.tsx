@@ -26,7 +26,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   const role = auth.role.charAt(0).toUpperCase() + auth.role.slice(1);
 
   const handleSignOut = () => {
-    setAuth?.({accessToken: "", name: "", role: "", email: "", id: 0});
+    setAuth({accessToken: "", name: "", role: "", email: "", id: 0});
     localStorage.removeItem('user');
     navigate('/');
   }

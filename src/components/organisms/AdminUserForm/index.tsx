@@ -18,11 +18,10 @@ import { useNavigate } from 'react-router-dom';
 export default function AdminUserForm() {
   const navigate = useNavigate();
 
+  const handleGoBack = () => navigate(-1);
+
   return (
     <>
-      <Button onClick={() => navigate(-1)} mb='4'>
-        Kembali
-      </Button>
       <SidebarWithHeader>
         <Container
           maxW='container.xl'
@@ -32,6 +31,9 @@ export default function AdminUserForm() {
             bg="white"
             rounded="md"
           >
+            <Button onClick={handleGoBack} mb='4'>
+              Kembali
+            </Button>
             <Heading size='md' mb={3}>
               Tambah Pengguna Baru
             </Heading>

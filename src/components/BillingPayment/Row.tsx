@@ -3,7 +3,6 @@ import { Tr, Td, Text, Button, Select } from "@chakra-ui/react";
 import { BillingStatusType } from "./types";
 import BillingPaymentData from "types/BillingPaymentData";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const renderBillingStatus = (status: BillingStatusType) => {
   const statusBg =
     status.toLowerCase() === "menunggu pembayaran" ? "#F94C66" : "#53BF9D";

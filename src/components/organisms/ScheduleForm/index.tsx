@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ScheduleForm() {
   const navigate = useNavigate();
+  const handleGoBack = () => navigate(-1);
 
   return (
     <>
@@ -26,7 +27,7 @@ export default function ScheduleForm() {
           maxW='container.xl'
           py={4}
         >
-          <Button onClick={() => navigate(-1)} mb='4'>
+          <Button onClick={handleGoBack} mb='4'>
             Kembali
           </Button>
           <Box

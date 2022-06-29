@@ -1,12 +1,5 @@
 import React, { createContext, useState } from 'react';
-
-export interface IAuthContext {
-  accessToken: string;
-  name: string;
-  id: number;
-  email: string;
-  role: string;
-}
+import { IAuthContext, AuthContextValueType, AuthProviderType } from './types';
 
 const authContextDefault: IAuthContext = {
   accessToken: '',
@@ -16,16 +9,10 @@ const authContextDefault: IAuthContext = {
   role: '',
 }
 
-type AuthContextValueType = {
-  auth : IAuthContext;
-  setAuth?: React.Dispatch<React.SetStateAction<IAuthContext>>
-}
-
-const AuthContext = createContext<AuthContextValueType>({auth : authContextDefault});
-
-type AuthProviderType = {
-  children: React.ReactNode;
-}
+const AuthContext = createContext<AuthContextValueType>({
+  auth : authContextDefault,
+  setAuth: () => undefined
+});
 
 export const AuthProvider = ({ children }: AuthProviderType) => {
 

@@ -8,15 +8,8 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React from "react";
 import { Link as RouteLink } from "react-router-dom";
-
-type SignInProps = {
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  emailValue: string;
-  passwordValue: string;
-  onSubmit: (e?: React.FormEvent<HTMLFormElement>) => void;
-}
+import { SignInProps } from "./types";
 
 function SignIn({ onChange, emailValue, passwordValue, onSubmit }: SignInProps) {
   const textColor = useColorModeValue("gray.700", "white");
