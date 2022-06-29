@@ -24,8 +24,20 @@ import {
   EditIcon
 } from "@chakra-ui/icons"
 import { Link as RouteLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import User from 'types/users';
 
 export default function AdminUser() {
+  const [users, setUsers] = useState<User[]>([])
+
+  useEffect(() => {
+    fetch('http://localhost:3001/users', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => setUsers(data))
+  }, [])
+
   return (
     <>
       <SidebarWithHeader>
@@ -63,60 +75,37 @@ export default function AdminUser() {
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>
-                    <Badge colorScheme='green'>Dokter</Badge>
-                  </Td>
-                  <Td>Dr. Budiman</Td>
-                  <Td>budiman.berbudi@email.com</Td>
-                  <Td>
-                    <ButtonGroup spacing={2}>
-                      <Tooltip label='Delete Data'>
-                        <Button
-                          colorScheme='red'
-                          size='sm'
-                        >
-                          <Icon as={DeleteIcon}/>
-                        </Button>
-                      </Tooltip>
-                      <Tooltip label='Update Data'>
-                        <Button
-                          colorScheme='green'
-                          size='sm'
-                        >
-                          <Icon as={EditIcon}/>
-                        </Button>
-                      </Tooltip>
-                    </ButtonGroup>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>
-                    <Badge colorScheme='purple'>Resepsionis</Badge>
-                  </Td>
-                  <Td>Resepsionis</Td>
-                  <Td>resep.onis@email.com</Td>
-                  <Td>
-                    <ButtonGroup spacing={2}>
-                      <Tooltip label='Delete Data'>
-                        <Button
-                          colorScheme='red'
-                          size='sm'
-                        >
-                          <Icon as={DeleteIcon}/>
-                        </Button>
-                      </Tooltip>
-                      <Tooltip label='Update Data'>
-                        <Button
-                          colorScheme='green'
-                          size='sm'
-                        >
-                          <Icon as={EditIcon}/>
-                        </Button>
-                      </Tooltip>
-                    </ButtonGroup>
-                  </Td>
-                </Tr>
+                {
+                  users.map(user => (
+                    <Tr key={user.id}>
+                      <Td>
+                        <Badge colorScheme='green'>{user.role}</Badge>
+                      </Td>
+                      <Td>{user.name}</Td>
+                      <Td>{user.email}</Td>
+                      <Td>
+                        <ButtonGroup spacing={2}>
+                          <Tooltip label='Delete Data'>
+                            <Button
+                              colorScheme='red'
+                              size='sm'
+                            >
+                              <Icon as={DeleteIcon}/>
+                            </Button>
+                          </Tooltip>
+                          <Tooltip label='Update Data'>
+                            <Button
+                              colorScheme='green'
+                              size='sm'
+                            >
+                              <Icon as={EditIcon}/>
+                            </Button>
+                          </Tooltip>
+                        </ButtonGroup>
+                      </Td>
+                    </Tr>
+                  ))
+                }
               </Tbody>
               <Tfoot>
                 <Tr>

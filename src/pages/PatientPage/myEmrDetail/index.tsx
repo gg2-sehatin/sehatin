@@ -10,7 +10,7 @@ import SidebarWithHeader from 'components/Sidebar';
 import EmrHistoryData from 'types/EmrHistoryData';
 import { useEffect, useState } from 'react';
 
-const EmrDetail = () => {
+const MyEmrDetail = () => {
 
   const { id } = useParams();
   const [data, setData] = useState<EmrHistoryData>({
@@ -39,7 +39,7 @@ const EmrDetail = () => {
           <Text fontSize='xl' fontWeight='bold' mb='8px'>
             Detail EMR Pasien {data.pasien}
           </Text>
-          <Link to='/emr-history'>
+          <Link to='/my-emr'>
             <Button mb='8px'>Kembali</Button>
           </Link>
           <UnorderedList display='table' listStyleType='none' mt='1rem'>
@@ -74,4 +74,4 @@ const EmrDetail = () => {
   );
 };
 
-export default EmrDetail;
+export default MyEmrDetail;

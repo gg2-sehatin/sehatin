@@ -29,7 +29,7 @@ function Register(){
       fetch('http://localhost:3001/users', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify((values))
+        body: JSON.stringify(values)
       })
         .then(res => {
           res.json()

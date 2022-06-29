@@ -3,15 +3,17 @@ import { Thead, TableContainer, Table, Text, Tbody } from "@chakra-ui/react";
 import SidebarWithHeader from 'components/Sidebar';
 import Headers from 'components/TableData/headers';
 import Rows from 'components/TableData/rows';
+import useAuth from "hooks/useAuth";
 import { useEffect, useState } from "react";
 import EmrHistoryData from "types/EmrHistoryData";
 
-const EmrHistory = () => {
+const MyEmr = () => {
 
   const [data, setData] = useState([])
+  const { auth } = useAuth()
 
   useEffect(() => {
-    fetch('http://localhost:3001/emr', {
+    fetch('http://localhost:3001/emr?pasien=' + auth.name, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -36,7 +38,7 @@ const EmrHistory = () => {
           <Table variant="simple">
             <Thead>
               <Headers
-                headers={["No", "Nama", "Tanggal Pemeriksaan", "Aksi"]}
+                headers={["No", "Tanggal Pemeriksaan", "Aksi"]}
               />
             </Thead>
             <Tbody>
@@ -49,4 +51,4 @@ const EmrHistory = () => {
   );
 };
 
-export default EmrHistory;
+export default MyEmr;

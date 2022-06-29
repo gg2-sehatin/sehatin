@@ -8,11 +8,17 @@ import {
 
 type ReservationStatusFormRegisterProps = {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
-  values: {tanggal: string, jam: string, id_pasien: number};
+  tanggal: string;
+  jam: string;
   onSubmit: (e?: React.FormEvent<HTMLFormElement>) => void;
 }
 
-function ReservationStatusFormRegister({onSubmit, onChange, values}: ReservationStatusFormRegisterProps) {
+function ReservationStatusFormRegister({
+  onSubmit,
+  onChange,
+  tanggal,
+  jam,
+}: ReservationStatusFormRegisterProps) {
 
   return (
     <form onSubmit={onSubmit}>
@@ -29,7 +35,7 @@ function ReservationStatusFormRegister({onSubmit, onChange, values}: Reservation
           type="date"
           mb="24px"
           size="lg"
-          value={values.tanggal}
+          value={tanggal}
           onChange={onChange}
         />
       </FormControl>
@@ -48,7 +54,7 @@ function ReservationStatusFormRegister({onSubmit, onChange, values}: Reservation
           size="lg"
           min="09:00"
           max="17:00"
-          value={values.jam}
+          value={jam}
           onChange={onChange}
         />
         <FormHelperText>Jam operasional: <b>09.00 - 17.00 WIB</b></FormHelperText>
@@ -59,6 +65,7 @@ function ReservationStatusFormRegister({onSubmit, onChange, values}: Reservation
         h="45"
         color="white"
         bg="blue.300"
+        type="submit"
       >
         Daftar
       </Button>

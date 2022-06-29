@@ -1,21 +1,38 @@
+/* eslint-disable no-console */
 import {
   Button,
   FormControl,
   FormLabel,
   Input,
+  Select,
   Text,
+  Textarea,
 } from "@chakra-ui/react"
 import { useFormik } from "formik"
 
 import SidebarWithHeader from "components/Sidebar"
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import PatientScheduleData from "types/PatientScheduleData"
 
 const CreateNewEmr = () => {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:3001/patients?status=Dalam antrian", {
+      method: "GET",
+    })
+      .then(res => res.json())
+      .then(data => setData(data))
+  }, [])
+
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       pasien: "",
       diagnosa: "",
       obat: "",
-      examinationDate: ""
+      examinationDate: "",
     },
     onSubmit: (values) => {
       fetch("http://localhost:3001/emr", {
@@ -23,7 +40,21 @@ const CreateNewEmr = () => {
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify(values)
       })
+
+      fetch(`http://localhost:3001/patients?nama=${values.pasien}`, {
+        method: "GET",
+      })
         .then(res => res.json())
+        .then(data => {
+          const { id } = data[0]
+          fetch(`http://localhost:3001/patients/${id}`, {
+            method: "PATCH",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: "Selesai" })
+          })
+        })
+
+      navigate("/emr-history")
     }
   })
 
@@ -42,33 +73,32 @@ const CreateNewEmr = () => {
           <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
             Nama Pasien
           </FormLabel>
-          <Input
-            id="pasien"
+          <Select
             name="pasien"
-            variant="outline"
-            fontSize="sm"
-            ms="4px"
-            type="text"
-            placeholder="Nama pasien"
+            id="pasien"
             mb="24px"
-            size="lg"
-            value={formik.values.pasien}
             onChange={formik.handleChange}
-            isRequired
-          />
+            value={formik.values.pasien}
+          >
+            <option value="">Pilih pasien</option>
+            {data.map((item: PatientScheduleData, index) => (
+              <option key={index} value={item.nama}>
+                {item.nama}
+              </option>
+            ))}
+          </Select>
         </FormControl>
 
         <FormControl>
           <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
             Diagnosa
           </FormLabel>
-          <Input
+          <Textarea
             id="diagnosa"
             name="diagnosa"
             variant="outline"
             fontSize="sm"
             ms="4px"
-            type="text"
             placeholder="Diagnosa"
             mb="24px"
             size="lg"
@@ -89,7 +119,7 @@ const CreateNewEmr = () => {
             fontSize="sm"
             ms="4px"
             type="text"
-            placeholder="Diagnosa"
+            placeholder="Obat"
             mb="24px"
             size="lg"
             value={formik.values.obat}

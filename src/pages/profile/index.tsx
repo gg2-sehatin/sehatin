@@ -25,16 +25,25 @@ const EditProfile = () => {
     },
     onSubmit: (values) => {
       fetch(`http://localhost:3001/users/${auth.id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify((values))
+        body: JSON.stringify(values)
       })
         .then(res => res.json())
         .then(data => {
           const { accessToken } = auth;
-          delete data.password
-          setAuth?.({...data, accessToken})
-          localStorage.setItem('user', JSON.stringify({...data, accessToken}))
+          const { id, name, email, role } = data;
+          setAuth({id, name, email, role, accessToken})
+          localStorage.setItem('user', JSON.stringify({id, name, email, role, accessToken}))
+
+          fetch(`http://localhost:3001/emr?pasien${auth.name}`, {
+            method: 'PATCH',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({
+              pasien: values.name,
+            })
+          })
+
           navigate(0);
         })
     }

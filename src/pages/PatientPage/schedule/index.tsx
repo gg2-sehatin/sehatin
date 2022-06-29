@@ -8,15 +8,15 @@ import {
 
 import SidebarWithHeader from "components/Sidebar";
 import Headers from "components/TableData/headers";
-import Rows from "components/TableData/rows";
 import { useEffect, useState } from "react";
+import Rows from "components/TableData/rows";
 import PatientScheduleData from "types/PatientScheduleData";
 
-export default function PatientQueue() {
+export default function Schedule() {
   const [data, setData] = useState([]);
 
   useEffect(()=> {
-    fetch("http://localhost:3001/patients?status=Dalam antrian")
+    fetch(`http://localhost:3001/patients`)
       .then(res => res.json())
       .then(data => {
         data
@@ -27,20 +27,22 @@ export default function PatientQueue() {
   }, [])
 
   return (
-    <SidebarWithHeader>
-      <Text fontSize="xl" fontWeight="bold" mb="8px">
-        Daftar Antrian Pasien
-      </Text>
-      <TableContainer overflowX="auto" mb="2rem">
-        <Table variant="simple">
-          <Thead>
-            <Headers headers={["No", "Nama", "Tanggal", "Jam"]} />
-          </Thead>
-          <Tbody>
-            <Rows data={data} type='schedule' />
-          </Tbody>
-        </Table>
-      </TableContainer>
-    </SidebarWithHeader>
+    <>
+      <SidebarWithHeader>
+        <Text fontSize="xl" fontWeight="bold" mb="8px">
+          Jadwal Antrean Berobat
+        </Text>
+        <TableContainer overflowX="auto" mb="2rem">
+          <Table variant="simple">
+            <Thead>
+              <Headers headers={["No", "Nama", "Tanggal", "Jam"]} />
+            </Thead>
+            <Tbody>
+              <Rows data={data} type='schedule' />
+            </Tbody>
+          </Table>
+        </TableContainer>
+      </SidebarWithHeader>
+    </>
   );
 }

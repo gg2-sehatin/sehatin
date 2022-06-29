@@ -3,43 +3,61 @@ import ReservationStatusFormRegister from "components/organisms/ReservationRegis
 import SidebarWithHeader from "components/Sidebar";
 import { useFormik } from "formik";
 import useAuth from "hooks/useAuth";
+import ModalDialogue from "components/ModalDialogue";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const FormRegister = () => {
   const { auth } = useAuth();
+  const navigate = useNavigate();
+  const [show, setShow] = useState(false);
 
   const formik = useFormik({
     initialValues: {
       tanggal: "",
       jam: "",
-      id_pasien: auth.id,
+      idPasien: auth.id,
+      nama: auth.name,
+      status: "Diperiksa",
     },
-
     onSubmit: (values) => {
-      fetch("http://localhost:3001/patient", {
+      fetch("http://localhost:3001/patients", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
       })
-        .then((res) => res.json())
-        // eslint-disable-next-line no-console
-        .then((data) => console.log(data));
+      setShow(true);
     }
   })
 
-  return (
-    <SidebarWithHeader>
-      <Text fontSize="xl" fontWeight="bold" mb="8px">
-        Form Reservasi
-      </Text>
+  const handleCloseModal = () => {
+    setShow(false);
+    navigate("/");
+  }
 
-      <ReservationStatusFormRegister
-        onSubmit={formik.handleSubmit}
-        onChange={formik.handleChange}
-        values={formik.values}
-      />
-    </SidebarWithHeader>
+  return (
+    <>
+      <SidebarWithHeader>
+        <Text fontSize="xl" fontWeight="bold" mb="8px">
+          Form Reservasi
+        </Text>
+
+        <ReservationStatusFormRegister
+          onSubmit={formik.handleSubmit}
+          onChange={formik.handleChange}
+          tanggal={formik.values.tanggal}
+          jam={formik.values.jam}
+        />
+      </SidebarWithHeader>
+      {show ?
+        <ModalDialogue
+          title='Reservasi berhasil!'
+          message='Silahkan datang ke klinik dengan waktu dan jam yang telah dipilih.'
+          onClose={handleCloseModal}
+        /> : null}
+    </>
   );
 };
 

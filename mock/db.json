@@ -1,39 +1,26 @@
 {
   "emr": [
     {
-      "diagnosa": "Demam",
-      "examinationDate": "12/12/2021",
+      "diagnosa": "Batuk",
+      "examinationDate": "2022-06-06",
       "id": 1,
       "obat": "Paracetamol",
-      "pasien": "Rhenald Karrel"
+      "pasien": "Salsabila",
+      "status": "Dalam antrian"
     },
     {
-      "diagnosa": "Demam",
-      "examinationDate": "12/12/2021",
+      "diagnosa": "Demam berdarah yang disertai dengan muntahber",
+      "examinationDate": "2022-06-06",
       "id": 2,
       "obat": "Paracetamol",
-      "pasien": "Farhat Abbas"
+      "pasien": "Samiun"
     },
     {
-      "diagnosa": "Demam",
-      "examinationDate": "12/12/2021",
+      "diagnosa": "Muntahber",
+      "examinationDate": "2022-06-06",
       "id": 3,
       "obat": "Paracetamol",
-      "pasien": "Na Hee-Do"
-    },
-    {
-      "diagnosa": "Demam",
-      "examinationDate": "12/12/2021",
-      "id": 4,
-      "obat": "Paracetamol",
-      "pasien": "Ko Yu-Rim"
-    },
-    {
-      "diagnosa": "Demam",
-      "examinationDate": "12/12/2021",
-      "id": 5,
-      "obat": "Paracetamol",
-      "pasien": "Seneca"
+      "pasien": "Sumanto"
     }
   ],
   "medicine": [
@@ -43,18 +30,43 @@
       "medicine_price": 3000
     },
     {
-      "medicine_name": "",
-      "medicine_price": "",
-      "id": 2
+      "id": 2,
+      "medicine_name": "Aspirin",
+      "medicine_price": 12000
     }
   ],
-  "patient": [],
+  "patients": [
+    {
+      "id": 1,
+      "idPasien": 4,
+      "jam": "09:30",
+      "nama": "Rhenald",
+      "status": "Dalam antrian",
+      "tanggal": "2022-06-30"
+    },
+    {
+      "id": 2,
+      "idPasien": 5,
+      "jam": "09:00",
+      "nama": "Na Hee",
+      "status": "Dalam antrian",
+      "tanggal": "2022-06-30"
+    },
+    {
+      "id": 3,
+      "idPasien": 4,
+      "jam": "14:04",
+      "nama": "Rhenald",
+      "status": "Dalam antrian",
+      "tanggal": "2022-07-01"
+    }
+  ],
   "users": [
     {
       "email": "janedoe@gmail.com",
       "id": 1,
       "name": "Jane Doe",
-      "password": "$2a$10$gnvw8HwXmRpdrZ9bkQklkeTjkP7.CPjw9J4THI2h85tKYfZ2wMcfG",
+      "password": "$2a$10$V4tirgBH4hsdwjIoQmvFqONpKgck2zrY7egGObMQYd7CxWsuf1lNO",
       "role": "doctor"
     },
     {
@@ -77,11 +89,35 @@
       "email": "renaldkarel@gmail.com",
       "gender": "Laki-laki",
       "id": 4,
-      "name": "Rhenald Karrel",
-      "password": "$2a$10$Q9EeZVCDVbSqWmZGc972aOtLW9oKf5NInMpq/xphoVI253QkgD34O",
-      "password2": "12345678",
+      "name": "Rhenald",
+      "password": "$2a$10$eGgV2REneKzWpGLy2.DItuOaGPi5ODdcZRaUJRzh.KkKnbcsD7t5i",
       "phone": 8123456789,
       "role": "patient"
+    },
+    {
+      "birthday": "2022-06-15",
+      "birthplace": "Jakarta",
+      "email": "naheedo@gmail.com",
+      "gender": "Perempuan",
+      "id": 5,
+      "name": "Na Hee",
+      "password": "$2a$10$/yUqShbC4ocZy5Mz..hnLeUhZD9T6SEnJUuK93hkHbsvzl8RTLOs2",
+      "phone": 2154654658,
+      "role": "patient"
+    },
+    {
+      "email": "syarif@gmail.com",
+      "password": "$2a$10$Jh1NWGXljZUTrzpHHbfKJuUGoJDkXoW6g98o1vkbm4auvfNN6BUGq",
+      "name": "Syarif",
+      "role": "doctor",
+      "id": 6
+    },
+    {
+      "email": "niyara@gmail.com",
+      "password": "$2a$10$G/cesf7aZdZ5rJ7QZWowWeoTjXqXER398jIMjDTmdBqp4q4C2YU0i",
+      "name": "Niyara Arinda",
+      "role": "receptionist",
+      "id": 7
     }
   ]
 }
