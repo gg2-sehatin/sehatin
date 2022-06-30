@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
-import SignInForm from 'components/Signin';
+import SignInForm from 'components/SignIn';
 import useAuth from "hooks/useAuth";
 
 function Login() {
