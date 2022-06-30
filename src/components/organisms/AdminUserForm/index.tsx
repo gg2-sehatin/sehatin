@@ -9,8 +9,6 @@ import {
   FormLabel,
   FormHelperText,
   Input,
-  Alert,
-  AlertIcon,
   Select,
 } from '@chakra-ui/react'
 import { useNavigate, useParams } from 'react-router-dom';
@@ -50,15 +48,30 @@ export default function AdminUserForm() {
     onSubmit: (values) => {
       if(values.password === values.password2) {
         const { name, email, password, role } = values;
-        fetch('http://localhost:3001/users', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, password, role }),
-        })
-          .then(() => {
-            alert('Berhasil menambahkan pengguna baru!')
-            window.location.reload();
+
+        if(id){
+          fetch(`http://localhost:3001/users/${id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password, role }),
           })
+            .then(() => {
+              alert('Berhasil menyimpan perubahan!')
+              window.location.reload();
+            })
+        } else {
+          fetch('http://localhost:3001/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password, role }),
+          })
+            .then(() => {
+              alert('Berhasil menambahkan pengguna baru!')
+              window.location.reload();
+            })
+        }
+      } else {
+        alert('Konfirmasi password tidak sama!')
       }
     }
   })
@@ -78,15 +91,11 @@ export default function AdminUserForm() {
               Kembali
             </Button>
             <Heading size='md' mb={3}>
-              Tambah Pengguna Baru
+              {id ? 'Edit Pengguna' : 'Tambah Pengguna'}
             </Heading>
-            <Alert status='success' mb={3}>
-              <AlertIcon />
-              Data uploaded to the server. Fire on!
-            </Alert>
             <Stack>
               <form onSubmit={formik.handleSubmit}>
-                <FormControl>
+                <FormControl mb='24px'>
                   <FormLabel htmlFor='role'>Role</FormLabel>
                   <Select
                     placeholder='Select option'
@@ -101,6 +110,7 @@ export default function AdminUserForm() {
                   >
                     <option value='doctor'>Dokter</option>
                     <option value='receptionist'>Resepsionis</option>
+                    <option value='patient'>Pasien</option>
                   </Select>
                 </FormControl>
                 <FormControl mb="24px">
@@ -148,6 +158,13 @@ export default function AdminUserForm() {
                     value={formik.values.password}
                     onChange={formik.handleChange}
                   />
+                  <FormHelperText>
+                    {
+                    id
+                    ? 'Masukkan kata sandi lama jika tidak ingin merubah kata sandi.'
+                    : ''
+                    }
+                  </FormHelperText>
                 </FormControl>
                 <FormControl mb="24px">
                   <FormLabel htmlFor='password2'>Konfirmasi Password</FormLabel>
@@ -163,14 +180,14 @@ export default function AdminUserForm() {
                     value={formik.values.password2}
                     onChange={formik.handleChange}
                   />
-                  <FormHelperText>Konfirmasi kembali password.</FormHelperText>
+                  <FormHelperText>Konfirmasi kembali kata sandi.</FormHelperText>
                 </FormControl>
                 <Button
                   w="fit-content"
                   bg='blue.300'
                   color='white'
                   type='submit'
-                >Tambahkan Pengguna</Button>
+                >{id ? 'Simpan' : 'Tambahkan Pengguna'}</Button>
               </form>
             </Stack>
           </Box>

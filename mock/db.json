@@ -21,6 +21,20 @@
       "id": 3,
       "obat": "Paracetamol",
       "pasien": "Sumanto"
+    },
+    {
+      "diagnosa": "Batuk dan demam",
+      "examinationDate": "2022-06-30",
+      "id": 4,
+      "obat": "Paracetamol",
+      "pasien": "Rhenald Karrel"
+    },
+    {
+      "diagnosa": "Keseleo",
+      "examinationDate": "2022-06-30",
+      "id": 5,
+      "obat": "Ibuprofen",
+      "pasien": "Rhenald Karrel"
     }
   ],
   "medicine": [
@@ -40,8 +54,16 @@
       "id": 1,
       "idPasien": 4,
       "jam": "09:30",
-      "nama": "Rhenald",
-      "status": "Dalam antrian",
+      "nama": "Rhenald Karrel",
+      "status": "Selesai",
+      "tanggal": "2022-06-30"
+    },
+    {
+      "id": 2,
+      "idPasien": 4,
+      "jam": "09:30",
+      "nama": "Rhenald Karrel",
+      "status": "Selesai",
       "tanggal": "2022-06-30"
     }
   ],
@@ -73,8 +95,8 @@
       "email": "renaldkarel@gmail.com",
       "gender": "Laki-laki",
       "id": 4,
-      "name": "Rhenald",
-      "password": "$2a$10$8zlsm2.40ifTYXXJqIjtHeHkVv8nfSJlCsY4ReBljWQiMcdRRwRBO",
+      "name": "Rhenald Karrel",
+      "password": "$2a$10$pqK01oOS3Mty1zL4Ia.EdO1Gtvq1dw97t6mPrmZXfOvo.F1xxehm.",
       "phone": 8123456789,
       "role": "patient"
     },
@@ -83,6 +105,13 @@
       "id": 6,
       "name": "Syarif",
       "password": "$2a$10$Jh1NWGXljZUTrzpHHbfKJuUGoJDkXoW6g98o1vkbm4auvfNN6BUGq",
+      "role": "doctor"
+    },
+    {
+      "email": "media@gmail.com",
+      "id": 7,
+      "name": "Media",
+      "password": "$2a$10$vRU71MvwOKs3RraYkUo5GeATe2YnKx8Dsd3vVZTcM9xXTGJSwDmOi",
       "role": "doctor"
     }
   ]
