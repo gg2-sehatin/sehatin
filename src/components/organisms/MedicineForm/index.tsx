@@ -1,0 +1,96 @@
+import React from "react";
+import SidebarWithHeader from 'components/Sidebar';
+import {
+  Box,
+  Stack,
+  Container,
+  Heading,
+  Button,
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  Input,
+  Alert,
+  AlertIcon,
+} from '@chakra-ui/react'
+import { useFormik } from 'formik';
+import { useNavigate } from "react-router-dom";
+
+export default function MedicineForm() {
+  const navigate = useNavigate()
+  const handleGoBack = () => navigate(-1);
+
+  const formik = useFormik({
+    initialValues: {
+      medicine_name:"",
+      medicine_price: "",
+    },
+    onSubmit: (values) => {
+      fetch('http://localhost:3001/medicine', {
+        method: 'POST',
+        headers: {'Content-Type' : 'application/json'},
+        body: JSON.stringify((values))
+      })
+    }
+  });
+
+  return (
+    <>
+      <SidebarWithHeader>
+        <Container
+          maxW='container.xl'
+          py={4}
+        >
+          <Box
+            bg="white"
+            rounded="md"
+          >
+            <Button onClick={handleGoBack} mb='4'>
+              Kembali
+            </Button>
+            <Heading size='md' mb={3}>
+              Tambah Obat Baru
+            </Heading>
+            <Alert status='success' mb={3}>
+              <AlertIcon />
+              Data uploaded to the server. Fire on!
+            </Alert>
+            <Stack>
+              <form onSubmit={ formik.handleSubmit }>
+                <FormControl>
+                  <FormLabel htmlFor='email' fontSize={14}>Nama Obat</FormLabel>
+                  <Input
+                    id='medicine_name'
+                    name='medicine_name'
+                    onChange={formik.handleChange}
+                    value={ formik.values.medicine_name }
+                    type='text'
+                    size='sm' />
+                </FormControl>
+                <FormControl>
+                  <FormLabel htmlFor='email' fontSize={14}>Harga Obat</FormLabel>
+                  <Input
+                    id='medicine_price'
+                    name='medicine_price'
+                    onChange={formik.handleChange}
+                    value={ formik.values.medicine_price }
+                    type='number'
+                    size='sm' />
+                  <FormHelperText fontSize={10}>Pastikan harga sudah benar.</FormHelperText>
+                </FormControl>
+                <Button
+                  w="fit-content"
+                  bg='blue.300'
+                  color='white'
+                  type="submit"
+                >
+                  Save
+                </Button>
+              </form>
+            </Stack>
+          </Box>
+        </Container>
+      </SidebarWithHeader>
+    </>
+  )
+}
