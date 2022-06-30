@@ -43,14 +43,6 @@
       "nama": "Rhenald",
       "status": "Dalam antrian",
       "tanggal": "2022-06-30"
-    },
-    {
-      "id": 2,
-      "idPasien": 5,
-      "jam": "09:00",
-      "nama": "Na Hee",
-      "status": "Dalam antrian",
-      "tanggal": "2022-06-30"
     }
   ],
   "users": [
@@ -82,19 +74,8 @@
       "gender": "Laki-laki",
       "id": 4,
       "name": "Rhenald",
-      "password": "$2a$10$eGgV2REneKzWpGLy2.DItuOaGPi5ODdcZRaUJRzh.KkKnbcsD7t5i",
+      "password": "$2a$10$8zlsm2.40ifTYXXJqIjtHeHkVv8nfSJlCsY4ReBljWQiMcdRRwRBO",
       "phone": 8123456789,
-      "role": "patient"
-    },
-    {
-      "birthday": "2022-06-15",
-      "birthplace": "Jakarta",
-      "email": "naheedo@gmail.com",
-      "gender": "Perempuan",
-      "id": 5,
-      "name": "Na Hee",
-      "password": "$2a$10$/yUqShbC4ocZy5Mz..hnLeUhZD9T6SEnJUuK93hkHbsvzl8RTLOs2",
-      "phone": 2154654658,
       "role": "patient"
     },
     {

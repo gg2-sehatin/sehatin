@@ -26,15 +26,20 @@ function Register(){
       role: "patient"
     },
     onSubmit: (values) => {
-      fetch('http://localhost:3001/users', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(values)
-      })
-        .then(res => {
-          res.json()
-          setShow(true);
+      if(values.password === values.password2){
+        const { name, gender, birthplace, birthday, phone, email, password, role } = values
+        fetch('http://localhost:3001/users', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ name, gender, birthplace, birthday, phone, email, password, role })
         })
+          .then(res => {
+            res.json()
+            setShow(true);
+          })
+      } else {
+        alert('Password tidak sama, silahkan coba lagi!');
+      }
     }
   });
 

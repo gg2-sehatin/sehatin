@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Button,
   FormControl,
@@ -33,18 +35,41 @@ const EditProfile = () => {
         .then(data => {
           const { accessToken } = auth;
           const { id, name, email, role } = data;
-          setAuth({id, name, email, role, accessToken})
-          localStorage.setItem('user', JSON.stringify({id, name, email, role, accessToken}))
 
-          fetch(`http://localhost:3001/emr?pasien${auth.name}`, {
-            method: 'PATCH',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({
-              pasien: values.name,
-            })
+          fetch(`http://localhost:3001/patients?idPasien=${auth.id}`, {
+            method: 'GET',
           })
+            .then(res => res.json())
+            .then(data =>  {
+              fetch(`http://localhost:3001/patients/${data[0].id}`, {
+                method: 'PATCH',
+                headers: {'Content-Type' : 'application/json'},
+                body: JSON.stringify({
+                  nama: values.name,
+                })
+              })
 
-          navigate(0);
+              fetch(`http://localhost:3001/emr?pasien=${auth.name}`, {
+                method: 'GET',
+              })
+                .then(res => res.json())
+                .then(data => {
+                  if(data.length > 0) {
+                    fetch(`http://localhost:3001/emr/${data[0].id}`, {
+                      method: 'PATCH',
+                      headers: {'Content-Type' : 'application/json'},
+                      body: JSON.stringify({
+                        pasien: values.name,
+                      })
+                    })
+                  }
+
+                  setAuth({id, name, email, role, accessToken})
+                  localStorage.setItem('user', JSON.stringify({id, name, email, role, accessToken}))
+
+                  navigate(0);
+                })
+            })
         })
     }
   })
