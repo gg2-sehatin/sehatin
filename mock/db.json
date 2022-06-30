@@ -71,8 +71,8 @@
     {
       "email": "janedoe@gmail.com",
       "id": 1,
-      "name": "Jane",
-      "password": "$2a$10$ANny.yqy.4rXcESBZ7PIkeJEr2mGDGn0U1O/GH3jc.rcAtAWrBeV.",
+      "name": "Jane Doe",
+      "password": "$2a$10$6nnM.ECoZyv2wHz8p3uo4OMn5pWma3NtvuQwHAN97e4rQJRy4YK0i",
       "role": "doctor"
     },
     {
