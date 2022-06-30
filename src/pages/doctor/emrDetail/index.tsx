@@ -18,14 +18,12 @@ const EmrDetail = () => {
     pasien: '',
     examinationDate: '',
     diagnosa: '',
-    obat: ''
-  });
-
-  const [patientData, setPatientData] = useState({
+    obat: '',
     birthday: '',
     birthplace: '',
     gender: ''
-  })
+  });
+
 
   useEffect(() => {
     fetch(`http://localhost:3001/emr/${id}`, {
@@ -36,12 +34,6 @@ const EmrDetail = () => {
     })
       .then(res => res.json())
       .then(data => setData(data))
-
-    fetch(`http://localhost:3001/users/${id}`, {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => setPatientData(data))
   }, [])
 
   return (
@@ -83,13 +75,13 @@ const EmrDetail = () => {
               <Text display='table-cell' pr='4em' fontWeight='bold'>
                 Jenis Kelamin
               </Text>
-              : {patientData.gender}
+              : {data.gender}
             </ListItem>
             <ListItem display='table-row'>
               <Text display='table-cell' pr='4em' fontWeight='bold'>
                 Tempat Tanggal Lahir
               </Text>
-              : {patientData.birthplace}, {patientData.birthday}
+              : {data.birthplace}, {data.birthday}
             </ListItem>
           </UnorderedList>
         </Container>

@@ -18,7 +18,10 @@ const MyEmrDetail = () => {
     pasien: '',
     examinationDate: '',
     diagnosa: '',
-    obat: ''
+    obat: '',
+    birthday: '',
+    birthplace: '',
+    gender: ''
   });
 
   useEffect(() => {
@@ -66,6 +69,18 @@ const MyEmrDetail = () => {
                 Obat
               </Text>
               : {data.obat}
+            </ListItem>
+            <ListItem display='table-row'>
+              <Text display='table-cell' pr='4em' fontWeight='bold'>
+                Jenis Kelamin
+              </Text>
+              : {data.gender}
+            </ListItem>
+            <ListItem display='table-row'>
+              <Text display='table-cell' pr='4em' fontWeight='bold'>
+                Tempat Tanggal Lahir
+              </Text>
+              : {data.birthplace}, {data.birthday}
             </ListItem>
           </UnorderedList>
         </Container>

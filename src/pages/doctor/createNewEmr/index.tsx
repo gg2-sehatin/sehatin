@@ -34,26 +34,34 @@ const CreateNewEmr = () => {
       examinationDate: "",
     },
     onSubmit: (values) => {
-      fetch("http://localhost:3001/emr", {
-        method: 'POST',
-        headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify(values)
-      })
-
-      fetch(`http://localhost:3001/patients?nama=${values.pasien}`, {
+      fetch(`http://localhost:3001/users?name=${values.pasien}`, {
         method: "GET",
       })
         .then(res => res.json())
         .then(data => {
-          const { id } = data[0]
-          fetch(`http://localhost:3001/patients/${id}`, {
-            method: "PATCH",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: "Selesai" })
-          })
-        })
+          const { birthday, birthplace, gender } = data[0];
 
-      navigate("/emr-history")
+          fetch("http://localhost:3001/emr", {
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({...values, birthday, birthplace, gender})
+          })
+
+          fetch(`http://localhost:3001/patients?nama=${values.pasien}`, {
+            method: "GET",
+          })
+            .then(res => res.json())
+            .then(data => {
+              const { id } = data[0]
+              fetch(`http://localhost:3001/patients/${id}`, {
+                method: "PATCH",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: "Selesai" })
+              })
+            })
+
+          navigate("/emr-history")
+        })
     }
   })
 

@@ -4,4 +4,7 @@ export default interface EmrHistoryData {
 	examinationDate: string;
   diagnosa: string;
   obat: string;
+  gender: string;
+  birthplace: string;
+  birthday: string
 }

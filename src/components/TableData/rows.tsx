@@ -21,10 +21,18 @@ const renderMedicineStatus = (status: MedicineStatus) => {
   );
 };
 
-const handleDelete = (id: string, type: string) => {
-  return fetch(`http://localhost:3001/${type}/${id}`, {
-    method: "DELETE",
-  })
+const handleDeleteEmr = (id: string, type: string) => {
+  if(confirm("Apakah Anda yakin ingin menghapus data EMR ini?")) {
+    fetch(`http://localhost:3001/${type}/${id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        alert("Berhasil menghapus EMR")
+        window.location.reload()
+      })
+  }
+
+  return
 }
 
 const handleApprove = (data: PatientScheduleData) => {
@@ -94,7 +102,7 @@ const Rows = ({
                   variant='dark'
                   color='white'
                   bg='red.400'
-                  onClick={() => handleDelete(item.id, 'emr')}
+                  onClick={() => handleDeleteEmr(item.id, 'emr')}
                 >
                   Hapus
                 </Button>

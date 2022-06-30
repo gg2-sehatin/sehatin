@@ -1,40 +1,24 @@
 {
   "emr": [
     {
-      "diagnosa": "Batuk",
-      "examinationDate": "2022-06-06",
-      "id": 1,
-      "obat": "Paracetamol",
-      "pasien": "Salsabila",
-      "status": "Dalam antrian"
-    },
-    {
-      "diagnosa": "Demam berdarah yang disertai dengan muntahber",
-      "examinationDate": "2022-06-06",
-      "id": 2,
-      "obat": "Paracetamol",
-      "pasien": "Samiun"
-    },
-    {
-      "diagnosa": "Muntahber",
-      "examinationDate": "2022-06-06",
-      "id": 3,
-      "obat": "Paracetamol",
-      "pasien": "Sumanto"
-    },
-    {
+      "birthday": "1997-06-18",
+      "birthplace": "Jakarta",
       "diagnosa": "Batuk dan demam",
       "examinationDate": "2022-06-30",
+      "gender": "Laki-laki",
       "id": 4,
       "obat": "Paracetamol",
       "pasien": "Rhenald Karrel"
     },
     {
-      "diagnosa": "Keseleo",
-      "examinationDate": "2022-06-30",
-      "id": 5,
-      "obat": "Ibuprofen",
-      "pasien": "Rhenald Karrel"
+      "pasien": "Rhenald Karrel",
+      "diagnosa": "DBD",
+      "obat": "Paracetamol",
+      "examinationDate": "2022-07-07",
+      "birthday": "1997-06-18",
+      "birthplace": "Jakarta",
+      "gender": "Laki-laki",
+      "id": 5
     }
   ],
   "medicine": [
@@ -51,8 +35,6 @@
   ],
   "patients": [
     {
-      "diagnosa": "Demam",
-      "examinationDate": "12/12/2021",
       "id": 1,
       "idPasien": 4,
       "jam": "09:30",
@@ -61,14 +43,12 @@
       "tanggal": "2022-06-30"
     },
     {
-      "diagnosa": "Demam",
-      "examinationDate": "12/12/2021",
-      "id": 2,
+      "tanggal": "2022-07-01",
+      "jam": "14:21",
       "idPasien": 4,
-      "jam": "09:30",
       "nama": "Rhenald Karrel",
-      "status": "Selesai",
-      "tanggal": "2022-06-30"
+      "status": "Dalam antrian",
+      "id": 2
     }
   ],
   "users": [

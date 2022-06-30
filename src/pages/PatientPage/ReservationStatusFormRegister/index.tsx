@@ -54,7 +54,8 @@ const FormRegister = () => {
       {show ?
         <ModalDialogue
           title='Reservasi berhasil!'
-          message='Silahkan datang ke klinik dengan waktu dan jam yang telah dipilih.'
+          message='Silahkan tunggu persetujuan dari klinik.
+          Jika klinik telah menyetujui, maka antrean Anda akan muncul di halaman beranda.'
           onClose={handleCloseModal}
         /> : null}
     </>
