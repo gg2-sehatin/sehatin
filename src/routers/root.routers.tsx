@@ -121,6 +121,9 @@ export const AdminRoutes: RouterState[] = [
   {
     path: "/user/create",
     element: <UserForm />,
+  },{
+    path: "/user/edit/:id",
+    element: <UserForm />,
   }
 ]
 

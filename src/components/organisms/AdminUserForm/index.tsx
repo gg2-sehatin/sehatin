@@ -13,20 +13,40 @@ import {
   AlertIcon,
   Select,
 } from '@chakra-ui/react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {useFormik} from 'formik';
+import { useEffect, useState } from 'react';
 
 export default function AdminUserForm() {
+  const { id } = useParams();
   const navigate = useNavigate();
   const handleGoBack = () => navigate(-1);
+  const [data, setData] = useState({
+    id: '',
+    name: '',
+    email: '',
+    role: '',
+  });
+
+  useEffect(() => {
+    if(id) {
+      fetch(`http://localhost:3001/users/${id}`, {
+        method: 'GET',
+      })
+        .then(res => res.json())
+        .then(data => setData(data))
+    }
+  }, [])
+
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
+      name: data.name,
+      email: data.email,
       password: '',
-      role: '',
+      role: data.role,
       password2: '',
     },
+    enableReinitialize: true,
     onSubmit: (values) => {
       if(values.password === values.password2) {
         const { name, email, password, role } = values;

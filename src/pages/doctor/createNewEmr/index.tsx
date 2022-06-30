@@ -83,7 +83,7 @@ const CreateNewEmr = () => {
             <option value="">Pilih pasien</option>
             {data.map((item: PatientScheduleData, index) => (
               <option key={index} value={item.nama}>
-                {item.nama}
+                {item.nama} / {item.tanggal}
               </option>
             ))}
           </Select>

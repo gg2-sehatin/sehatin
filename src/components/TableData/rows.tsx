@@ -2,6 +2,7 @@ import { Tr, Td, Text, Select, Button } from "@chakra-ui/react";
 import useAuth from "hooks/useAuth";
 import { Link } from 'react-router-dom';
 import { MedicineStatus } from "./types";
+import PatientScheduleData from "types/PatientScheduleData";
 
 const renderMedicineStatus = (status: MedicineStatus) => {
   const statusBg =
@@ -26,13 +27,27 @@ const handleDelete = (id: string, type: string) => {
   })
 }
 
+const handleApprove = (data: PatientScheduleData) => {
+  return fetch(`http://localhost:3001/patients/${data.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      status: "Dalam antrian",
+    }),
+  })
+    .then(() => alert("Berhasil menyetujui"))
+    .then(() => window.location.reload())
+}
+
 const Rows = ({
   data,
   type,
 }: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any;
-    type: "emr" | "medicine" | "schedule";
+    type: "emr" | "medicine" | "schedule" | "approval";
   }) => {
   let viewData = <></>;
   const { auth } = useAuth();
@@ -141,6 +156,40 @@ const Rows = ({
           ))}
         </>
       );
+    }
+
+    if(type === 'approval') {
+      viewData = (
+        <>
+          {data.filter((item) => item.status === 'Diperiksa').map((item, index) => (
+            <Tr key={index}>
+              <Td>
+                <Text>{index+1}</Text>
+              </Td>
+              <Td>
+                <Text>{item.nama}</Text>
+              </Td>
+              <Td>
+                <Text>{new Date(item.tanggal).toLocaleDateString()}</Text>
+              </Td>
+              <Td>
+                <Text>{item.jam}</Text>
+              </Td>
+              <Td>
+                <Button
+                  variant='dark'
+                  color='white'
+                  bg='blue.400'
+                  mr='1'
+                  onClick={() => handleApprove(item)}
+                >
+                  Approve
+                </Button>
+              </Td>
+            </Tr>
+          ))}
+        </>
+      )
     }
 
     if (type === "medicine") {

@@ -51,14 +51,6 @@
       "nama": "Na Hee",
       "status": "Dalam antrian",
       "tanggal": "2022-06-30"
-    },
-    {
-      "id": 3,
-      "idPasien": 4,
-      "jam": "14:04",
-      "nama": "Rhenald",
-      "status": "Dalam antrian",
-      "tanggal": "2022-07-01"
     }
   ],
   "users": [
@@ -107,17 +99,10 @@
     },
     {
       "email": "syarif@gmail.com",
-      "password": "$2a$10$Jh1NWGXljZUTrzpHHbfKJuUGoJDkXoW6g98o1vkbm4auvfNN6BUGq",
+      "id": 6,
       "name": "Syarif",
-      "role": "doctor",
-      "id": 6
-    },
-    {
-      "email": "niyara@gmail.com",
-      "password": "$2a$10$G/cesf7aZdZ5rJ7QZWowWeoTjXqXER398jIMjDTmdBqp4q4C2YU0i",
-      "name": "Niyara Arinda",
-      "role": "receptionist",
-      "id": 7
+      "password": "$2a$10$Jh1NWGXljZUTrzpHHbfKJuUGoJDkXoW6g98o1vkbm4auvfNN6BUGq",
+      "role": "doctor"
     }
   ]
 }

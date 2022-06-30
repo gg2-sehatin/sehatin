@@ -25,10 +25,24 @@ import {
 } from "@chakra-ui/icons"
 import { Link as RouteLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import User from 'types/users';
+import User from 'types/User';
 
 export default function AdminUser() {
   const [users, setUsers] = useState<User[]>([])
+
+  const handleDelete = (id: number, type: string) => {
+    if(confirm('Apakah Anda yakin ingin menghapus pengguna ini?')) {
+      return fetch(`http://localhost:3001/${type}/${id}`, {
+        method: "DELETE",
+      })
+        .then(() => {
+          alert('Berhasil menghapus pengguna!')
+          window.location.reload()
+        })
+    } else {
+      return;
+    }
+  }
 
   useEffect(() => {
     fetch('http://localhost:3001/users', {
@@ -42,7 +56,7 @@ export default function AdminUser() {
     <>
       <SidebarWithHeader>
         <Heading size='lg' mb='3'>
-          User
+          Daftar Pengguna
         </Heading>
         <Flex justifyContent='left'>
           <Link
@@ -89,6 +103,7 @@ export default function AdminUser() {
                             <Button
                               colorScheme='red'
                               size='sm'
+                              onClick={() => handleDelete(user.id, 'users')}
                             >
                               <Icon as={DeleteIcon}/>
                             </Button>
@@ -97,6 +112,8 @@ export default function AdminUser() {
                             <Button
                               colorScheme='green'
                               size='sm'
+                              as={RouteLink}
+                              to={`/user/edit/${user.id}`}
                             >
                               <Icon as={EditIcon}/>
                             </Button>
