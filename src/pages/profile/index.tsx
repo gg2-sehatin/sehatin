@@ -93,23 +93,30 @@ const EditProfile = () => {
 
       <form onSubmit={formik.handleSubmit}>
         <FormControl>
-          <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-            Nama Profile
-          </FormLabel>
-          <Input
-            id="name"
-            name="name"
-            variant="outline"
-            fontSize="sm"
-            ms="4px"
-            type="text"
-            placeholder="Nama name"
-            mb="24px"
-            size="lg"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            isRequired
-          />
+          {
+            auth.role !== 'patient' ?
+            (
+              <>
+                <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
+                  Nama Profile
+                </FormLabel>
+                <Input
+                  id="name"
+                  name="name"
+                  variant="outline"
+                  fontSize="sm"
+                  ms="4px"
+                  type="text"
+                  placeholder="Nama name"
+                  mb="24px"
+                  size="lg"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  isRequired
+                />
+              </>
+            ) : null
+          }
         </FormControl>
 
         <FormControl>

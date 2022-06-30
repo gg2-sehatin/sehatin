@@ -92,11 +92,11 @@
     {
       "birthday": "1997-06-18",
       "birthplace": "Jakarta",
-      "email": "renaldkarel@gmail.com",
+      "email": "renald@gmail.com",
       "gender": "Laki-laki",
       "id": 4,
       "name": "Rhenald Karrel",
-      "password": "$2a$10$pqK01oOS3Mty1zL4Ia.EdO1Gtvq1dw97t6mPrmZXfOvo.F1xxehm.",
+      "password": "$2a$10$rQPrZWdMnZ7RVSx1bTu32enQjqjAiq0bp6.D.mQTWNwwKr4gXvWVS",
       "phone": 8123456789,
       "role": "patient"
     },
