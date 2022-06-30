@@ -51,6 +51,8 @@
   ],
   "patients": [
     {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
       "id": 1,
       "idPasien": 4,
       "jam": "09:30",
@@ -59,6 +61,8 @@
       "tanggal": "2022-06-30"
     },
     {
+      "diagnosa": "Demam",
+      "examinationDate": "12/12/2021",
       "id": 2,
       "idPasien": 4,
       "jam": "09:30",
