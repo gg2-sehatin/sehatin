@@ -1,5 +1,7 @@
 export default interface EmrHistoryData {
 	id: number;
-	name: string;
+	pasien: string;
 	examinationDate: string;
+  diagnosa: string;
+  obat: string;
 }

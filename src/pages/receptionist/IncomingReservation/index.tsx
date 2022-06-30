@@ -2,15 +2,32 @@ import {
   Box,
   Text,
   Stack,
-  List,
-  ListItem,
-  Button,
+  Table,
+  TableContainer,
+  Thead,
+  Tbody,
   useColorModeValue,
 } from "@chakra-ui/react";
-
+import Headers from "components/TableData/headers";
+import PatientScheduleData from "types/PatientScheduleData";
 import SidebarWithHeader from "components/Sidebar";
+import Rows from "components/TableData/rows";
+import { useEffect, useState } from "react";
 
 export default function IncomingReservation() {
+  const [data, setData] = useState<PatientScheduleData[]>([]);
+
+  useEffect(()=> {
+    fetch("http://localhost:3001/patients?status=Diperiksa")
+      .then(res => res.json())
+      .then(data => {
+        data
+          .sort((a: PatientScheduleData, b: PatientScheduleData) => a.jam.localeCompare(b.jam))
+          .sort((a: PatientScheduleData, b: PatientScheduleData) => a.tanggal.localeCompare(b.tanggal));
+        setData(data)
+      })
+  }, [])
+
   return (
     <SidebarWithHeader>
       <Box
@@ -37,76 +54,17 @@ export default function IncomingReservation() {
             Incoming Reservation
           </Text>
         </Stack>
-        <Box px={15}>
-          <List spacing={3}>
-            <ListItem>1. Nama Pasien</ListItem>
-            <Button
-              mt={10}
-              w={"full"}
-              bg={"blue.400"}
-              color={"white"}
-              rounded={"xl"}
-              _hover={{
-                bg: "blue.500",
-              }}
-              _focus={{
-                bg: "blue.500",
-              }}
-            >
-              Approve
-            </Button>
-            <ListItem>2. Nama Pasien</ListItem>
-            <Button
-              mt={10}
-              w={"full"}
-              bg={"blue.400"}
-              color={"white"}
-              rounded={"xl"}
-              _hover={{
-                bg: "blue.500",
-              }}
-              _focus={{
-                bg: "blue.500",
-              }}
-            >
-              Approve
-            </Button>
-            <ListItem>3. Nama Pasien</ListItem>
-            <Button
-              mt={10}
-              w={"full"}
-              bg={"blue.400"}
-              color={"white"}
-              rounded={"xl"}
-              _hover={{
-                bg: "blue.500",
-              }}
-              _focus={{
-                bg: "blue.500",
-              }}
-            >
-              Approve
-            </Button>
-            <ListItem>4. Nama Pasien</ListItem>
-            <Button
-              mt={10}
-              w={"full"}
-              bg={"blue.400"}
-              color={"white"}
-              rounded={"xl"}
-              _hover={{
-                bg: "blue.500",
-              }}
-              _focus={{
-                bg: "blue.500",
-              }}
-            >
-              Approve
-            </Button>
-            <ListItem></ListItem>
-          </List>
-        </Box>
       </Box>
+      <TableContainer overflowX="auto" mb="2rem">
+        <Table variant="simple">
+          <Thead>
+            <Headers headers={["No", "Nama", "Tanggal", "Jam", "Aksi"]} />
+          </Thead>
+          <Tbody>
+            <Rows data={data} type='approval' />
+          </Tbody>
+        </Table>
+      </TableContainer>
     </SidebarWithHeader>
   );
 }

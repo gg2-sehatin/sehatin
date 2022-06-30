@@ -10,7 +10,7 @@ import SidebarWithHeader from 'components/Sidebar';
 import EmrHistoryData from 'types/EmrHistoryData';
 import { useEffect, useState } from 'react';
 
-const EmrDetail = () => {
+const MyEmrDetail = () => {
 
   const { id } = useParams();
   const [data, setData] = useState<EmrHistoryData>({
@@ -21,12 +21,6 @@ const EmrDetail = () => {
     obat: ''
   });
 
-  const [patientData, setPatientData] = useState({
-    birthday: '',
-    birthplace: '',
-    gender: ''
-  })
-
   useEffect(() => {
     fetch(`http://localhost:3001/emr/${id}`, {
       method: 'GET',
@@ -36,12 +30,6 @@ const EmrDetail = () => {
     })
       .then(res => res.json())
       .then(data => setData(data))
-
-    fetch(`http://localhost:3001/users/${id}`, {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => setPatientData(data))
   }, [])
 
   return (
@@ -51,7 +39,7 @@ const EmrDetail = () => {
           <Text fontSize='xl' fontWeight='bold' mb='8px'>
             Detail EMR Pasien {data.pasien}
           </Text>
-          <Link to='/emr-history'>
+          <Link to='/my-emr'>
             <Button mb='8px'>Kembali</Button>
           </Link>
           <UnorderedList display='table' listStyleType='none' mt='1rem'>
@@ -79,18 +67,6 @@ const EmrDetail = () => {
               </Text>
               : {data.obat}
             </ListItem>
-            <ListItem display='table-row'>
-              <Text display='table-cell' pr='4em' fontWeight='bold'>
-                Jenis Kelamin
-              </Text>
-              : {patientData.gender}
-            </ListItem>
-            <ListItem display='table-row'>
-              <Text display='table-cell' pr='4em' fontWeight='bold'>
-                Tempat Tanggal Lahir
-              </Text>
-              : {patientData.birthplace}, {patientData.birthday}
-            </ListItem>
           </UnorderedList>
         </Container>
       </SidebarWithHeader>
@@ -98,4 +74,4 @@ const EmrDetail = () => {
   );
 };
 
-export default EmrDetail;
+export default MyEmrDetail;

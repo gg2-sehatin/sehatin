@@ -26,6 +26,9 @@ import Waiting from "pages/PatientPage/ReservationStatusOnWaiting";
 import NotOpenYet from "pages/PatientPage/ReservationStatusNotOpenYet";
 import QueueFull from "pages/PatientPage/ReservationStatusFullQueue";
 import RegistrationSuccess from "pages/PatientPage/ReservationStatusSuccessRegister";
+import MySchedule from 'pages/PatientPage/schedule';
+import MyEmr from 'pages/PatientPage/myEmr';
+import MyEmrDetail from 'pages/PatientPage/myEmrDetail';
 
 export type RouterState = {
   path: string;
@@ -35,11 +38,15 @@ export type RouterState = {
 export const PatientRoutes: RouterState[] = [
   {
     path: '/',
-    element: <></>
+    element: <MySchedule />
   },
   {
     path: '/my-emr',
-    element: <></>
+    element: <MyEmr />
+  },
+  {
+    path: '/my-emr/:id',
+    element: <MyEmrDetail />
   },
   {
     path: "/not-registered",
@@ -113,6 +120,9 @@ export const AdminRoutes: RouterState[] = [
   },
   {
     path: "/user/create",
+    element: <UserForm />,
+  },{
+    path: "/user/edit/:id",
     element: <UserForm />,
   }
 ]

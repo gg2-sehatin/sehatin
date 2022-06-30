@@ -1,6 +1,8 @@
 import { Tr, Td, Text, Select, Button } from "@chakra-ui/react";
+import useAuth from "hooks/useAuth";
 import { Link } from 'react-router-dom';
 import { MedicineStatus } from "./types";
+import PatientScheduleData from "types/PatientScheduleData";
 
 const renderMedicineStatus = (status: MedicineStatus) => {
   const statusBg =
@@ -19,16 +21,36 @@ const renderMedicineStatus = (status: MedicineStatus) => {
   );
 };
 
+const handleDelete = (id: string, type: string) => {
+  return fetch(`http://localhost:3001/${type}/${id}`, {
+    method: "DELETE",
+  })
+}
+
+const handleApprove = (data: PatientScheduleData) => {
+  return fetch(`http://localhost:3001/patients/${data.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      status: "Dalam antrian",
+    }),
+  })
+    .then(() => alert("Berhasil menyetujui"))
+    .then(() => window.location.reload())
+}
 
 const Rows = ({
   data,
-  type
+  type,
 }: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any;
-    type: "emr" | "medicine"
+    type: "emr" | "medicine" | "schedule" | "approval";
   }) => {
   let viewData = <></>;
+  const { auth } = useAuth();
 
   if (!data || data?.length === 0) {
     return (
@@ -48,18 +70,60 @@ const Rows = ({
         <>
           {data.map((item, index) => (
             <Tr key={index}>
-              <Td key={index}>
+              <Td>
                 <Text>{index+1}</Text>
               </Td>
-              <Td key={index}>
-                <Text>{item.name}</Text>
+              <Td>
+                <Text>{item.pasien}</Text>
               </Td>
-              <Td key={index}>
+              <Td>
                 <Text>{item.examinationDate}</Text>
               </Td>
               <Td>
                 <Link to={`/emr-history/${item.id}`}>
-                  <Button variant='dark' color='white' bg='blue.400'>
+                  <Button
+                    variant='dark'
+                    color='white'
+                    bg='blue.400'
+                    mr='1'
+                  >
+                    Detail
+                  </Button>
+                </Link>
+                <Button
+                  variant='dark'
+                  color='white'
+                  bg='red.400'
+                  onClick={() => handleDelete(item.id, 'emr')}
+                >
+                  Hapus
+                </Button>
+              </Td>
+            </Tr>
+          ))}
+        </>
+      );
+    }
+
+    if (type === 'emr' && auth.role === 'patient') {
+      viewData = (
+        <>
+          {data.map((item, index) => (
+            <Tr key={index}>
+              <Td>
+                <Text>{index+1}</Text>
+              </Td>
+              <Td>
+                <Text>{item.examinationDate}</Text>
+              </Td>
+              <Td>
+                <Link to={`/my-emr/${item.id}`}>
+                  <Button
+                    variant='dark'
+                    color='white'
+                    bg='blue.400'
+                    mr='1'
+                  >
                     Detail
                   </Button>
                 </Link>
@@ -68,6 +132,64 @@ const Rows = ({
           ))}
         </>
       );
+    }
+
+    if (type === 'schedule') {
+
+      viewData = (
+        <>
+          {data.filter((item) => item.status === 'Dalam antrian').map((item, index) => (
+            <Tr key={index} bg={item.nama === auth.name ? 'blue.50' : ''}>
+              <Td>
+                <Text>{index+1}</Text>
+              </Td>
+              <Td>
+                <Text>{item.nama}</Text>
+              </Td>
+              <Td>
+                <Text>{new Date(item.tanggal).toLocaleDateString()}</Text>
+              </Td>
+              <Td>
+                <Text>{item.jam}</Text>
+              </Td>
+            </Tr>
+          ))}
+        </>
+      );
+    }
+
+    if(type === 'approval') {
+      viewData = (
+        <>
+          {data.filter((item) => item.status === 'Diperiksa').map((item, index) => (
+            <Tr key={index}>
+              <Td>
+                <Text>{index+1}</Text>
+              </Td>
+              <Td>
+                <Text>{item.nama}</Text>
+              </Td>
+              <Td>
+                <Text>{new Date(item.tanggal).toLocaleDateString()}</Text>
+              </Td>
+              <Td>
+                <Text>{item.jam}</Text>
+              </Td>
+              <Td>
+                <Button
+                  variant='dark'
+                  color='white'
+                  bg='blue.400'
+                  mr='1'
+                  onClick={() => handleApprove(item)}
+                >
+                  Approve
+                </Button>
+              </Td>
+            </Tr>
+          ))}
+        </>
+      )
     }
 
     if (type === "medicine") {

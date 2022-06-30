@@ -25,16 +25,18 @@ const EditProfile = () => {
     },
     onSubmit: (values) => {
       fetch(`http://localhost:3001/users/${auth.id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify((values))
+        body: JSON.stringify(values)
       })
         .then(res => res.json())
         .then(data => {
           const { accessToken } = auth;
-          delete data.password
-          setAuth?.({...data, accessToken})
-          localStorage.setItem('user', JSON.stringify({...data, accessToken}))
+          const { id, name, email, role } = data;
+
+          setAuth({id, name, email, role, accessToken})
+          localStorage.setItem('user', JSON.stringify({id, name, email, role, accessToken}))
+          alert("Profile berhasil diubah");
           navigate(0);
         })
     }
@@ -52,23 +54,30 @@ const EditProfile = () => {
 
       <form onSubmit={formik.handleSubmit}>
         <FormControl>
-          <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-            Nama Profile
-          </FormLabel>
-          <Input
-            id="name"
-            name="name"
-            variant="outline"
-            fontSize="sm"
-            ms="4px"
-            type="text"
-            placeholder="Nama name"
-            mb="24px"
-            size="lg"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            isRequired
-          />
+          {
+            auth.role !== 'patient' ?
+            (
+              <>
+                <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
+                  Nama Profile
+                </FormLabel>
+                <Input
+                  id="name"
+                  name="name"
+                  variant="outline"
+                  fontSize="sm"
+                  ms="4px"
+                  type="text"
+                  placeholder="Nama name"
+                  mb="24px"
+                  size="lg"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  isRequired
+                />
+              </>
+            ) : null
+          }
         </FormControl>
 
         <FormControl>
