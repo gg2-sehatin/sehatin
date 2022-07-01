@@ -28,6 +28,7 @@ function Login() {
           localStorage.setItem('user', JSON.stringify({accessToken, id, name, email, role}));
           navigate('/', { replace: true });
         })
+        .catch(() => alert('Login gagal, mohon periksa kembali email dan kata sandi Anda!'));
     }
   });
 

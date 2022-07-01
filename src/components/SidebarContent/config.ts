@@ -22,6 +22,5 @@ export const AdminLinks = [
 export const ReceptionistLinks = [
   { name: 'Beranda', icon: FiHome, href: '/' },
   { name: 'Antrian Pasien', icon: FiHome, href: '/queue-patient' },
-  { name: 'Antrian Obat', icon: FiHome, href: '/queue-medicine' },
-  { name: 'Pembayaran', icon: FiHome, href: '/billing-payment' }
+  { name: 'Antrian Obat', icon: FiHome, href: '/queue-medicine' }
 ]

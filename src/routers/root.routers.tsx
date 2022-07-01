@@ -8,7 +8,6 @@ import PatientQueue from 'pages/doctor/patientQueue';
 import QueueMedicine from 'pages/receptionist/queueMedicine';
 import Incoming from "pages/receptionist/IncomingReservation";
 import Antrian from "pages/receptionist/QueuePatient";
-import BillingPayment from "pages/receptionist/billingpayment";
 
 // Admin
 import AdminHome from 'pages/administration';
@@ -139,9 +138,5 @@ export const ReceptionistRoutes: RouterState[] = [
   {
     path: "/queue-medicine",
     element: <QueueMedicine />
-  },
-  {
-    path: "/billing-payment",
-    element: <BillingPayment />
   }
 ]

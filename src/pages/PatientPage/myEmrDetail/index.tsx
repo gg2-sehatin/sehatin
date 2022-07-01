@@ -9,6 +9,7 @@ import { useParams, Link } from 'react-router-dom';
 import SidebarWithHeader from 'components/Sidebar';
 import EmrHistoryData from 'types/EmrHistoryData';
 import { useEffect, useState } from 'react';
+import { formatRupiah } from 'utils/helpers/formatRupiah';
 
 const MyEmrDetail = () => {
 
@@ -23,6 +24,7 @@ const MyEmrDetail = () => {
     birthplace: '',
     gender: ''
   });
+  const [price, setPrice] = useState(0)
 
   useEffect(() => {
     fetch(`http://localhost:3001/emr/${id}`, {
@@ -33,6 +35,12 @@ const MyEmrDetail = () => {
     })
       .then(res => res.json())
       .then(data => setData(data))
+
+    fetch(`http://localhost:3001/billing?idEmr=${id}`, {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => setPrice(data[0].billing))
   }, [])
 
   return (
@@ -68,7 +76,7 @@ const MyEmrDetail = () => {
               <Text display='table-cell' pr='4em' fontWeight='bold'>
                 Obat
               </Text>
-              : {data.obat}
+              : {typeof data.obat === 'string' ? data.obat : data.obat.join(', ')}
             </ListItem>
             <ListItem display='table-row'>
               <Text display='table-cell' pr='4em' fontWeight='bold'>
@@ -81,6 +89,12 @@ const MyEmrDetail = () => {
                 Tempat Tanggal Lahir
               </Text>
               : {data.birthplace}, {data.birthday}
+            </ListItem>
+            <ListItem display='table-row'>
+              <Text display='table-cell' pr='4em' fontWeight='bold'>
+                Total Pembayaran
+              </Text>
+              : {formatRupiah(price, 'Rp')}
             </ListItem>
           </UnorderedList>
         </Container>

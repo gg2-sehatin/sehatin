@@ -1,54 +1,52 @@
 {
+  "billing": [
+    {
+      "idEmr": 1,
+      "billing": 13000,
+      "name": "Rhenald Karrel",
+      "id": 1
+    }
+  ],
   "emr": [
     {
-      "birthday": "1997-06-18",
-      "birthplace": "Jakarta",
-      "diagnosa": "Batuk dan demam",
-      "examinationDate": "2022-06-30",
-      "gender": "Laki-laki",
-      "id": 4,
-      "obat": "Paracetamol",
-      "pasien": "Rhenald Karrel"
-    },
-    {
       "pasien": "Rhenald Karrel",
-      "diagnosa": "DBD",
-      "obat": "Paracetamol",
-      "examinationDate": "2022-07-07",
+      "diagnosa": "Batuk dan pegal-pegal",
+      "obat": [
+        "Paracetamol",
+        "Ibuprofen"
+      ],
+      "examinationDate": "2022-07-01",
       "birthday": "1997-06-18",
       "birthplace": "Jakarta",
       "gender": "Laki-laki",
-      "id": 5
+      "id": 1
     }
   ],
   "medicine": [
     {
+      "harga": 3000,
       "id": 1,
-      "medicine_name": "Paracetamol",
-      "medicine_price": 3000
+      "nama": "Paracetamol"
     },
     {
+      "harga": 12000,
       "id": 2,
-      "medicine_name": "Aspirin",
-      "medicine_price": 12000
+      "nama": "Aspirin"
+    },
+    {
+      "harga": 10000,
+      "id": 3,
+      "nama": "Ibuprofen"
     }
   ],
   "patients": [
     {
-      "id": 1,
+      "tanggal": "2022-07-01",
+      "jam": "11:25",
       "idPasien": 4,
-      "jam": "09:30",
       "nama": "Rhenald Karrel",
       "status": "Selesai",
-      "tanggal": "2022-06-30"
-    },
-    {
-      "tanggal": "2022-07-01",
-      "jam": "14:21",
-      "idPasien": 4,
-      "nama": "Rhenald Karrel",
-      "status": "Dalam antrian",
-      "id": 2
+      "id": 1
     }
   ],
   "users": [

@@ -4,5 +4,5 @@ export default interface PatientScheduleData {
   idPasien: number;
   jam: string;
   tanggal: string;
-  status: "Selesai" | "Dalam antrian" | "Diperiksa";
+  status: "Selesai" | "Dalam antrian" | "Diperiksa" | "Menunggu pembayaran";
 }

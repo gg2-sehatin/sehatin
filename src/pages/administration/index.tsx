@@ -7,10 +7,16 @@ import { BsPerson } from 'react-icons/bs';
 import  StatsCard  from 'components/atoms/StatsCard';
 import SidebarWithHeader from 'components/Sidebar';
 import { useEffect, useState } from 'react';
+import BillingPaymentData from 'types/BillingPaymentData';
+import { formatRupiah } from 'utils/helpers/formatRupiah';
 
 export default function Administration() {
   const [doctor, setDoctor] = useState([])
   const [patient, setPatient] = useState([])
+  const [revenue, setRevenue] = useState([])
+  const [medicine, setMedicine] = useState([])
+  // eslint-disable-next-line max-len
+  const formattedRevenue = formatRupiah(revenue.map((item: BillingPaymentData) => item.billing).reduce((a, b) => a + b, 0), 'Rp')
 
   useEffect(()=> {
     fetch('http://localhost:3001/users?role=doctor', {
@@ -24,6 +30,18 @@ export default function Administration() {
     })
       .then(res => res.json())
       .then(data => setPatient(data))
+
+    fetch('http://localhost:3001/billing', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => setRevenue(data))
+
+    fetch('http://localhost:3001/medicine', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => setMedicine(data))
   }, [])
 
   return (
@@ -44,13 +62,14 @@ export default function Administration() {
             icon={<BsPerson size={'3em'} />}
           />
           <StatsCard
-            title={'Obat'}
-            stat={'20'}
+            title={'Total Obat'}
+            stat={medicine.length.toString()}
             icon={<BsPerson size={'3em'} />}
           />
           <StatsCard
-            title={'Bill'}
-            stat={'Rp. 1.200.000'}
+            title={'Total Pendapatan'}
+            // eslint-disable-next-line max-len
+            stat={formattedRevenue}
             icon={<BsPerson size={'3em'} />}
           />
         </SimpleGrid>

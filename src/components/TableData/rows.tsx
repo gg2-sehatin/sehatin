@@ -1,12 +1,11 @@
-import { Tr, Td, Text, Select, Button } from "@chakra-ui/react";
+import { Tr, Td, Text, Button } from "@chakra-ui/react";
 import useAuth from "hooks/useAuth";
 import { Link } from 'react-router-dom';
 import { MedicineStatus } from "./types";
 import PatientScheduleData from "types/PatientScheduleData";
 
 const renderMedicineStatus = (status: MedicineStatus) => {
-  const statusBg =
-    status.toLowerCase() === "dalam antrian" ? "#F94C66" : "#53BF9D";
+  const statusBg = status === "Menunggu pembayaran" ? "#F94C66" : "#53BF9D";
 
   return (
     <Text
@@ -35,18 +34,54 @@ const handleDeleteEmr = (id: string, type: string) => {
   return
 }
 
+const handleDeleteQueue = (data: PatientScheduleData) => {
+  if(confirm("Apakah Anda yakin ingin menghapus riwayat antrian ini?")) {
+    fetch(`http://localhost:3001/patients/${data.id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        alert("Berhasil menghapus riwayat antrian")
+        window.location.reload()
+      })
+  }
+}
+
+const handlePay = (data: PatientScheduleData) => {
+  if(confirm("Apakah Anda yakin ingin menyelesaikan pembayaran?")) {
+    fetch(`http://localhost:3001/patients/${data.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status: "Selesai",
+      }),
+    })
+      .then(() => {
+        alert("Berhasil menyelesaikan pembayaran!")
+        window.location.reload()
+      })
+  }
+
+  return
+}
+
 const handleApprove = (data: PatientScheduleData) => {
-  return fetch(`http://localhost:3001/patients/${data.id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      status: "Dalam antrian",
-    }),
-  })
-    .then(() => alert("Berhasil menyetujui"))
-    .then(() => window.location.reload())
+  if(confirm("Apakah Anda yakin ingin menyetujui reservasi ini?")) {
+    fetch(`http://localhost:3001/patients/${data.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status: "Dalam antrian",
+      }),
+    })
+      .then(() => alert("Berhasil menyetujui"))
+      .then(() => window.location.reload())
+  }
+
+  return
 }
 
 const Rows = ({
@@ -205,29 +240,42 @@ const Rows = ({
         <>
           {data.map((item, index) => (
             <Tr key={index}>
-              <Td key={index}>
-                <Text>{item.id}</Text>
-              </Td>
-              <Td key={index}>
-                <Text>{item.name}</Text>
-              </Td>
-              <Td key={index}>
-                <Text>{renderMedicineStatus(item.status)}</Text>
+              <Td>
+                <Text>{index+1}</Text>
               </Td>
               <Td>
-                <Select placeholder='Status' w='80%'>
-                  <option
-                    value='Dalam Antrian'
-                    selected={item.status.toLowerCase() == 'dalam antrian'}>
-                    Dalam Antrian
-                  </option>
-                  <option
-                    value='Selesai'
-                    selected={item.status.toLowerCase() == 'selesai'}>
-                    Selesai
-                  </option>
-                </Select>
+                <Text>{item.nama}</Text>
               </Td>
+              <Td>
+                <Text>{renderMedicineStatus(item.status)}</Text>
+              </Td>
+              {
+                item.status === 'Menunggu pembayaran' ? (
+                  <Td>
+                    <Button
+                      variant='dark'
+                      color='white'
+                      bg='blue.400'
+                      mr='1'
+                      onClick={() => handlePay(item)}
+                    >
+                      Tandai sudah dibayar
+                    </Button>
+                  </Td>
+                ) : (
+                  <Td>
+                    <Button
+                      variant='dark'
+                      color='white'
+                      bg='red.400'
+                      mr='1'
+                      onClick={() => handleDeleteQueue(item)}
+                    >
+                      Hapus riwayat
+                    </Button>
+                  </Td>
+                )
+              }
             </Tr>
           ))}
         </>
