@@ -47,9 +47,10 @@ export default function AdminMedicineLIst() {
           </Link>
         </Flex>
         <Box
-          bg='gray.100'
+          bg='white'
           p={5}
           rounded="md"
+          boxShadow="base"
         >
           <TableContainer>
             <Table size='sm'>
