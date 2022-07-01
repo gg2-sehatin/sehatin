@@ -3,7 +3,7 @@
 import { Table, TableContainer, Tbody, Text, Thead } from "@chakra-ui/react";
 
 import SidebarWithHeader from "components/Sidebar";
-import Headers from "components/TableData/headers";
+import Headers from "components/TableData/Headers";
 import { useEffect, useState } from "react";
 import Rows from "components/TableData/rows";
 import { QUEUE_TYPE_MEDICINE } from "./types/queue";

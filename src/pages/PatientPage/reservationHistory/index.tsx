@@ -11,12 +11,14 @@ import Headers from "components/TableData/Headers";
 import { useEffect, useState } from "react";
 import Rows from "components/TableData/rows";
 import PatientScheduleData from "types/PatientScheduleData";
+import useAuth from "hooks/useAuth";
 
-export default function Schedule() {
+export default function MyReservationHistory() {
   const [data, setData] = useState([]);
+  const {auth } = useAuth();
 
   useEffect(()=> {
-    fetch(`http://localhost:3001/patients`)
+    fetch(`http://localhost:3001/patients?nama=${auth.name}`)
       .then(res => res.json())
       .then(data => {
         data
@@ -30,15 +32,15 @@ export default function Schedule() {
     <>
       <SidebarWithHeader>
         <Text fontSize="xl" fontWeight="bold" mb="8px">
-          Jadwal Antrean Berobat
+          Riwayat Berobat Saya
         </Text>
         <TableContainer overflowX="auto" mb="2rem">
           <Table variant="simple">
             <Thead>
-              <Headers headers={["No", "Nama", "Tanggal", "Jam"]} />
+              <Headers headers={["No", "Nama", "Tanggal", "Jam", "Status"]} />
             </Thead>
             <Tbody>
-              <Rows data={data} type='schedule' />
+              <Rows data={data} type='reservationHistory' />
             </Tbody>
           </Table>
         </TableContainer>

@@ -10,6 +10,7 @@ export const PatientLinks = [
   { name: 'Beranda', icon: FiHome, href: '/' },
   { name: 'Form Reservasi', icon: FiHome, href: '/form-reservasi' },
   { name: 'Riwayat EMR', icon: FiHome, href: '/my-emr' },
+  { name: 'Riwayat Reservasi', icon: FiHome, href: '/reservation-history' },
 ]
 
 export const AdminLinks = [

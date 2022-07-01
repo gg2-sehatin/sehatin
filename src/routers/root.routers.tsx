@@ -28,6 +28,7 @@ import RegistrationSuccess from "pages/PatientPage/ReservationStatusSuccessRegis
 import MySchedule from 'pages/PatientPage/schedule';
 import MyEmr from 'pages/PatientPage/myEmr';
 import MyEmrDetail from 'pages/PatientPage/myEmrDetail';
+import MyReservationHistory from 'pages/PatientPage/reservationHistory';
 
 export type RouterState = {
   path: string;
@@ -70,6 +71,10 @@ export const PatientRoutes: RouterState[] = [
   {
     path: "/registration-success",
     element: <RegistrationSuccess />
+  },
+  {
+    path: "/reservation-history",
+    element: <MyReservationHistory />
   }
 ]
 

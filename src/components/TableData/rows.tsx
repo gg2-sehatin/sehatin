@@ -84,13 +84,31 @@ const handleApprove = (data: PatientScheduleData) => {
   return
 }
 
+const handleReject = (data: PatientScheduleData) => {
+  if(confirm("Apakah Anda yakin ingin menolak reservasi ini?")) {
+    fetch(`http://localhost:3001/patients/${data.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status: "Ditolak",
+      }),
+    })
+      .then(() => alert("Berhasil menolak"))
+      .then(() => window.location.reload())
+  }
+
+  return
+}
+
 const Rows = ({
   data,
   type,
 }: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any;
-    type: "emr" | "medicine" | "schedule" | "approval";
+    type: "emr" | "medicine" | "schedule" | "approval" | "reservationHistory";
   }) => {
   let viewData = <></>;
   const { auth } = useAuth();
@@ -201,6 +219,33 @@ const Rows = ({
       );
     }
 
+    if (type === 'reservationHistory') {
+
+      viewData = (
+        <>
+          {data.map((item, index) => (
+            <Tr key={index}>
+              <Td>
+                <Text>{index+1}</Text>
+              </Td>
+              <Td>
+                <Text>{item.nama}</Text>
+              </Td>
+              <Td>
+                <Text>{new Date(item.tanggal).toLocaleDateString()}</Text>
+              </Td>
+              <Td>
+                <Text>{item.jam}</Text>
+              </Td>
+              <Td>
+                <Text>{item.status}</Text>
+              </Td>
+            </Tr>
+          ))}
+        </>
+      );
+    }
+
     if(type === 'approval') {
       viewData = (
         <>
@@ -227,6 +272,15 @@ const Rows = ({
                   onClick={() => handleApprove(item)}
                 >
                   Approve
+                </Button>
+                <Button
+                  variant='dark'
+                  color='white'
+                  bg='red.400'
+                  mr='1'
+                  onClick={() => handleReject(item)}
+                >
+                  Tolak
                 </Button>
               </Td>
             </Tr>

@@ -55,7 +55,7 @@ const FormRegister = () => {
         <ModalDialogue
           title='Reservasi berhasil!'
           message='Silahkan tunggu persetujuan dari klinik.
-          Jika klinik telah menyetujui, maka antrean Anda akan muncul di halaman beranda.'
+          Silahkan cek halaman Riwayat Reservasi untuk memantau status reservasi.'
           onClose={handleCloseModal}
         /> : null}
     </>
