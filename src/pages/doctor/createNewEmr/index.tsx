@@ -48,6 +48,10 @@ const CreateNewEmr = () => {
       fetch(`http://localhost:3001/users?name=${values.pasien}`, {
         method: "GET",
       })
+
+      fetch(`http://localhost:3001/patients?nama=${values.pasien}`, {
+        method: "GET",
+      })
         .then(res => res.json())
         .then(data => {
           const { birthday, birthplace, gender, name } = data[0];

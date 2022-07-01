@@ -7,7 +7,11 @@ import {
 } from "@chakra-ui/react";
 
 import SidebarWithHeader from "components/Sidebar";
+<<<<<<< HEAD
 import Headers from "components/TableData/Headers";
+=======
+import Headers from "components/TableData/headers";
+>>>>>>> 045491995c3c6a2f10d4af945e291f90ca816eb7
 import Rows from "components/TableData/rows";
 import { useEffect, useState } from "react";
 import PatientScheduleData from "types/PatientScheduleData";
