@@ -15,7 +15,6 @@ import {
   ButtonGroup,
   Tooltip,
   Icon,
-  Link
 } from '@chakra-ui/react'
 import {
   AddIcon,
@@ -31,20 +30,16 @@ export default function Schedule() {
         <Heading size='lg' mb='3'>
           Schedule
         </Heading>
-        <Flex justifyContent='left'>
-          <Link
+        <Flex justifyContent='right'>
+          <Button
+            leftIcon={<AddIcon/>}
+            colorScheme='blue'
+            mb={4}
             as={RouteLink}
             to="/schedule/create"
           >
-            <Button
-              leftIcon={<AddIcon/>}
-              bg='blue.300'
-              color='white'
-              mb={4}
-            >
-              Tambah Data Baru
-            </Button>
-          </Link>
+            Tambah Data Baru
+          </Button>
         </Flex>
         <Box
           bg='white'
@@ -79,7 +74,7 @@ export default function Schedule() {
                           <Icon as={DeleteIcon}/>
                         </Button>
                       </Tooltip>
-                      <Tooltip label='Update Data'>
+                      <Tooltip label='Edit Data'>
                         <Button
                           colorScheme='green'
                           size='sm'
