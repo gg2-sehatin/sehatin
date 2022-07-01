@@ -89,6 +89,14 @@
       "nama": "Suparwanto",
       "status": "Selesai",
       "id": 3
+    },
+    {
+      "tanggal": "2022-07-01",
+      "jam": "14:13",
+      "idPasien": 8,
+      "nama": "Suparwanto",
+      "status": "Diperiksa",
+      "id": 4
     }
   ],
   "users": [
