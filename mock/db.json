@@ -11,6 +11,22 @@
       "id": 2,
       "idEmr": 2,
       "name": "Sumanto"
+    },
+    {
+      "billing": 3000,
+      "id": 3,
+      "idEmr": 3
+    },
+    {
+      "billing": 15000,
+      "id": 4,
+      "idEmr": 4
+    },
+    {
+      "idEmr": 4,
+      "billing": 22000,
+      "name": "Rhenald Karrel",
+      "id": 5
     }
   ],
   "emr": [
@@ -38,6 +54,31 @@
         "Paracetamol"
       ],
       "pasien": "Sumanto"
+    },
+    {
+      "birthday": "2001-06-03",
+      "birthplace": "Jakarta",
+      "diagnosa": "Pusing dan demam",
+      "examinationDate": "2022-07-02",
+      "gender": "Laki-laki",
+      "id": 3,
+      "obat": [
+        "Paracetamol"
+      ],
+      "pasien": "Sultan Muhammad Habibi"
+    },
+    {
+      "pasien": "Rhenald Karrel",
+      "diagnosa": "asdasdsdasd",
+      "obat": [
+        "Ibuprofen",
+        "Aspirin"
+      ],
+      "examinationDate": "2022-07-02",
+      "birthday": "1997-06-18",
+      "birthplace": "Jakarta",
+      "gender": "Laki-laki",
+      "id": 4
     }
   ],
   "medicine": [
@@ -72,6 +113,22 @@
       "jam": "16:23",
       "nama": "Sumanto",
       "status": "Selesai",
+      "tanggal": "2022-07-02"
+    },
+    {
+      "id": 3,
+      "idPasien": 9,
+      "jam": "13:30",
+      "nama": "Sultan Muhammad Habibi",
+      "status": "Selesai",
+      "tanggal": "2022-07-02"
+    },
+    {
+      "id": 4,
+      "idPasien": 4,
+      "jam": "09:30",
+      "nama": "Rhenald Karrel",
+      "status": "Menunggu pembayaran",
       "tanggal": "2022-07-02"
     }
   ],
@@ -131,6 +188,17 @@
       "name": "Sumanto",
       "password": "$2a$10$5L8y82eJumF1b4sFKWs7rOpY8bnQOfJj5x7UnkTu4UnGmGmtzYWq6",
       "phone": 81234567868,
+      "role": "patient"
+    },
+    {
+      "birthday": "2001-06-03",
+      "birthplace": "Jakarta",
+      "email": "sultan@gmail.com",
+      "gender": "Laki-laki",
+      "id": 9,
+      "name": "Sultan Muhammad Habibi",
+      "password": "$2a$10$Djg2uNcONN85b4WKfWYP9OrEMTv6G/37W6QW.h2XpO/uMQEQrV15i",
+      "phone": 81234546789,
       "role": "patient"
     }
   ]
