@@ -6,7 +6,6 @@ import {
   FiUsers,
   FiList,
   FiClock,
-  FiDollarSign,
   FiDroplet,
 } from "react-icons/fi";
 import {
@@ -37,5 +36,4 @@ export const ReceptionistLinks = [
   { name: "Beranda", icon: FiHome, href: "/" },
   { name: "Antrian Pasien", icon: FiUsers, href: "/queue-patient" },
   { name: "Antrian Obat", icon: FiDroplet, href: "/queue-medicine" },
-  { name: "Pembayaran", icon: FiDollarSign, href: "/billing-payment" },
 ];
