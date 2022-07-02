@@ -1,32 +1,32 @@
 import { Thead, TableContainer, Table, Text, Tbody } from "@chakra-ui/react";
 
-import SidebarWithHeader from 'components/Sidebar';
-import Headers from 'components/TableData/Headers';
-import Rows from 'components/TableData/rows';
+import SidebarWithHeader from "components/Sidebar";
+import Headers from "components/TableData/headers";
+import Rows from "components/TableData/rows";
 import useAuth from "hooks/useAuth";
 import { useEffect, useState } from "react";
 import EmrHistoryData from "types/EmrHistoryData";
 
 const MyEmr = () => {
-
-  const [data, setData] = useState([])
-  const { auth } = useAuth()
+  const [data, setData] = useState([]);
+  const { auth } = useAuth();
 
   useEffect(() => {
-    fetch('http://localhost:3001/emr?pasien=' + auth.name, {
-      method: 'GET',
+    fetch("http://localhost:3001/emr?pasien=" + auth.name, {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(res => res.json())
-      .then(data => {
-        data.sort((a: EmrHistoryData, b: EmrHistoryData) =>
-          +new Date(a.examinationDate) - +new Date(b.examinationDate)
-        )
-        setData(data)
-      })
-  }, [])
+      .then((res) => res.json())
+      .then((data) => {
+        data.sort(
+          (a: EmrHistoryData, b: EmrHistoryData) =>
+            +new Date(a.examinationDate) - +new Date(b.examinationDate)
+        );
+        setData(data);
+      });
+  }, []);
 
   return (
     <>
@@ -37,9 +37,7 @@ const MyEmr = () => {
         <TableContainer overflowX="auto">
           <Table variant="simple">
             <Thead>
-              <Headers
-                headers={["No", "Tanggal Pemeriksaan", "Aksi"]}
-              />
+              <Headers headers={["No", "Tanggal Pemeriksaan", "Aksi"]} />
             </Thead>
             <Tbody>
               <Rows data={data} type="emr" />
