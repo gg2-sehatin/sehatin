@@ -1,5 +1,5 @@
 import { Text } from "@chakra-ui/react";
-import ReservationStatusFormRegister from "components/organisms/ReservationRegistrationForm";
+import ReservationForm from "components/organisms/ReservationForm";
 import SidebarWithHeader from "components/Sidebar";
 import { useFormik } from "formik";
 import useAuth from "hooks/useAuth";
@@ -44,7 +44,7 @@ const FormRegister = () => {
           Form Reservasi
         </Text>
 
-        <ReservationStatusFormRegister
+        <ReservationForm
           onSubmit={formik.handleSubmit}
           onChange={formik.handleChange}
           tanggal={formik.values.tanggal}
@@ -54,7 +54,8 @@ const FormRegister = () => {
       {show ?
         <ModalDialogue
           title='Reservasi berhasil!'
-          message='Silahkan datang ke klinik dengan waktu dan jam yang telah dipilih.'
+          message='Silahkan tunggu persetujuan dari klinik.
+          Silahkan cek halaman Riwayat Reservasi untuk memantau status reservasi.'
           onClose={handleCloseModal}
         /> : null}
     </>

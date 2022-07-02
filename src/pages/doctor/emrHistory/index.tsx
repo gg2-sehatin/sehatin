@@ -1,7 +1,7 @@
 import { Thead, TableContainer, Table, Text, Tbody } from "@chakra-ui/react";
 
 import SidebarWithHeader from 'components/Sidebar';
-import Headers from 'components/TableData/headers';
+import Headers from 'components/TableData/Headers';
 import Rows from 'components/TableData/rows';
 import { useEffect, useState } from "react";
 import EmrHistoryData from "types/EmrHistoryData";

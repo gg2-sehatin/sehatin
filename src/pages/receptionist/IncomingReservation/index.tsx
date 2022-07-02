@@ -8,7 +8,7 @@ import {
   Tbody,
   useColorModeValue,
 } from "@chakra-ui/react";
-import Headers from "components/TableData/headers";
+import Headers from "components/TableData/Headers";
 import PatientScheduleData from "types/PatientScheduleData";
 import SidebarWithHeader from "components/Sidebar";
 import Rows from "components/TableData/rows";

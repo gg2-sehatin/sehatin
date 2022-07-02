@@ -3,5 +3,8 @@ export default interface EmrHistoryData {
 	pasien: string;
 	examinationDate: string;
   diagnosa: string;
-  obat: string;
+  obat: string | string[];
+  gender: string;
+  birthplace: string;
+  birthday: string
 }

@@ -5,10 +5,9 @@ import CreateNewEmr from "pages/doctor/createNewEmr";
 import PatientQueue from "pages/doctor/patientQueue";
 
 // Receptionist
-import QueueMedicine from "pages/receptionist/queuemedicine";
+import QueueMedicine from "pages/receptionist/queueMedicine";
 import Incoming from "pages/receptionist/IncomingReservation";
 import Antrian from "pages/receptionist/QueuePatient";
-import BillingPayment from "pages/receptionist/billingpayment";
 
 // Admin
 import AdminHome from "pages/administration";
@@ -20,15 +19,11 @@ import User from "components/molecules/AdminUser";
 import UserForm from "components/organisms/AdminUserForm";
 
 // Patient
-import NotRegistered from "pages/PatientPage/ReservationStatusNotRegister";
-import FormRegister from "pages/PatientPage/ReservationStatusFormRegister";
-import Waiting from "pages/PatientPage/ReservationStatusOnWaiting";
-import NotOpenYet from "pages/PatientPage/ReservationStatusNotOpenYet";
-import QueueFull from "pages/PatientPage/ReservationStatusFullQueue";
-import RegistrationSuccess from "pages/PatientPage/ReservationStatusSuccessRegister";
-import MySchedule from "pages/PatientPage/schedule";
-import MyEmr from "pages/PatientPage/myEmr";
-import MyEmrDetail from "pages/PatientPage/myEmrDetail";
+import ReservationForm from "pages/PatientPage/reservationForm"
+import MySchedule from 'pages/PatientPage/schedule';
+import MyEmr from 'pages/PatientPage/myEmr';
+import MyEmrDetail from 'pages/PatientPage/myEmrDetail';
+import MyReservationHistory from 'pages/PatientPage/reservationHistory';
 
 export type RouterState = {
   path: string;
@@ -49,30 +44,14 @@ export const PatientRoutes: RouterState[] = [
     element: <MyEmrDetail />,
   },
   {
-    path: "/not-registered",
-    element: <NotRegistered />,
-  },
-  {
     path: "/form-reservasi",
-    element: <FormRegister />,
+    element: <ReservationForm />,
   },
   {
-    path: "/waiting",
-    element: <Waiting />,
-  },
-  {
-    path: "/not-open-yet",
-    element: <NotOpenYet />,
-  },
-  {
-    path: "/queue-full",
-    element: <QueueFull />,
-  },
-  {
-    path: "/registration-success",
-    element: <RegistrationSuccess />,
-  },
-];
+    path: "/reservation-history",
+    element: <MyReservationHistory />
+  }
+]
 
 export const DoctorRoutes: RouterState[] = [
   {
@@ -139,10 +118,6 @@ export const ReceptionistRoutes: RouterState[] = [
   },
   {
     path: "/queue-medicine",
-    element: <QueueMedicine />,
-  },
-  {
-    path: "/billing-payment",
-    element: <BillingPayment />,
-  },
-];
+    element: <QueueMedicine />
+  }
+]

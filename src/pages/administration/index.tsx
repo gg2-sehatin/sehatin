@@ -3,14 +3,24 @@ import {
   SimpleGrid,
   Text
 } from '@chakra-ui/react';
-import { BsPerson } from 'react-icons/bs';
+import { BsPerson, BsCurrencyDollar } from 'react-icons/bs';
+import { TbMedicineSyrup } from 'react-icons/tb';
 import  StatsCard  from 'components/atoms/StatsCard';
 import SidebarWithHeader from 'components/Sidebar';
 import { useEffect, useState } from 'react';
+import BillingPaymentData from 'types/BillingPaymentData';
+import { formatRupiah } from 'utils/helpers/formatRupiah';
 
 export default function Administration() {
   const [doctor, setDoctor] = useState([])
   const [patient, setPatient] = useState([])
+  const [revenue, setRevenue] = useState([])
+  const [medicine, setMedicine] = useState([])
+  const formattedRevenue = formatRupiah(
+    revenue
+      .map((item: BillingPaymentData) => item.billing)
+      .reduce((a, b) => a + b, 0), 'Rp'
+  )
 
   useEffect(()=> {
     fetch('http://localhost:3001/users?role=doctor', {
@@ -24,6 +34,18 @@ export default function Administration() {
     })
       .then(res => res.json())
       .then(data => setPatient(data))
+
+    fetch('http://localhost:3001/billing', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => setRevenue(data))
+
+    fetch('http://localhost:3001/medicine', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => setMedicine(data))
   }, [])
 
   return (
@@ -44,14 +66,14 @@ export default function Administration() {
             icon={<BsPerson size={'3em'} />}
           />
           <StatsCard
-            title={'Obat'}
-            stat={'20'}
-            icon={<BsPerson size={'3em'} />}
+            title={'Total Obat'}
+            stat={medicine.length.toString()}
+            icon={<TbMedicineSyrup size={'3em'} />}
           />
           <StatsCard
-            title={'Bill'}
-            stat={'Rp. 1.200.000'}
-            icon={<BsPerson size={'3em'} />}
+            title={'Total Pendapatan'}
+            stat={formattedRevenue}
+            icon={<BsCurrencyDollar size={'3em'} />}
           />
         </SimpleGrid>
       </Box>

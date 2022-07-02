@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 
-import SignInForm from "components/SignIn";
+import SignInForm from "components/Signin";
 import useAuth from "hooks/useAuth";
 
 function Login() {
@@ -24,14 +24,12 @@ function Login() {
         .then((data) => {
           const { accessToken } = data;
           const { id, name, email, role } = data.user;
-          setAuth({ accessToken, id, name, email, role });
-          localStorage.setItem(
-            "user",
-            JSON.stringify({ accessToken, id, name, email, role })
-          );
-          navigate("/", { replace: true });
-        });
-    },
+          setAuth({accessToken, id, name, email, role});
+          localStorage.setItem('user', JSON.stringify({accessToken, id, name, email, role}));
+          navigate('/', { replace: true });
+        })
+        .catch(() => alert('Login gagal, mohon periksa kembali email dan kata sandi Anda!'));
+    }
   });
 
   return (

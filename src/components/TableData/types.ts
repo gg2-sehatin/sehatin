@@ -1,1 +1,1 @@
-export type MedicineStatus = "Selesai" | "Dalam antrian";
+export type MedicineStatus = "Selesai" | "Menunggu pembayaran";

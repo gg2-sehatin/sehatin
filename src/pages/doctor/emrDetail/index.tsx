@@ -9,6 +9,7 @@ import { useParams, Link } from 'react-router-dom';
 import SidebarWithHeader from 'components/Sidebar';
 import EmrHistoryData from 'types/EmrHistoryData';
 import { useEffect, useState } from 'react';
+import { formatRupiah } from 'utils/helpers/formatRupiah';
 
 const EmrDetail = () => {
 
@@ -18,14 +19,13 @@ const EmrDetail = () => {
     pasien: '',
     examinationDate: '',
     diagnosa: '',
-    obat: ''
-  });
-
-  const [patientData, setPatientData] = useState({
+    obat: [] || '',
     birthday: '',
     birthplace: '',
     gender: ''
-  })
+  });
+  const [price, setPrice] = useState(0)
+
 
   useEffect(() => {
     fetch(`http://localhost:3001/emr/${id}`, {
@@ -37,11 +37,11 @@ const EmrDetail = () => {
       .then(res => res.json())
       .then(data => setData(data))
 
-    fetch(`http://localhost:3001/users/${id}`, {
+    fetch(`http://localhost:3001/billing?idEmr=${id}`, {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(data => setPatientData(data))
+      .then(data => setPrice(data[0].billing))
   }, [])
 
   return (
@@ -77,19 +77,25 @@ const EmrDetail = () => {
               <Text display='table-cell' pr='4em' fontWeight='bold'>
                 Obat
               </Text>
-              : {data.obat}
+              : {typeof data.obat === 'string' ? data.obat : data.obat.join(', ')}
             </ListItem>
             <ListItem display='table-row'>
               <Text display='table-cell' pr='4em' fontWeight='bold'>
                 Jenis Kelamin
               </Text>
-              : {patientData.gender}
+              : {data.gender}
             </ListItem>
             <ListItem display='table-row'>
               <Text display='table-cell' pr='4em' fontWeight='bold'>
                 Tempat Tanggal Lahir
               </Text>
-              : {patientData.birthplace}, {patientData.birthday}
+              : {data.birthplace}, {data.birthday}
+            </ListItem>
+            <ListItem display='table-row'>
+              <Text display='table-cell' pr='4em' fontWeight='bold'>
+                Total Pembayaran
+              </Text>
+              : {formatRupiah(price, 'Rp')}
             </ListItem>
           </UnorderedList>
         </Container>
