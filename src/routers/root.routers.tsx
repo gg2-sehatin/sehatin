@@ -19,12 +19,7 @@ import User from "components/molecules/AdminUser";
 import UserForm from "components/organisms/AdminUserForm";
 
 // Patient
-import NotRegistered from "pages/PatientPage/ReservationStatusNotRegister";
-import FormRegister from "pages/PatientPage/ReservationStatusFormRegister";
-import Waiting from "pages/PatientPage/ReservationStatusOnWaiting";
-import NotOpenYet from "pages/PatientPage/ReservationStatusNotOpenYet";
-import QueueFull from "pages/PatientPage/ReservationStatusFullQueue";
-import RegistrationSuccess from "pages/PatientPage/ReservationStatusSuccessRegister";
+import ReservationForm from "pages/PatientPage/reservationForm"
 import MySchedule from 'pages/PatientPage/schedule';
 import MyEmr from 'pages/PatientPage/myEmr';
 import MyEmrDetail from 'pages/PatientPage/myEmrDetail';
@@ -49,28 +44,8 @@ export const PatientRoutes: RouterState[] = [
     element: <MyEmrDetail />,
   },
   {
-    path: "/not-registered",
-    element: <NotRegistered />,
-  },
-  {
     path: "/form-reservasi",
-    element: <FormRegister />,
-  },
-  {
-    path: "/waiting",
-    element: <Waiting />,
-  },
-  {
-    path: "/not-open-yet",
-    element: <NotOpenYet />,
-  },
-  {
-    path: "/queue-full",
-    element: <QueueFull />,
-  },
-  {
-    path: "/registration-success",
-    element: <RegistrationSuccess />
+    element: <ReservationForm />,
   },
   {
     path: "/reservation-history",
