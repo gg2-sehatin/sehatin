@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
 import { Table, TableContainer, Tbody, Text, Thead } from "@chakra-ui/react";
 
 import SidebarWithHeader from "components/Sidebar";

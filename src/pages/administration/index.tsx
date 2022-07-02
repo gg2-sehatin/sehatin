@@ -3,7 +3,8 @@ import {
   SimpleGrid,
   Text
 } from '@chakra-ui/react';
-import { BsPerson } from 'react-icons/bs';
+import { BsPerson, BsCurrencyDollar } from 'react-icons/bs';
+import { TbMedicineSyrup } from 'react-icons/tb';
 import  StatsCard  from 'components/atoms/StatsCard';
 import SidebarWithHeader from 'components/Sidebar';
 import { useEffect, useState } from 'react';
@@ -67,12 +68,12 @@ export default function Administration() {
           <StatsCard
             title={'Total Obat'}
             stat={medicine.length.toString()}
-            icon={<BsPerson size={'3em'} />}
+            icon={<TbMedicineSyrup size={'3em'} />}
           />
           <StatsCard
             title={'Total Pendapatan'}
             stat={formattedRevenue}
-            icon={<BsPerson size={'3em'} />}
+            icon={<BsCurrencyDollar size={'3em'} />}
           />
         </SimpleGrid>
       </Box>

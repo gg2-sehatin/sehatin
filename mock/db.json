@@ -23,8 +23,7 @@
       "idEmr": 4
     },
     {
-      "idEmr": 4,
-      "billing": 22000,
+      "billing": 3000,
       "name": "Rhenald Karrel",
       "id": 5
     }
@@ -69,10 +68,9 @@
     },
     {
       "pasien": "Rhenald Karrel",
-      "diagnosa": "asdasdsdasd",
+      "diagnosa": "Batuk",
       "obat": [
-        "Ibuprofen",
-        "Aspirin"
+        "Paracetamol"
       ],
       "examinationDate": "2022-07-02",
       "birthday": "1997-06-18",
@@ -128,7 +126,7 @@
       "idPasien": 4,
       "jam": "09:30",
       "nama": "Rhenald Karrel",
-      "status": "Selesai",
+      "status": "Menunggu pembayaran",
       "tanggal": "2022-07-02"
     }
   ],
