@@ -15,8 +15,11 @@ export default function Administration() {
   const [patient, setPatient] = useState([])
   const [revenue, setRevenue] = useState([])
   const [medicine, setMedicine] = useState([])
-  // eslint-disable-next-line max-len
-  const formattedRevenue = formatRupiah(revenue.map((item: BillingPaymentData) => item.billing).reduce((a, b) => a + b, 0), 'Rp')
+  const formattedRevenue = formatRupiah(
+    revenue
+      .map((item: BillingPaymentData) => item.billing)
+      .reduce((a, b) => a + b, 0), 'Rp'
+  )
 
   useEffect(()=> {
     fetch('http://localhost:3001/users?role=doctor', {
@@ -68,7 +71,6 @@ export default function Administration() {
           />
           <StatsCard
             title={'Total Pendapatan'}
-            // eslint-disable-next-line max-len
             stat={formattedRevenue}
             icon={<BsPerson size={'3em'} />}
           />

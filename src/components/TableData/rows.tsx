@@ -21,7 +21,8 @@ const renderMedicineStatus = (status: MedicineStatus) => {
 };
 
 const handleDeleteEmr = (id: string, type: string) => {
-  if(confirm("Apakah Anda yakin ingin menghapus data EMR ini?")) {
+  const deleteConfirmed = confirm("Apakah Anda yakin ingin menghapus data EMR ini?")
+  if(deleteConfirmed) {
     fetch(`http://localhost:3001/${type}/${id}`, {
       method: "DELETE",
     })
@@ -35,7 +36,8 @@ const handleDeleteEmr = (id: string, type: string) => {
 }
 
 const handleDeleteQueue = (data: PatientScheduleData) => {
-  if(confirm("Apakah Anda yakin ingin menghapus riwayat antrian ini?")) {
+  const deleteConfirmed = confirm("Apakah Anda yakin ingin menghapus riwayat antrian ini?")
+  if(deleteConfirmed) {
     fetch(`http://localhost:3001/patients/${data.id}`, {
       method: "DELETE",
     })
@@ -47,7 +49,8 @@ const handleDeleteQueue = (data: PatientScheduleData) => {
 }
 
 const handlePay = (data: PatientScheduleData) => {
-  if(confirm("Apakah Anda yakin ingin menyelesaikan pembayaran?")) {
+  const paymentConfirmed = confirm("Apakah Anda yakin ingin menyelesaikan pembayaran?")
+  if(paymentConfirmed) {
     fetch(`http://localhost:3001/patients/${data.id}`, {
       method: "PATCH",
       headers: {
@@ -67,7 +70,8 @@ const handlePay = (data: PatientScheduleData) => {
 }
 
 const handleApprove = (data: PatientScheduleData) => {
-  if(confirm("Apakah Anda yakin ingin menyetujui reservasi ini?")) {
+  const approveConfirmed = confirm("Apakah Anda yakin ingin menyetujui reservasi ini?")
+  if(approveConfirmed) {
     fetch(`http://localhost:3001/patients/${data.id}`, {
       method: "PATCH",
       headers: {
@@ -85,7 +89,8 @@ const handleApprove = (data: PatientScheduleData) => {
 }
 
 const handleReject = (data: PatientScheduleData) => {
-  if(confirm("Apakah Anda yakin ingin menolak reservasi ini?")) {
+  const rejectConfirmed = confirm("Apakah Anda yakin ingin menolak reservasi ini?")
+  if(rejectConfirmed) {
     fetch(`http://localhost:3001/patients/${data.id}`, {
       method: "PATCH",
       headers: {
