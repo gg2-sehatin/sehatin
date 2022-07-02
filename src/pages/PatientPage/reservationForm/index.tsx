@@ -1,5 +1,5 @@
 import { Text } from "@chakra-ui/react";
-import ReservationStatusFormRegister from "components/organisms/ReservationRegistrationForm";
+import ReservationForm from "components/organisms/ReservationForm";
 import SidebarWithHeader from "components/Sidebar";
 import { useFormik } from "formik";
 import useAuth from "hooks/useAuth";
@@ -44,7 +44,7 @@ const FormRegister = () => {
           Form Reservasi
         </Text>
 
-        <ReservationStatusFormRegister
+        <ReservationForm
           onSubmit={formik.handleSubmit}
           onChange={formik.handleChange}
           tanggal={formik.values.tanggal}
