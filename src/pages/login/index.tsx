@@ -1,33 +1,33 @@
-import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
-
-import SignInForm from 'components/SignIn';
+import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
+import SignInForm from "components/Signin";
 import useAuth from "hooks/useAuth";
 
 function Login() {
-  const { setAuth } =  useAuth();
+  const { setAuth } = useAuth();
 
   const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
-      email:"",
+      email: "",
       password: "",
     },
     onSubmit: (values) => {
-      fetch('http://localhost:3001/login', {
-        method: 'POST',
-        headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify((values))
+      fetch("http://localhost:3001/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
       })
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           const { accessToken } = data;
           const { id, name, email, role } = data.user;
           setAuth({accessToken, id, name, email, role});
           localStorage.setItem('user', JSON.stringify({accessToken, id, name, email, role}));
           navigate('/', { replace: true });
         })
+        .catch(() => alert('Login gagal, mohon periksa kembali email dan kata sandi Anda!'));
     }
   });
 
@@ -38,7 +38,7 @@ function Login() {
       passwordValue={formik.values.password}
       onSubmit={formik.handleSubmit}
     />
-  )
+  );
 }
 
 export default Login;

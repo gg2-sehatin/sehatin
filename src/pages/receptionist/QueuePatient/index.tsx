@@ -6,7 +6,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Rows from "components/TableData/rows";
-import Headers from "components/TableData/headers";
+import Headers from "components/TableData/Headers";
 import SidebarWithHeader from "components/Sidebar";
 import { useEffect, useState } from "react";
 import PatientScheduleData from "types/PatientScheduleData";

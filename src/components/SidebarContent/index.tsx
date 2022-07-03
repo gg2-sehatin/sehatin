@@ -2,14 +2,20 @@ import {
   Box,
   Flex,
   useColorModeValue,
-  Text,
   CloseButton,
-} from '@chakra-ui/react';
-import NavItem from 'components/NavItem';
-import useAuth from 'hooks/useAuth';
-import { SidebarContentProps, LinkItemProps } from './types';
-import { DoctorLinks, PatientLinks, AdminLinks, ReceptionistLinks } from './config';
-import { useMemo } from 'react';
+  Image,
+} from "@chakra-ui/react";
+import NavItem from "components/NavItem";
+import useAuth from "hooks/useAuth";
+import { SidebarContentProps, LinkItemProps } from "./types";
+import {
+  DoctorLinks,
+  PatientLinks,
+  AdminLinks,
+  ReceptionistLinks,
+} from "./config";
+import { useMemo } from "react";
+import image from "assets/logo.jpg";
 
 const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
   const { auth } = useAuth();
@@ -22,9 +28,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
 
     if (role === "patient") return PatientLinks;
 
-    if (role === "admin") return AdminLinks
+    if (role === "admin") return AdminLinks;
 
-    if (role === "receptionist") return ReceptionistLinks
+    if (role === "receptionist") return ReceptionistLinks;
 
     return [];
   }, [auth]);
@@ -41,9 +47,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          SehatIn
-        </Text>
+        <Image src={image} alt="logo" />
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {Links.map((link) => (
