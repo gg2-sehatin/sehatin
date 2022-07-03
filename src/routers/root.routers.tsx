@@ -82,12 +82,16 @@ export const AdminRoutes: RouterState[] = [
     element: <Medicine />,
   },
   {
-    path: "/medicine/create",
+    path: "/medicine/form",
     element: <MedicineForm />,
   },
   {
     path: "/schedule",
     element: <Schedule />,
+  },
+  {
+    path: "/schedule/:id",
+    element: <ScheduleForm />,
   },
   {
     path: "/schedule/create",

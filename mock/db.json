@@ -24,8 +24,8 @@
     },
     {
       "billing": 3000,
-      "name": "Rhenald Karrel",
-      "id": 5
+      "id": 5,
+      "name": "Rhenald Karrel"
     }
   ],
   "emr": [
@@ -67,16 +67,16 @@
       "pasien": "Sultan Muhammad Habibi"
     },
     {
-      "pasien": "Rhenald Karrel",
+      "birthday": "1997-06-18",
+      "birthplace": "Jakarta",
       "diagnosa": "Batuk",
+      "examinationDate": "2022-07-02",
+      "gender": "Laki-laki",
+      "id": 4,
       "obat": [
         "Paracetamol"
       ],
-      "examinationDate": "2022-07-02",
-      "birthday": "1997-06-18",
-      "birthplace": "Jakarta",
-      "gender": "Laki-laki",
-      "id": 4
+      "pasien": "Rhenald Karrel"
     }
   ],
   "medicine": [
@@ -128,6 +128,26 @@
       "nama": "Rhenald Karrel",
       "status": "Menunggu pembayaran",
       "tanggal": "2022-07-02"
+    }
+  ],
+  "schedule": [
+    {
+      "biaya": 80000,
+      "id": 1,
+      "jadwal_praktek": "08:00 - 10:00",
+      "userId": 1
+    },
+    {
+      "biaya": 45000,
+      "id": 3,
+      "jadwal_praktek": "09:00 - 23:00",
+      "userId": "6"
+    },
+    {
+      "biaya": 60000,
+      "id": 4,
+      "jadwal_praktek": "02:00 - 08:00",
+      "userId": "7"
     }
   ],
   "users": [

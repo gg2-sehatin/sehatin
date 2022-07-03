@@ -1,5 +1,5 @@
-import React from "react";
-import SidebarWithHeader from 'components/Sidebar';
+import { useState } from "react";
+import SidebarWithHeader from "components/Sidebar";
 import {
   Box,
   Stack,
@@ -12,78 +12,146 @@ import {
   Input,
   Alert,
   AlertIcon,
-} from '@chakra-ui/react'
-import { useFormik } from 'formik';
-import { useNavigate } from "react-router-dom";
+  CloseButton,
+  AlertTitle,
+  AlertDescription,
+  Tooltip,
+  Icon,
+} from "@chakra-ui/react";
+import { useFormik } from "formik";
+import {  useLocation, useNavigate } from "react-router-dom";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
+
 
 export default function MedicineForm() {
-  const navigate = useNavigate()
+  // State
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
+  // Navigate
+  const navigate = useNavigate();
   const handleGoBack = () => navigate(-1);
 
+  // Params
+  /* eslint-disable */
+  const {state}: any = useLocation();
+  /* eslint-enable */
+
+  // Formik
   const formik = useFormik({
     initialValues: {
-      medicine_name:"",
-      medicine_price: "",
+      id: state?.id || "",
+      medicine_name: state?.medicine_name || "",
+      medicine_price: state?.medicine_price || "",
     },
-    onSubmit: (values) => {
-      fetch('http://localhost:3001/medicine', {
-        method: 'POST',
-        headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify((values))
-      })
-    }
+    onSubmit: (values, actions) => {
+      if (state?.isEdit) {
+        fetch(`http://localhost:3001/medicine/${state?.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        }).then(() => {
+          actions.resetForm({
+            values: {
+              id: "",
+              medicine_name: "",
+              medicine_price: "",
+            },
+            // you can also set the other form states here
+          });
+          setShow(true);
+          setTimeout(() => {
+            navigate("/medicine");
+          }, 2000);
+        });
+        return;
+      }
+
+      fetch("http://localhost:3001/medicine", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      }).then(() => {
+        actions.resetForm({
+          values: {
+            id: "",
+            // the type of `values` inferred to be Blog
+            medicine_name: "",
+            medicine_price: "",
+          },
+          // you can also set the other form states here
+        });
+        setShow(true);
+        setTimeout(() => {
+          navigate("/medicine");
+        }, 2000);
+      });
+    },
   });
 
   return (
     <>
       <SidebarWithHeader>
-        <Container
-          maxW='container.xl'
-          py={4}
-        >
-          <Box
-            bg="white"
-            rounded="md"
-          >
-            <Button onClick={handleGoBack} mb='4'>
-              Kembali
-            </Button>
-            <Heading size='md' mb={3}>
-              Tambah Obat Baru
+        <Container maxW="container.xl" py={4}>
+          <Box p={5} bg="white" rounded="md">
+            <Tooltip label="Kembali">
+              <Button onClick={handleGoBack} mb="4">
+                <Icon as={ChevronLeftIcon} />
+              </Button>
+            </Tooltip>
+            <Heading size="lg" mb="3">
+              Medicines
             </Heading>
-            <Alert status='success' mb={3}>
-              <AlertIcon />
-              Data uploaded to the server. Fire on!
-            </Alert>
+            {show ? (
+              <Alert status="success">
+                <AlertIcon />
+                <Box flex="2">
+                  <AlertTitle>Berhasil!</AlertTitle>
+                  <AlertDescription>
+                    Data berhasil ditambahkan!
+                  </AlertDescription>
+                </Box>
+                <CloseButton
+                  alignSelf="flex-start"
+                  position="relative"
+                  right={-1}
+                  top={-1}
+                  onClick={handleClose}
+                />
+              </Alert>
+            ) : null}
             <Stack>
-              <form onSubmit={ formik.handleSubmit }>
+              <form onSubmit={formik.handleSubmit}>
                 <FormControl>
-                  <FormLabel htmlFor='email' fontSize={14}>Nama Obat</FormLabel>
+                  <FormLabel htmlFor="email" fontSize={14}>
+                    Nama Obat
+                  </FormLabel>
                   <Input
-                    id='medicine_name'
-                    name='medicine_name'
+                    id="medicine_name"
+                    name="medicine_name"
                     onChange={formik.handleChange}
-                    value={ formik.values.medicine_name }
-                    type='text'
-                    size='sm' />
+                    value={formik.values.medicine_name}
+                    type="text"
+                    size="sm"
+                  />
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor='email' fontSize={14}>Harga Obat</FormLabel>
+                  <FormLabel htmlFor="email" fontSize={14}>
+                    Harga Obat
+                  </FormLabel>
                   <Input
-                    id='medicine_price'
-                    name='medicine_price'
+                    id="medicine_price"
+                    name="medicine_price"
                     onChange={formik.handleChange}
-                    value={ formik.values.medicine_price }
-                    type='number'
-                    size='sm' />
-                  <FormHelperText fontSize={10}>Pastikan harga sudah benar.</FormHelperText>
+                    value={formik.values.medicine_price}
+                    type="number"
+                    size="sm"
+                  />
+                  <FormHelperText fontSize={10}>
+                    Pastikan harga sudah benar.
+                  </FormHelperText>
                 </FormControl>
-                <Button
-                  w="fit-content"
-                  bg='blue.300'
-                  color='white'
-                  type="submit"
-                >
+                <Button size="sm" type="submit">
                   Save
                 </Button>
               </form>
@@ -92,5 +160,5 @@ export default function MedicineForm() {
         </Container>
       </SidebarWithHeader>
     </>
-  )
+  );
 }

@@ -15,7 +15,6 @@ import {
   ButtonGroup,
   Tooltip,
   Icon,
-  Link
 } from '@chakra-ui/react'
 import {
   AddIcon,
@@ -23,78 +22,110 @@ import {
   EditIcon
 } from "@chakra-ui/icons"
 import { Link as RouteLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import Schedule from 'types/Schedule';
+import { Link } from 'react-router-dom';
 
-export default function Schedule() {
+export default function AdminSchedule() {
+  const [ schedules, setSchedules ] = useState<Schedule[]>([])
+
+  const handleDelete = (id: number, type: string) => {
+    if(confirm('Apakah anda yakin ingin menghapus pengguna ini?')) {
+      return fetch(`http://localhost:3001/${type}/${id}`, {
+        method: "DELETE"
+      })
+        .then(() => {
+          alert('Berhasil menghapus jadwal!')
+          window.location.reload()
+        })
+    } else {
+      return;
+    }
+  }
+
+  useEffect(() => {
+
+    // _expand = untuk relasi berdasarkan userId dan mengambil relasi ke table users
+    fetch(`http://localhost:3001/schedule?_expand=user`, {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then(data => {
+        setSchedules(data);
+      })
+  }, []);
+
   return (
     <>
       <SidebarWithHeader>
         <Heading size='lg' mb='3'>
           Schedule
         </Heading>
-        <Flex justifyContent='left'>
-          <Link
+        <Flex justifyContent='right'>
+          <Button
+            leftIcon={<AddIcon/>}
+            colorScheme='blue'
+            mb={4}
             as={RouteLink}
             to="/schedule/create"
           >
-            <Button
-              leftIcon={<AddIcon/>}
-              bg='blue.300'
-              color='white'
-              mb={4}
-            >
-              Tambah Data Baru
-            </Button>
-          </Link>
+            Tambah Data Baru
+          </Button>
         </Flex>
         <Box
-          bg='gray.100'
+          bg='white'
           p={5}
           rounded="md"
+          boxShadow="base"
         >
           <TableContainer>
             <Table size='sm'>
               <Thead>
                 <Tr>
                   <Th>Nama Dokter</Th>
-                  <Th>Hari</Th>
-                  <Th>Jam</Th>
+                  <Th>Jadwal</Th>
                   <Th>Harga</Th>
                   <Th>Actions</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>Dr. Budiman</Td>
-                  <Td>Selasa</Td>
-                  <Td>08:00 - 10:00</Td>
-                  <Td>Rp. 80.000</Td>
-                  <Td>
-                    <ButtonGroup spacing={2}>
-                      <Tooltip label='Delete Data'>
-                        <Button
-                          colorScheme='red'
-                          size='sm'
-                        >
-                          <Icon as={DeleteIcon}/>
-                        </Button>
-                      </Tooltip>
-                      <Tooltip label='Update Data'>
-                        <Button
-                          colorScheme='green'
-                          size='sm'
-                        >
-                          <Icon as={EditIcon}/>
-                        </Button>
-                      </Tooltip>
-                    </ButtonGroup>
-                  </Td>
-                </Tr>
+                {
+                  schedules.map(schedule => (
+                    <Tr key={ schedule.id }>
+                      <Td>{ schedule.user?.name }</Td>
+                      <Td>{ schedule.jadwal_praktek }</Td>
+                      <Td>{ schedule.biaya }</Td>
+                      <Td>
+                        <ButtonGroup spacing={2}>
+                          <Tooltip label='Delete Data'>
+                            <Button
+                              colorScheme='red'
+                              size='sm'
+                              onClick={() => handleDelete(schedule.id, 'schedule')}
+                            >
+                              <Icon as={DeleteIcon}/>
+                            </Button>
+                          </Tooltip>
+                          <Tooltip label='Edit Data'>
+                            <Link to={`/schedule/${schedule.id}`}>
+                              <Button
+                                colorScheme='green'
+                                size='sm'
+                              >
+                                <Icon as={EditIcon}/>
+                              </Button>
+                            </Link>
+                          </Tooltip>
+                        </ButtonGroup>
+                      </Td>
+                    </Tr>
+                  ))
+                }
               </Tbody>
               <Tfoot>
                 <Tr>
                   <Th>Nama Dokter</Th>
-                  <Th>Hari</Th>
-                  <Th>Jam</Th>
+                  <Th>Jadwal</Th>
                   <Th>Harga</Th>
                   <Th>Actions</Th>
                 </Tr>

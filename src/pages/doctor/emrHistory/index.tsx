@@ -7,24 +7,24 @@ import { useEffect, useState } from "react";
 import EmrHistoryData from "types/EmrHistoryData";
 
 const EmrHistory = () => {
-
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/emr', {
-      method: 'GET',
+    fetch("http://localhost:3001/emr", {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(res => res.json())
-      .then(data => {
-        data.sort((a: EmrHistoryData, b: EmrHistoryData) =>
-          +new Date(a.examinationDate) - +new Date(b.examinationDate)
-        )
-        setData(data)
-      })
-  }, [])
+      .then((res) => res.json())
+      .then((data) => {
+        data.sort(
+          (a: EmrHistoryData, b: EmrHistoryData) =>
+            +new Date(a.examinationDate) - +new Date(b.examinationDate)
+        );
+        setData(data);
+      });
+  }, []);
 
   return (
     <>
