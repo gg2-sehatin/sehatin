@@ -151,7 +151,7 @@ export default function ScheduleForm() {
             {showMessage && (
               <Alert status="success" mb={3}>
                 <AlertIcon />
-                Data uploaded to the server. Fire on!
+                Data berhasil ditambahkan!
               </Alert>
             )}
             <Stack>

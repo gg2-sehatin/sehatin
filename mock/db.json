@@ -91,7 +91,7 @@
       "nama": "Aspirin"
     },
     {
-      "harga": 10000,
+      "harga": 5000,
       "id": 3,
       "nama": "Ibuprofen"
     }
@@ -126,7 +126,7 @@
       "idPasien": 4,
       "jam": "09:30",
       "nama": "Rhenald Karrel",
-      "status": "Menunggu pembayaran",
+      "status": "Selesai",
       "tanggal": "2022-07-02"
     }
   ],

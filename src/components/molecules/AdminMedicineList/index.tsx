@@ -20,24 +20,14 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { Link as RouteLink } from "react-router-dom";
-
-interface IMedicine {
-  id: number;
-  medicine_name: string;
-  medicine_price: number;
-}
+import IMedicine from "./types";
 
 export default function AdminMedicineLIst() {
-  // State
   const [dataMedicine, setDataMedicine] = useState<Array<IMedicine>>([]);
 
-  // Lifecycle
   useEffect(() => {
     getMedicineList();
   }, []);
-  //
-
-  // Function
   const getMedicineList = () => {
     fetch("http://localhost:3001/medicine", {
       method: "GET",
@@ -50,15 +40,19 @@ export default function AdminMedicineLIst() {
   };
 
   const deleteMedicine = (idMedicine: number) => {
-    fetch(`http://localhost:3001/medicine/${idMedicine}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    }).then(() => {
-      getMedicineList();
-    });
+    const confirmedDelete = confirm('Apakah anda yakin ingin menghapus pengguna ini?')
+    if(confirmedDelete) {
+      fetch(`http://localhost:3001/medicine/${idMedicine}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }).then(() => {
+        getMedicineList();
+      });
+    }
+
+    return
   };
 
-  // Render Function
   const ListMedicine = ({ data }: { data: Array<IMedicine> }) => {
     return (
       <TableContainer>
@@ -74,8 +68,8 @@ export default function AdminMedicineLIst() {
           <Tbody>
             {data.map((row) => (
               <Tr key={row.id.toString()}>
-                <Td>{row.medicine_name}</Td>
-                <Td>{row.medicine_price}</Td>
+                <Td>{row.nama}</Td>
+                <Td>{row.harga}</Td>
                 <Td>10</Td>
                 <Td>
                   <ButtonGroup spacing={2}>
@@ -96,8 +90,8 @@ export default function AdminMedicineLIst() {
                         to="/medicine/form"
                         state={{
                           id: row.id,
-                          medicine_name: row.medicine_name,
-                          medicine_price: row.medicine_price,
+                          nama: row.nama,
+                          harga: row.harga,
                           isEdit: true,
                         }}
                       >
@@ -116,7 +110,7 @@ export default function AdminMedicineLIst() {
               <Th>Nama</Th>
               <Th>Harga</Th>
               <Th>QTY</Th>
-              <Th>Actions</Th>
+              <Th>Aksi</Th>
             </Tr>
           </Tfoot>
         </Table>
@@ -128,19 +122,19 @@ export default function AdminMedicineLIst() {
     <>
       <SidebarWithHeader>
         <Heading size="lg" mb="3">
-          Medicines
+          Daftar Obat
         </Heading>
         <Flex justifyContent="right">
-          <Button 
-            leftIcon={<AddIcon />} 
+          <Button
+            leftIcon={<AddIcon />}
             colorScheme="blue" mb={4}
-            as={RouteLink} 
+            as={RouteLink}
             to="/medicine/form"
           >
-            Add New Data
+            Tambah Data Baru
           </Button>
         </Flex>
-        <Box bg="white" p={5} rounded="md">
+        <Box bg="white" p={5} rounded="md" boxShadow="base">
           <ListMedicine data={dataMedicine} />
         </Box>
       </SidebarWithHeader>

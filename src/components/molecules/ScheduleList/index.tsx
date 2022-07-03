@@ -30,7 +30,8 @@ export default function AdminSchedule() {
   const [ schedules, setSchedules ] = useState<Schedule[]>([])
 
   const handleDelete = (id: number, type: string) => {
-    if(confirm('Apakah anda yakin ingin menghapus pengguna ini?')) {
+    const confirmedDelete = confirm('Apakah anda yakin ingin menghapus jadwal ini?')
+    if(confirmedDelete) {
       return fetch(`http://localhost:3001/${type}/${id}`, {
         method: "DELETE"
       })
@@ -44,8 +45,6 @@ export default function AdminSchedule() {
   }
 
   useEffect(() => {
-
-    // _expand = untuk relasi berdasarkan userId dan mengambil relasi ke table users
     fetch(`http://localhost:3001/schedule?_expand=user`, {
       method: 'GET'
     })
@@ -59,7 +58,7 @@ export default function AdminSchedule() {
     <>
       <SidebarWithHeader>
         <Heading size='lg' mb='3'>
-          Schedule
+          Daftar Jadwal Dokter
         </Heading>
         <Flex justifyContent='right'>
           <Button

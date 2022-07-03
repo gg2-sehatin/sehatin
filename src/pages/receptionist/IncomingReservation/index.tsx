@@ -1,12 +1,9 @@
 import {
-  Box,
   Text,
-  Stack,
   Table,
   TableContainer,
   Thead,
   Tbody,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import Headers from "components/TableData/Headers";
 import PatientScheduleData from "types/PatientScheduleData";
@@ -30,31 +27,9 @@ export default function IncomingReservation() {
 
   return (
     <SidebarWithHeader>
-      <Box
-        w={"full"}
-        bg={useColorModeValue("white", "gray.800")}
-        rounded={"md"}
-        overflow={"hidden"}
-      >
-        <Stack
-          textAlign={"center"}
-          p={2}
-          color={useColorModeValue("gray.800", "white")}
-          align={"center"}
-        >
-          <Text
-            fontSize='2xl'
-            fontWeight={500}
-            bg={useColorModeValue("blue.50", "blue.900")}
-            p={2}
-            px={8}
-            color={"blue.500"}
-            rounded={"full"}
-          >
-            Incoming Reservation
-          </Text>
-        </Stack>
-      </Box>
+      <Text fontSize="xl" fontWeight="bold" mb="8px">
+        Daftar Reservasi Pasien
+      </Text>
       <TableContainer overflowX="auto" mb="2rem">
         <Table variant="simple">
           <Thead>

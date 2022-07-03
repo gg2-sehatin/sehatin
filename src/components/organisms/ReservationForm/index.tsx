@@ -5,20 +5,14 @@ import {
   Input,
   FormHelperText,
 } from "@chakra-ui/react";
+import {ReservationFormProps} from './types'
 
-type ReservationStatusFormRegisterProps = {
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  tanggal: string;
-  jam: string;
-  onSubmit: (e?: React.FormEvent<HTMLFormElement>) => void;
-}
-
-function ReservationStatusFormRegister({
+function ReservationForm({
   onSubmit,
   onChange,
   tanggal,
   jam,
-}: ReservationStatusFormRegisterProps) {
+}: ReservationFormProps) {
 
   return (
     <form onSubmit={onSubmit}>
@@ -73,4 +67,4 @@ function ReservationStatusFormRegister({
   );
 }
 
-export default ReservationStatusFormRegister;
+export default ReservationForm;
