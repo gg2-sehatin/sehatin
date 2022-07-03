@@ -10,10 +10,13 @@ import {
   FormHelperText,
   Input,
   Select,
+  Icon,
+  Tooltip
 } from '@chakra-ui/react'
 import { useNavigate, useParams } from 'react-router-dom';
-import {useFormik} from 'formik';
+import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
+import { ChevronLeftIcon } from '@chakra-ui/icons';
 
 export default function AdminUserForm() {
   const { id } = useParams();
@@ -85,12 +88,16 @@ export default function AdminUserForm() {
         >
           <Box
             bg="white"
+            p={5}
             rounded="md"
+            boxShadow="base"
           >
-            <Button onClick={handleGoBack} mb='4'>
-              Kembali
-            </Button>
-            <Heading size='md' mb={3}>
+            <Tooltip label='Kembali'>
+              <Button onClick={handleGoBack} mb='4'>
+                <Icon as={ ChevronLeftIcon }/>
+              </Button>
+            </Tooltip>
+            <Heading size='lg' mb={3}>
               {id ? 'Edit Pengguna' : 'Tambah Pengguna'}
             </Heading>
             <Stack>
@@ -184,7 +191,7 @@ export default function AdminUserForm() {
                 </FormControl>
                 <Button
                   w="fit-content"
-                  bg='blue.300'
+                  colorScheme='blue'
                   color='white'
                   type='submit'
                 >{id ? 'Simpan' : 'Tambahkan Pengguna'}</Button>

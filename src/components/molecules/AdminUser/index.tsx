@@ -15,7 +15,6 @@ import {
   ButtonGroup,
   Tooltip,
   Icon,
-  Link,
   Badge
 } from '@chakra-ui/react'
 import {
@@ -58,25 +57,23 @@ export default function AdminUser() {
         <Heading size='lg' mb='3'>
           Daftar Pengguna
         </Heading>
-        <Flex justifyContent='left'>
-          <Link
+        <Flex justifyContent='right'>
+          <Button
+            leftIcon={<AddIcon/>}
+            colorScheme='blue'
+            color='white'
+            mb={4}
             as={RouteLink}
             to="/user/create"
           >
-            <Button
-              leftIcon={<AddIcon/>}
-              bg='blue.400'
-              color='white'
-              mb={4}
-            >
-              Tambah Data Baru
-            </Button>
-          </Link>
+            Tambah Data Baru
+          </Button>
         </Flex>
         <Box
-          bg='gray.100'
+          bg='white'
           p={5}
           rounded="md"
+          boxShadow="base"
         >
           <TableContainer>
             <Table size='sm'>
@@ -108,7 +105,7 @@ export default function AdminUser() {
                               <Icon as={DeleteIcon}/>
                             </Button>
                           </Tooltip>
-                          <Tooltip label='Update Data'>
+                          <Tooltip label='Edit Data'>
                             <Button
                               colorScheme='green'
                               size='sm'

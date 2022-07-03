@@ -199,5 +199,25 @@
       "phone": 81234546789,
       "role": "patient"
     }
+  ],
+  "schedule": [
+    {
+      "id": 1,
+      "userId": 1,
+      "jadwal_praktek": "08:00 - 10:00",
+      "biaya": 80000
+    },
+    {
+      "userId": "6",
+      "jadwal_praktek": "09:00 - 23:00",
+      "biaya": 45000,
+      "id": 3
+    },
+    {
+      "userId": "7",
+      "jadwal_praktek": "02:00 - 08:00",
+      "biaya": 60000,
+      "id": 4
+    }
   ]
 }
