@@ -21,6 +21,7 @@ import {
 import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { Link as RouteLink } from "react-router-dom";
 import IMedicine from "./types";
+import { formatRupiah } from "utils/helpers/formatRupiah";
 
 export default function AdminMedicineLIst() {
   const [dataMedicine, setDataMedicine] = useState<Array<IMedicine>>([]);
@@ -69,7 +70,7 @@ export default function AdminMedicineLIst() {
             {data.map((row) => (
               <Tr key={row.id.toString()}>
                 <Td>{row.nama}</Td>
-                <Td>{row.harga}</Td>
+                <Td>{formatRupiah(row.harga, 'Rp')}</Td>
                 <Td>10</Td>
                 <Td>
                   <ButtonGroup spacing={2}>

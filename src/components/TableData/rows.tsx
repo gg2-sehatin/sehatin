@@ -146,6 +146,9 @@ const Rows = ({
                 <Text>{item.examinationDate}</Text>
               </Td>
               <Td>
+                <Text>{item.dokter}</Text>
+              </Td>
+              <Td>
                 <Link to={`/emr-history/${item.id}`}>
                   <Button
                     variant='dark'
@@ -183,6 +186,9 @@ const Rows = ({
                 <Text>{item.examinationDate}</Text>
               </Td>
               <Td>
+                <Text>{item.dokter}</Text>
+              </Td>
+              <Td>
                 <Link to={`/my-emr/${item.id}`}>
                   <Button
                     variant='dark'
@@ -218,6 +224,15 @@ const Rows = ({
               <Td>
                 <Text>{item.jam}</Text>
               </Td>
+              {
+                auth.role === 'doctor'
+                ? ''
+                : (
+                  <Td>
+                    <Text>{item.dokter}</Text>
+                  </Td>
+                )
+              }
             </Tr>
           ))}
         </>
@@ -241,6 +256,9 @@ const Rows = ({
               </Td>
               <Td>
                 <Text>{item.jam}</Text>
+              </Td>
+              <Td>
+                <Text>{item.dokter}</Text>
               </Td>
               <Td>
                 <Text>{item.status}</Text>

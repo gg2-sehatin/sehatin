@@ -37,7 +37,7 @@ export default function MyReservationHistory() {
         <TableContainer overflowX="auto" mb="2rem">
           <Table variant="simple">
             <Thead>
-              <Headers headers={["No", "Nama", "Tanggal", "Jam", "Status"]} />
+              <Headers headers={["No", "Nama", "Tanggal", "Jam", "Dokter", "Status"]} />
             </Thead>
             <Tbody>
               <Rows data={data} type='reservationHistory' />

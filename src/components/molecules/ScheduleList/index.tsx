@@ -25,6 +25,7 @@ import { Link as RouteLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Schedule from 'types/Schedule';
 import { Link } from 'react-router-dom';
+import { formatRupiah } from 'utils/helpers/formatRupiah';
 
 export default function AdminSchedule() {
   const [ schedules, setSchedules ] = useState<Schedule[]>([])
@@ -93,7 +94,7 @@ export default function AdminSchedule() {
                     <Tr key={ schedule.id }>
                       <Td>{ schedule.user?.name }</Td>
                       <Td>{ schedule.jadwal_praktek }</Td>
-                      <Td>{ schedule.biaya }</Td>
+                      <Td>{ formatRupiah(schedule.biaya, 'Rp') }</Td>
                       <Td>
                         <ButtonGroup spacing={2}>
                           <Tooltip label='Delete Data'>

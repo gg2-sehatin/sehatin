@@ -19,13 +19,15 @@ import { useEffect, useState } from "react"
 import PatientScheduleData from "types/PatientScheduleData"
 import Medicine from "types/Medicine"
 import EmrHistoryData from "types/EmrHistoryData"
+import useAuth from "hooks/useAuth"
 
 const CreateNewEmr = () => {
   const [data, setData] = useState([])
   const [medicine, setMedicine] = useState([])
+  const { auth } = useAuth()
 
   useEffect(() => {
-    fetch("http://localhost:3001/patients?status=Dalam antrian", {
+    fetch(`http://localhost:3001/patients?status=Dalam antrian&dokter=${auth.name}`, {
       method: "GET",
     })
       .then(res => res.json())
@@ -40,11 +42,13 @@ const CreateNewEmr = () => {
 
   const navigate = useNavigate()
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
       pasien: "",
       diagnosa: "",
       obat: [],
       examinationDate: "",
+      dokter: auth.name
     },
     onSubmit: async (values) => {
       const users = await fetch(`http://localhost:3001/users?name=${values.pasien}`, {
@@ -58,8 +62,8 @@ const CreateNewEmr = () => {
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({...values, birthday, birthplace, gender})
       })
-      const emrData = emr.json() as unknown as EmrHistoryData
-      const idEmr = emrData.id
+      const emrData = await emr.json() as unknown as EmrHistoryData
+      const idEmr = await emrData.id
       let billing = 0;
       let url = "http://localhost:3001/medicine"
 
@@ -78,6 +82,13 @@ const CreateNewEmr = () => {
         for(let i = 0; i < medicineData.length; i++) {
           billing += medicineData[i].harga
         }
+
+        const doctor = await fetch(`http://localhost:3001/schedule?userId=${auth.id}`, {
+          method: "GET",
+        })
+        const doctorData = await doctor.json()
+        const doctorBill = doctorData[0].biaya
+        billing += doctorBill
 
         const bill = await fetch("http://localhost:3001/billing", {
           method: 'POST',
@@ -104,7 +115,7 @@ const CreateNewEmr = () => {
           method: "GET",
         })
         const medicineData = await medicine.json()
-        billing = medicineData[0].harga
+        billing = await medicineData[0].harga
 
         const bill = await fetch("http://localhost:3001/billing", {
           method: 'POST',
@@ -117,7 +128,7 @@ const CreateNewEmr = () => {
           method: "GET",
         })
         const patientData = await patients.json()
-        const { id } = patientData[0]
+        const { id } = await patientData[0]
         const updatePatient = await fetch(`http://localhost:3001/patients/${id}`, {
           method: 'PATCH',
           headers: {'Content-Type' : 'application/json'},
@@ -154,7 +165,7 @@ const CreateNewEmr = () => {
             <option value="">Pilih pasien</option>
             {data.map((item: PatientScheduleData, index) => (
               <option key={index} value={item.nama}>
-                {item.nama} / {item.tanggal}
+                {item.nama} - {item.tanggal}
               </option>
             ))}
           </Select>

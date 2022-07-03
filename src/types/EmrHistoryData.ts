@@ -6,5 +6,6 @@ export default interface EmrHistoryData {
   obat: string | string[];
   gender: string;
   birthplace: string;
-  birthday: string
+  birthday: string;
+  dokter: string;
 }

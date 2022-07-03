@@ -36,7 +36,7 @@ const EmrHistory = () => {
           <Table variant="simple">
             <Thead>
               <Headers
-                headers={["No", "Nama", "Tanggal Pemeriksaan", "Aksi"]}
+                headers={["No", "Nama", "Tanggal Pemeriksaan", "Dokter", "Aksi"]}
               />
             </Thead>
             <Tbody>

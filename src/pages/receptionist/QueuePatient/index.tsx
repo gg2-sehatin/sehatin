@@ -33,7 +33,7 @@ export default function PatientQueue() {
       <TableContainer overflowX="auto" mb="2rem">
         <Table variant="simple">
           <Thead>
-            <Headers headers={["No", "Nama", "Tanggal", "Jam"]} />
+            <Headers headers={["No", "Nama", "Tanggal", "Jam", "Dokter"]} />
           </Thead>
           <Tbody>
             <Rows data={data} type='schedule' />

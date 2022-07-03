@@ -37,7 +37,7 @@ const MyEmr = () => {
         <TableContainer overflowX="auto">
           <Table variant="simple">
             <Thead>
-              <Headers headers={["No", "Tanggal Pemeriksaan", "Aksi"]} />
+              <Headers headers={["No", "Tanggal Pemeriksaan", "Dokter", "Aksi"]} />
             </Thead>
             <Tbody>
               <Rows data={data} type="emr" />
