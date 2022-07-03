@@ -30,7 +30,8 @@ export default function AdminUser() {
   const [users, setUsers] = useState<User[]>([])
 
   const handleDelete = (id: number, type: string) => {
-    if(confirm('Apakah Anda yakin ingin menghapus pengguna ini?')) {
+    const confirmedDelete = confirm('Apakah anda yakin ingin menghapus pengguna ini?')
+    if(confirmedDelete) {
       return fetch(`http://localhost:3001/${type}/${id}`, {
         method: "DELETE",
       })

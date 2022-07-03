@@ -9,14 +9,16 @@ import {
 import SidebarWithHeader from "components/Sidebar";
 import Headers from "components/TableData/Headers";
 import Rows from "components/TableData/rows";
+import useAuth from "hooks/useAuth";
 import { useEffect, useState } from "react";
 import PatientScheduleData from "types/PatientScheduleData";
 
 export default function PatientQueue() {
   const [data, setData] = useState([]);
+  const { auth } = useAuth();
 
   useEffect(()=> {
-    fetch("http://localhost:3001/patients?status=Dalam antrian")
+    fetch(`http://localhost:3001/patients?status=Dalam antrian&dokter=${auth.name}`)
       .then(res => res.json())
       .then(data => {
         data

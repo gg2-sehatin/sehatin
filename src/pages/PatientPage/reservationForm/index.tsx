@@ -19,6 +19,7 @@ const FormRegister = () => {
       idPasien: auth.id,
       nama: auth.name,
       status: "Diperiksa",
+      dokter: "",
     },
     onSubmit: (values) => {
       fetch("http://localhost:3001/patients", {
@@ -34,7 +35,7 @@ const FormRegister = () => {
 
   const handleCloseModal = () => {
     setShow(false);
-    navigate("/");
+    navigate("/reservation-history");
   }
 
   return (
@@ -49,6 +50,7 @@ const FormRegister = () => {
           onChange={formik.handleChange}
           tanggal={formik.values.tanggal}
           jam={formik.values.jam}
+          dokter={formik.values.dokter}
         />
       </SidebarWithHeader>
       {show ?

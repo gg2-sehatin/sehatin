@@ -55,7 +55,7 @@ const EditProfile = () => {
       <form onSubmit={formik.handleSubmit}>
         <FormControl>
           {
-            auth.role !== 'patient' ?
+            auth.role === 'admin' ?
             (
               <>
                 <FormLabel ms="4px" fontSize="sm" fontWeight="normal">

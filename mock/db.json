@@ -1,82 +1,26 @@
 {
   "billing": [
     {
-      "billing": 13000,
+      "billing": 48000,
       "id": 1,
       "idEmr": 1,
       "name": "Rhenald Karrel"
-    },
-    {
-      "billing": 3000,
-      "id": 2,
-      "idEmr": 2,
-      "name": "Sumanto"
-    },
-    {
-      "billing": 3000,
-      "id": 3,
-      "idEmr": 3
-    },
-    {
-      "billing": 15000,
-      "id": 4,
-      "idEmr": 4
-    },
-    {
-      "billing": 3000,
-      "name": "Rhenald Karrel",
-      "id": 5
     }
   ],
   "emr": [
     {
       "birthday": "1997-06-18",
       "birthplace": "Jakarta",
-      "diagnosa": "Batuk dan pegal-pegal",
-      "examinationDate": "2022-07-01",
+      "diagnosa": "Batuk dan demam",
+      "dokter": "Syarif",
+      "examinationDate": "2022-07-15",
       "gender": "Laki-laki",
       "id": 1,
       "obat": [
-        "Paracetamol",
-        "Ibuprofen"
-      ],
-      "pasien": "Rhenald Karrel"
-    },
-    {
-      "birthday": "1994-06-07",
-      "birthplace": "Jakarta",
-      "diagnosa": "Demam dan muntahber",
-      "examinationDate": "2022-07-02",
-      "gender": "Laki-laki",
-      "id": 2,
-      "obat": [
         "Paracetamol"
       ],
-      "pasien": "Sumanto"
-    },
-    {
-      "birthday": "2001-06-03",
-      "birthplace": "Jakarta",
-      "diagnosa": "Pusing dan demam",
-      "examinationDate": "2022-07-02",
-      "gender": "Laki-laki",
-      "id": 3,
-      "obat": [
-        "Paracetamol"
-      ],
-      "pasien": "Sultan Muhammad Habibi"
-    },
-    {
       "pasien": "Rhenald Karrel",
-      "diagnosa": "Batuk",
-      "obat": [
-        "Paracetamol"
-      ],
-      "examinationDate": "2022-07-02",
-      "birthday": "1997-06-18",
-      "birthplace": "Jakarta",
-      "gender": "Laki-laki",
-      "id": 4
+      "patientId": 1
     }
   ],
   "medicine": [
@@ -91,43 +35,40 @@
       "nama": "Aspirin"
     },
     {
-      "harga": 10000,
+      "harga": 5000,
       "id": 3,
       "nama": "Ibuprofen"
     }
   ],
   "patients": [
     {
+      "dokter": "Syarif",
       "id": 1,
       "idPasien": 4,
-      "jam": "11:25",
+      "jam": "20:18",
       "nama": "Rhenald Karrel",
       "status": "Selesai",
-      "tanggal": "2022-07-01"
+      "tanggal": "2022-07-15"
+    }
+  ],
+  "schedule": [
+    {
+      "biaya": 80000,
+      "id": 1,
+      "jadwal_praktek": "08:00 - 10:00",
+      "userId": 1
     },
     {
-      "id": 2,
-      "idPasien": 8,
-      "jam": "16:23",
-      "nama": "Sumanto",
-      "status": "Selesai",
-      "tanggal": "2022-07-02"
-    },
-    {
+      "biaya": 45000,
       "id": 3,
-      "idPasien": 9,
-      "jam": "13:30",
-      "nama": "Sultan Muhammad Habibi",
-      "status": "Selesai",
-      "tanggal": "2022-07-02"
+      "jadwal_praktek": "09:00 - 23:00",
+      "userId": "6"
     },
     {
+      "biaya": 60000,
       "id": 4,
-      "idPasien": 4,
-      "jam": "09:30",
-      "nama": "Rhenald Karrel",
-      "status": "Menunggu pembayaran",
-      "tanggal": "2022-07-02"
+      "jadwal_praktek": "02:00 - 08:00",
+      "userId": "7"
     }
   ],
   "users": [
@@ -198,26 +139,6 @@
       "password": "$2a$10$Djg2uNcONN85b4WKfWYP9OrEMTv6G/37W6QW.h2XpO/uMQEQrV15i",
       "phone": 81234546789,
       "role": "patient"
-    }
-  ],
-  "schedule": [
-    {
-      "id": 1,
-      "userId": 1,
-      "jadwal_praktek": "08:00 - 10:00",
-      "biaya": 80000
-    },
-    {
-      "userId": "6",
-      "jadwal_praktek": "09:00 - 23:00",
-      "biaya": 45000,
-      "id": 3
-    },
-    {
-      "userId": "7",
-      "jadwal_praktek": "02:00 - 08:00",
-      "biaya": 60000,
-      "id": 4
     }
   ]
 }

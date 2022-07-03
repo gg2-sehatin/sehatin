@@ -1,24 +1,30 @@
 import {
   Button,
   FormControl,
+  FormHelperText,
   FormLabel,
   Input,
-  FormHelperText,
+  Select
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import {ReservationFormProps} from './types'
 
-type ReservationStatusFormRegisterProps = {
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  tanggal: string;
-  jam: string;
-  onSubmit: (e?: React.FormEvent<HTMLFormElement>) => void;
-}
-
-function ReservationStatusFormRegister({
+function ReservationForm({
   onSubmit,
   onChange,
   tanggal,
+  dokter,
   jam,
-}: ReservationStatusFormRegisterProps) {
+}: ReservationFormProps) {
+  const [doctors, setDoctors] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:3001/schedule?_expand=user", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => setDoctors(data));
+  }, [])
 
   return (
     <form onSubmit={onSubmit}>
@@ -40,6 +46,26 @@ function ReservationStatusFormRegister({
         />
       </FormControl>
 
+      <FormControl>
+        <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
+          Tanggal
+        </FormLabel>
+        <Select
+          name="dokter"
+          id="dokter"
+          mb="24px"
+          onChange={onChange}
+          value={dokter}
+          placeholder="Pilih Dokter"
+        >
+          {doctors.map((item: any, index) => (
+            <option key={index} value={item.user.name}>
+              {item.user.name} / {item.jadwal_praktek}
+            </option>
+          ))}
+        </Select>
+      </FormControl>
+
       <FormControl mb="24px">
         <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
           Jam
@@ -52,12 +78,10 @@ function ReservationStatusFormRegister({
           ms="4px"
           type="time"
           size="lg"
-          min="09:00"
-          max="17:00"
           value={jam}
           onChange={onChange}
         />
-        <FormHelperText>Jam operasional: <b>09.00 - 17.00 WIB</b></FormHelperText>
+        <FormHelperText>Pastikan jam sesuai dengan jam praktek dokter!</FormHelperText>
       </FormControl>
 
       <Button
@@ -73,4 +97,4 @@ function ReservationStatusFormRegister({
   );
 }
 
-export default ReservationStatusFormRegister;
+export default ReservationForm;

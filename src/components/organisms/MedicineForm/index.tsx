@@ -24,25 +24,19 @@ import { ChevronLeftIcon } from "@chakra-ui/icons";
 
 
 export default function MedicineForm() {
-  // State
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
-  // Navigate
   const navigate = useNavigate();
   const handleGoBack = () => navigate(-1);
 
-  // Params
-  /* eslint-disable */
   const {state}: any = useLocation();
-  /* eslint-enable */
 
-  // Formik
   const formik = useFormik({
     initialValues: {
       id: state?.id || "",
-      medicine_name: state?.medicine_name || "",
-      medicine_price: state?.medicine_price || "",
+      nama: state?.nama || "",
+      harga: state?.harga || "",
     },
     onSubmit: (values, actions) => {
       if (state?.isEdit) {
@@ -54,10 +48,9 @@ export default function MedicineForm() {
           actions.resetForm({
             values: {
               id: "",
-              medicine_name: "",
-              medicine_price: "",
+              nama: "",
+              harga: "",
             },
-            // you can also set the other form states here
           });
           setShow(true);
           setTimeout(() => {
@@ -75,11 +68,9 @@ export default function MedicineForm() {
         actions.resetForm({
           values: {
             id: "",
-            // the type of `values` inferred to be Blog
-            medicine_name: "",
-            medicine_price: "",
+            nama: "",
+            harga: "",
           },
-          // you can also set the other form states here
         });
         setShow(true);
         setTimeout(() => {
@@ -100,7 +91,7 @@ export default function MedicineForm() {
               </Button>
             </Tooltip>
             <Heading size="lg" mb="3">
-              Medicines
+              Tambah Obat
             </Heading>
             {show ? (
               <Alert status="success">
@@ -127,10 +118,10 @@ export default function MedicineForm() {
                     Nama Obat
                   </FormLabel>
                   <Input
-                    id="medicine_name"
-                    name="medicine_name"
+                    id="nama"
+                    name="nama"
                     onChange={formik.handleChange}
-                    value={formik.values.medicine_name}
+                    value={formik.values.nama}
                     type="text"
                     size="sm"
                   />
@@ -140,10 +131,10 @@ export default function MedicineForm() {
                     Harga Obat
                   </FormLabel>
                   <Input
-                    id="medicine_price"
-                    name="medicine_price"
+                    id="harga"
+                    name="harga"
                     onChange={formik.handleChange}
-                    value={formik.values.medicine_price}
+                    value={formik.values.harga}
                     type="number"
                     size="sm"
                   />

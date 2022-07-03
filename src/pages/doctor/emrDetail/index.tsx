@@ -22,7 +22,8 @@ const EmrDetail = () => {
     obat: [] || '',
     birthday: '',
     birthplace: '',
-    gender: ''
+    gender: '',
+    dokter: ''
   });
   const [price, setPrice] = useState(0)
 
@@ -55,6 +56,12 @@ const EmrDetail = () => {
             <Button mb='8px'>Kembali</Button>
           </Link>
           <UnorderedList display='table' listStyleType='none' mt='1rem'>
+            <ListItem display='table-row'>
+              <Text display='table-cell' pr='4em' fontWeight='bold'>
+                Nama Dokter
+              </Text>
+              : {data.dokter}
+            </ListItem>
             <ListItem display='table-row'>
               <Text display='table-cell' pr='4em' fontWeight='bold'>
                 Nama Pasien

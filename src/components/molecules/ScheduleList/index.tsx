@@ -25,12 +25,14 @@ import { Link as RouteLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Schedule from 'types/Schedule';
 import { Link } from 'react-router-dom';
+import { formatRupiah } from 'utils/helpers/formatRupiah';
 
 export default function AdminSchedule() {
   const [ schedules, setSchedules ] = useState<Schedule[]>([])
 
   const handleDelete = (id: number, type: string) => {
-    if(confirm('Apakah anda yakin ingin menghapus pengguna ini?')) {
+    const confirmedDelete = confirm('Apakah anda yakin ingin menghapus jadwal ini?')
+    if(confirmedDelete) {
       return fetch(`http://localhost:3001/${type}/${id}`, {
         method: "DELETE"
       })
@@ -44,8 +46,6 @@ export default function AdminSchedule() {
   }
 
   useEffect(() => {
-
-    // _expand = untuk relasi berdasarkan userId dan mengambil relasi ke table users
     fetch(`http://localhost:3001/schedule?_expand=user`, {
       method: 'GET'
     })
@@ -59,7 +59,7 @@ export default function AdminSchedule() {
     <>
       <SidebarWithHeader>
         <Heading size='lg' mb='3'>
-          Schedule
+          Daftar Jadwal Dokter
         </Heading>
         <Flex justifyContent='right'>
           <Button
@@ -94,7 +94,7 @@ export default function AdminSchedule() {
                     <Tr key={ schedule.id }>
                       <Td>{ schedule.user?.name }</Td>
                       <Td>{ schedule.jadwal_praktek }</Td>
-                      <Td>{ schedule.biaya }</Td>
+                      <Td>{ formatRupiah(schedule.biaya, 'Rp') }</Td>
                       <Td>
                         <ButtonGroup spacing={2}>
                           <Tooltip label='Delete Data'>
